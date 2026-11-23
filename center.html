@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>Should Humans Remain at the Center? · Yihan Zeng</title>
+<meta name="description" content="An interactive installation: four sculptures ask how far we will go for a life other than our own.">
+<link rel="stylesheet" href="css/case.css">
+<style>
+:root { --acc: #ff4b3e }
+.ringlab { display: grid; grid-template-columns: minmax(280px, 1fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 80px); align-items: center }
+.ringlab svg { width: 100%; max-width: 560px; display: block; margin: 0 auto }
+.q-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden }
+.q-card img { width: 100%; height: 300px; object-fit: cover; object-position: 100% 50%; transition: opacity .3s }
+.q-in { padding: 26px 28px 30px }
+.q-meta { display: flex; justify-content: space-between; font: 400 11.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+.q-meta b { color: var(--acc); font-weight: 400 }
+.q-text { font: 400 clamp(22px, 2vw, 30px)/1.3 var(--sans); margin: 14px 0 22px; letter-spacing: -.01em; min-height: 3.9em }
+.q-btns { display: flex; gap: 12px }
+.q-btns button { flex: 1; padding: 16px; font: 600 16px var(--sans); border-radius: 6px; cursor: pointer; border: 1px solid #444; background: transparent; color: var(--text) }
+.q-btns button.yes { background: var(--text); color: #000; border-color: var(--text) }
+.q-btns button:hover { border-color: var(--acc) } .q-btns button.yes:hover { background: var(--acc); border-color: var(--acc) }
+.q-survey { font-size: 14px; color: var(--muted); margin-top: 18px; min-height: 3em }
+.q-survey b { color: var(--text) }
+.q-prog { display: flex; gap: 4px; margin-top: 18px } .q-prog i { flex: 1; height: 3px; background: #333 } .q-prog i.on { background: var(--acc) }
+.summary { display: none } .summary.on { display: block }
+.summary .t td:last-child { font-family: var(--mono) }
+@media (max-width: 900px) { .ringlab { grid-template-columns: 1fr } }
+</style>
+</head>
+<body>
+<div class="readbar"></div>
+<header class="top">
+  <a class="name" href="index.html"><span class="name-big">YIHAN ZENG</span><span class="name-sub">Industrial &amp; interaction design</span></a>
+  <nav class="menu"><a href="index.html">Work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+</header>
+
+<main>
+<section class="c-hero wrap">
+  <a class="c-back mono" href="index.html?project=center">← All projects</a>
+  <div class="c-kicker mono"><span>01 / 05</span><span>Interactive installation</span></div>
+  <h1 class="c-title long">Should Humans Remain at the Center?</h1>
+  <p class="c-sub">Humans have always stood at the center. Now we want to leave. <em>But leaving is never free.</em></p>
+  <dl class="c-meta">
+    <div><dt>Format</dt><dd>Interactive installation · four sculptures · voice</dd></div>
+    <div><dt>Research</dt><dd>205-person survey · 12 situations</dd></div>
+    <div><dt>Technology</dt><dd>Ultrasonic sensors · webcam · Arduino · speech recognition</dd></div>
+    <div><dt>Scale</dt><dd>Four 450 mm sculptures on 600 mm plinths</dd></div>
+    <div><dt>Outputs</dt><dd>Installation, experience film, digital edition</dd></div>
+  </dl>
+  <figure class="c-cover"><img src="assets/center/images/cover.jpg" alt="Four sculptures surrounding one participant" data-zoom="assets/center/images/cover.jpg"></figure>
+</section>
+
+<nav class="c-nav" aria-label="Chapters"><ol>
+  <li><a href="#debate"><b>01</b>The debate</a></li>
+  <li><a href="#history"><b>02</b>Anthropocentrism</a></li>
+  <li><a href="#survey"><b>03</b>Survey</a></li>
+  <li><a href="#concept"><b>04</b>Concept</a></li>
+  <li><a href="#sculptures"><b>05</b>Sculptures</a></li>
+  <li><a href="#try"><b>06</b>Try it ★</a></li>
+  <li><a href="#tech"><b>07</b>Sensing</a></li>
+  <li><a href="#film"><b>08</b>Film &amp; digital ★</a></li>
+  <li><a href="#boards"><b>09</b>Boards</a></li>
+</ol></nav>
+
+<div class="wrap">
+<section class="c-sec" id="debate">
+  <div class="c-head reveal"><div class="c-num">01</div><div>
+    <h2 class="c-h">A museum is on fire. Save the painting, or the cat?</h2>
+    <p class="c-lede">A debate that went viral online — people fought hard for both sides. But change one condition and everyone agrees.</p>
+  </div></div>
+  <div class="c-body">
+    <div class="cols reveal" style="--n:3">
+      <div class="card"><span class="mono">A · The original question</span><h4>Painting or cat?</h4><p>Split. Culture against a life.</p></div>
+      <div class="card"><span class="mono">B · Change one condition</span><h4>Painting → a child</h4><p>Almost everyone saves the child.</p></div>
+      <div class="card"><span class="mono">C · Change it again</span><h4>Cat → a mosquito</h4><p>No one saves the mosquito.</p></div>
+    </div>
+    <div class="hmw reveal"><span class="mono">The closer to the human, the safer</span>So the real question is not cat or painting. It is: should humans remain at the center — and what would it cost to leave?</div>
+  </div>
+</section>
+
+<section class="c-sec" id="history">
+  <div class="c-head reveal"><div class="c-num">02</div><div>
+    <h2 class="c-h">Every rule we live by was written from the center.</h2>
+    <p class="c-lede">Anthropos, “human”, plus kentron, “center”: a view that takes human interests as the starting point for judging what matters. The reasons changed — myth, God, reason, industry — but the center held.</p>
+  </div></div>
+  <div class="c-body">
+    <div class="steps reveal" style="--n:5">
+      <div><h4>Mythic age</h4><p>Nature as kin. Humans live among spirits, but already read the world for it.</p></div>
+      <div><h4>Religious era</h4><p>A divine mandate. Humans are made to rule over creation.</p></div>
+      <div><h4>Enlightenment</h4><p>Reason as the measure. Nature becomes an object to study and control.</p></div>
+      <div><h4>Industrial age</h4><p>Mastery through technology. Nature becomes a resource.</p></div>
+      <div><h4>Posthuman turn</h4><p>Ecology, animals and AI ask the human to step aside.</p></div>
+    </div>
+    <div class="cols reveal" style="--n:2;margin-top:5vh">
+      <div class="card"><span class="mono">Restraint · 1962</span><h4>Rachel Carson, Silent Spring</h4><p>DDT traced from crop fields into birds, rivers and human bodies. Nature is no longer a store outside us.</p></div>
+      <div class="card"><span class="mono">Empathy · 1975</span><h4>Peter Singer, Animal Liberation</h4><p>The capacity to suffer, not species, decides who counts.</p></div>
+    </div>
+    <h3 class="c-sub-h">When do we forget ourselves — just for a moment?</h3>
+    <div class="cols reveal" style="--n:4">
+      <div class="card"><span class="mono">Empathy · animals</span><h4>When it looks at us</h4><p>We pet the dog, then order the pork.</p></div>
+      <div class="card"><span class="mono">Restraint · nature</span><h4>When it’s beautiful</h4><p>We love the view, then drive home.</p></div>
+      <div class="card"><span class="mono">Responsibility · the unborn</span><h4>When we think of the kids</h4><p>We worry about 2050, then turn the A/C back down.</p></div>
+      <div class="card"><span class="mono">Trust · machines</span><h4>When it’s easier</h4><p>We follow the map — until it gets one turn wrong.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="c-sec" id="survey">
+  <div class="c-head reveal"><div class="c-num">03</div><div>
+    <h2 class="c-h">Anthropocentrism comes in degrees.</h2>
+    <p class="c-lede">Before finalising the installation I asked 205 people what they would give up for animals, nature, future generations or AI. 12 situations = 4 directions × 3 levels of rising cost; level 3 puts someone else’s jobs, health or safety at stake.</p>
+  </div></div>
+  <div class="c-body">
+    <table class="t reveal">
+      <tr><th></th><th>01 · Your convenience</th><th>02 · Your money or chances</th><th>03 · Someone else pays</th></tr>
+      <tr><td>Empathy</td><td>Keep the stray cats’ shelter · <b>82%</b></td><td>Skip the elephant ride, no refund · <b>80%</b></td><td>Keep the dog that bit a child · <b>9%</b></td></tr>
+      <tr><td>Restraint</td><td>Stop insecticide that kills bees · <b>76%</b></td><td>Keep the wetland, lose the metro · <b>80%</b></td><td>Ten-year Yangtze fishing ban · <b>95%</b></td></tr>
+      <tr><td>Responsibility</td><td>26 °C in every building · <b>69%</b></td><td>Fuel tax, ¥100–200 a month · <b>81%</b></td><td>Close a coal region now · <b>9%</b></td></tr>
+      <tr><td>Trust</td><td>Let a phone AI run your apps · <b>10%</b></td><td>Accept an AI-only job interview · <b>11%</b></td><td>Open the city to driverless taxis · <b>10%</b></td></tr>
+    </table>
+    <div class="stats reveal" style="--n:4;margin-top:5vh">
+      <div class="stat"><b>82→9%</b><span>Who bears the cost changes the answer: keep the cats’ shelter vs keep the dogs after a bite</span></div>
+      <div class="stat"><b>10%</b><span>Machines stay outside: only 10–11% said yes to AI in any round</span></div>
+      <div class="stat"><b>93</b><span>of 205 respondents gave the same twelve answers — the line is shared</span></div>
+      <div class="stat"><b>89 vs 61%</b><span>We leave for what has a face: fuel-tax support with vs without children</span></div>
+    </div>
+    <blockquote class="quote reveal">It matters whose price you are agreeing to pay.<cite>How I restructured the three rounds</cite></blockquote>
+  </div>
+</section>
+
+<section class="c-sec" id="concept">
+  <div class="c-head reveal"><div class="c-num">04</div><div>
+    <h2 class="c-h">Leaving the center has a price. The installation lets you find yours.</h2>
+    <p class="c-lede">You stand between four sculptures and face each one in every round. The subject stays familiar as the stakes change. Each spoken yes adds a band to that sculpture’s quadrant.</p>
+  </div></div>
+  <div class="c-body">
+    <p class="reveal" style="color:#c5c5be;max-width:46em">How the survey reshaped the rounds: 81% would pay a fuel tax — respondents knew what cleaner energy cost them. Only 9% would close a coal region — the goal still served future generations, but this time other families would lose jobs. So in each direction visitors first know what a yes costs them; in the last round they decide for someone else, without knowing how serious the harm will be.</p>
+    <div class="cols reveal" style="--n:3">
+      <div class="card"><span class="mono">01 · Who pays: I do</span><h4>A small cost I can feel now</h4><p>I give up a little comfort or control. I know what a warmer room or a meal I did not choose will feel like.</p></div>
+      <div class="card"><span class="mono">02 · Who pays: I do</span><h4>A loss I can weigh</h4><p>I give up money, time or an opportunity — a monthly bill, an extra hour of travel, one job opportunity.</p></div>
+      <div class="card"><span class="mono">03 · Who pays: someone else</span><h4>A risk I accept for another</h4><p>A patient, a passenger or a stranger may pay. I can see who is at risk; I cannot know if help arrives in time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="c-sec" id="sculptures">
+  <div class="c-head reveal"><div class="c-num">05</div><div>
+    <h2 class="c-h">Four sculptures, four directions.</h2>
+    <p class="c-lede">Each wraps something soft and alive-looking in wire mesh and electronic scrap, so the made, human hand always shows through.</p>
+  </div></div>
+  <div class="c-body">
+    <div class="grid-figs reveal" style="--n:4;--ar:3/4">
+      <figure><img src="assets/center/images/empathy.jpg" alt="Empathy sculpture"><figcaption class="caption"><b>Empathy · animals</b> — fur and balloons. The fur breathes as you come close.</figcaption></figure>
+      <figure><img src="assets/center/images/restraint.jpg" alt="Restraint sculpture"><figcaption class="caption"><b>Restraint · nature</b> — a LEGO tree. It turns when you reach for it.</figcaption></figure>
+      <figure><img src="assets/center/images/responsibility.jpg" alt="Responsibility sculpture"><figcaption class="caption"><b>Responsibility · the unborn</b> — a red sphere. The child glows inside.</figcaption></figure>
+      <figure><img src="assets/center/images/trust.jpg" alt="Trust sculpture"><figcaption class="caption"><b>Trust · AI</b> — a plaster bust with a webcam. The camera finds your face.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="c-sec" id="try">
+  <div class="c-head reveal"><div class="c-num">06</div><div>
+    <h2 class="c-h">Three rounds. Twelve questions. One ring.</h2>
+    <p class="c-lede">Answer the installation’s questions yourself. Each yes adds a band to that sculpture’s quadrant; after each answer you see how the 205 survey respondents answered the matching situation.</p>
+  </div></div>
+  <div class="stage">
+    <div class="stage-head"><div><span class="mono">Prototype · The installation score</span><h3>How far will you move from the center?</h3></div>
+      <div class="how"><span><i></i>Answer yes or no</span></div></div>
+    <div class="ringlab">
+      <svg id="ring" viewBox="-160 -160 320 320" aria-label="Your ring"></svg>
+      <div>
+        <div class="q-card" id="qcard">
+          <img id="qimg" src="assets/center/images/empathy.jpg" alt="">
+          <div class="q-in">
+            <div class="q-meta"><span id="qround">Round 1 · A small cost to me</span><b id="qsculpt">Empathy</b></div>
+            <p class="q-text" id="qtext"></p>
+            <div class="q-btns"><button class="yes" id="byes">Yes</button><button id="bno">No</button></div>
+            <p class="q-survey" id="qsurvey">The sculpture moves, speaks, and waits for your answer.</p>
+            <div class="q-prog" id="qprog"></div>
+          </div>
+        </div>
+        <div class="summary" id="summary">
+          <h4 class="p-title">Your ring</h4>
+          <table class="t" id="sumt"></table>
+          <p style="color:#c5c5be;margin-top:18px">When you stepped away from the center, who agreed to pay the price?</p>
+          <button class="btn ghost" id="again">↺ Answer again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="c-sec" id="tech">
+  <div class="c-head reveal"><div class="c-num">07</div><div>
+    <h2 class="c-h">How the sculptures sense and respond.</h2>
+    <p class="c-lede">A hand or a face triggers a response, then a recorded question. The speech-recognition module logs each spoken yes or no for the active sculpture.</p>
+  </div></div>
+  <div class="c-body">
+    <div class="steps reveal" style="--n:5">
+      <div><h4>Sensor</h4><p>Ultrasonic distance sensor; webcam for Trust.</p></div>
+      <div><h4>Controller</h4><p>One Arduino board per sculpture.</p></div>
+      <div><h4>Response</h4><p>Air pump, gear motor, LED + rotating base, face detection.</p></div>
+      <div><h4>Voice prompt</h4><p>A recorded voice asks; the visitor says yes or no.</p></div>
+      <div><h4>Speech input</h4><p>Recognition logs the answer and adds a band.</p></div>
+    </div>
+    <div class="steps reveal" style="--n:7;margin-top:6vh">
+      <div><h4>Stand at the center</h4><p>Four sculptures face you.</p></div>
+      <div><h4>Reach out</h4><p>Bring a hand close; for Trust, look into the camera.</p></div>
+      <div><h4>It responds</h4><p>Fur rises, the tree turns, the child glows.</p></div>
+      <div><h4>It asks</h4><p>A voice asks one question.</p></div>
+      <div><h4>Answer aloud</h4><p>Yes or no.</p></div>
+      <div><h4>Turn 90°</h4><p>Each round, the cost shifts.</p></div>
+      <div><h4>Your ring</h4><p>See your pattern after twelve answers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="c-sec" id="film">
+  <div class="c-head reveal"><div class="c-num">08</div><div>
+    <h2 class="c-h">“We all say we want to leave the human center. Yet it is where every one of us starts.”</h2>
+    <p class="c-lede">The experience film, and a digital edition that explores the same three rounds with its own question set.</p>
+  </div></div>
+  <div class="embed reveal"><div class="bar"><span>Experience film</span></div><video src="assets/center/video/experience.mp4" controls playsinline preload="metadata" poster="assets/center/images/cover.jpg" style="width:100%;display:block;max-height:86vh;background:#000"></video></div>
+  <div class="embed reveal">
+    <div class="bar"><span>Digital edition · interactive</span><a href="assets/center/prototype/index.html" target="_blank" rel="noopener">Open full screen ↗</a></div>
+    <a class="cover-play" href="assets/center/prototype/index.html" data-src="assets/center/prototype/index.html"><img src="assets/center/images/ring.jpg" alt=""><span>▶ Open the digital edition</span></a>
+  </div>
+</section>
+
+<section class="c-sec" id="boards">
+  <div class="c-head reveal"><div class="c-num">09</div><div>
+    <h2 class="c-h">Original boards</h2>
+    <p class="c-lede">Click a board to open it; click again to zoom and pan.</p>
+  </div></div>
+  <div class="boards" data-proj="center" data-n="6" data-labels="Cover · the debate|A timeline of anthropocentrism|Survey · degrees|Design concept · sculptures|Three rounds · one ring|Sensing · details"></div>
+</section>
+</div>
+
+<a class="c-next" href="lookcoin.html"><div><span class="mono">Next project · 02</span><b>LookCoin</b></div><span class="arrow">→</span></a>
+</main>
+<footer class="foot"><span>© 2026 Yihan Zeng</span><a href="#">Back to top ↑</a></footer>
+
+<script src="js/case.js"></script>
+<script>
+(() => {
+  const D = [
+    { k: 'Empathy', sub: 'Animals', col: '#c99a6b', img: 'empathy', q: ['Keep the cats’ shelter if you smell it on your way home?', 'Give up your prepaid elephant ride and lose the fare?', 'Ban animal tests if a patient might die waiting for a new drug?'],
+      s: [['keep the stray cats’ shelter despite the smell and crying at night', 82], ['skip the elephant ride, no refund, once they learned how the animals are trained', 80], ['keep a neutered stray dog in the community after it bit a child', 9]] },
+    { k: 'Restraint', sub: 'Nature', col: '#5fa36b', img: 'restraint', q: ['Stop spraying for mosquitoes to spare bees, even if you get bitten?', 'Keep the wetland if it adds an hour to your commute each day?', 'Keep the reserve road-free if an ambulance might arrive too late?'],
+      s: [['stop the weekly insecticide that also kills bees and the birds’ food', 76], ['keep the wetland instead of a metro station that saves an hour a day', 80], ['support a ten-year Yangtze fishing ban, though 200,000+ fishers lose their work', 95]] },
+    { k: 'Responsibility', sub: 'The unborn', col: '#e2463b', img: 'responsibility', q: ['Set your AC to 26 °C today to cut emissions, even if you feel warm?', 'Pay ¥100–200 more each month to fund cleaner energy?', 'Reserve antibiotics for future patients if someone treated today might die?'],
+      s: [['keep every mall, office and subway at 26 °C to cut emissions', 69], ['support a fuel tax costing them ¥100–200 a month', 81], ['shut a coal region down now, though hundreds of thousands lose their jobs', 9]] },
+    { k: 'Trust', sub: 'AI', col: '#4f7de0', img: 'trust', q: ['Let AI pick today’s lunch from the menu, even if you dislike the dish?', 'Let AI judge one job application with no chance of human review?', 'Let the car protect pedestrians if your mother in the car could be killed?'],
+      s: [['turn on a phone AI that reads their screen and runs their apps', 10], ['accept an AI-only first-round job interview with no reason given', 11], ['open the city to driverless taxis, though tens of thousands of drivers lose their jobs', 10]] }
+  ];
+  const rounds = ['Round 1 · A small cost to me', 'Round 2 · A loss I can weigh', 'Round 3 · A risk to someone else'];
+  const $ = id => document.getElementById(id), svg = $('ring');
+  let i = 0, ans = [];
+  const prog = $('qprog'); for (let n = 0; n < 12; n++) prog.appendChild(document.createElement('i'));
+  function arc(r0, r1, a0, a1) {
+    const p = (r, a) => [r * Math.sin(a), -r * Math.cos(a)];
+    const [x0, y0] = p(r1, a0), [x1, y1] = p(r1, a1), [x2, y2] = p(r0, a1), [x3, y3] = p(r0, a0);
+    return `M${x0} ${y0} A${r1} ${r1} 0 0 1 ${x1} ${y1} L${x2} ${y2} A${r0} ${r0} 0 0 0 ${x3} ${y3}Z`;
+  }
+  function draw(hl) {
+    let s = '';
+    for (let q = 0; q < 4; q++) {
+      const a0 = q * Math.PI / 2 + .04, a1 = (q + 1) * Math.PI / 2 - .04;
+      for (let r = 0; r < 3; r++) {
+        const idx = r * 4 + q, yes = ans[idx] === true, active = idx === hl;
+        s += `<path d="${arc(42 + r * 36, 74 + r * 36, a0, a1)}" fill="${yes ? D[q].col : '#1d1d1d'}" stroke="${active ? '#fff' : '#333'}" stroke-width="${active ? 2 : 1}" style="transition:fill .5s"/>`;
+      }
+      const am = (a0 + a1) / 2;
+      s += `<text x="${158 * Math.sin(am) * .93}" y="${-158 * Math.cos(am) * .93 + 4}" text-anchor="middle" font-family="Plex,monospace" font-size="9" fill="${D[q].col}" letter-spacing="1">${D[q].k.toUpperCase()}</text>`;
+    }
+    s += `<circle r="34" fill="#ff4b3e"/><text y="-2" text-anchor="middle" font-family="Doto,sans-serif" font-weight="900" font-size="16" fill="#fff">YOU</text><text y="12" text-anchor="middle" font-family="Plex,monospace" font-size="6" fill="#fff">THE HUMAN POLE</text>`;
+    svg.innerHTML = s;
+  }
+  function show() {
+    if (i >= 12) return finish();
+    const r = Math.floor(i / 4), q = i % 4, d = D[q];
+    $('qround').textContent = rounds[r]; $('qsculpt').textContent = d.k + ' · ' + d.sub;
+    $('qtext').textContent = d.q[r]; $('qimg').src = 'assets/center/images/' + d.img + '.jpg';
+    [...prog.children].forEach((x, n) => x.classList.toggle('on', n < i));
+    draw(i);
+  }
+  function answer(v) {
+    const r = Math.floor(i / 4), q = i % 4, [txt, pct] = D[q].s[r];
+    ans[i] = v; i++;
+    $('qsurvey').innerHTML = `You said <b>${v ? 'yes' : 'no'}</b>. In the survey, <b>${pct}%</b> of 205 people agreed to ${txt}.`;
+    show();
+  }
+  function finish() {
+    draw(-1); [...prog.children].forEach(x => x.classList.add('on'));
+    $('qcard').style.display = 'none'; $('summary').classList.add('on');
+    $('sumt').innerHTML = '<tr><th>Sculpture</th><th>Yes</th></tr>' + D.map((d, q) => `<tr><td style="color:${d.col}">${d.k}</td><td>${[0, 1, 2].filter(r => ans[r * 4 + q]).length} / 3</td></tr>`).join('');
+  }
+  $('byes').onclick = () => answer(true); $('bno').onclick = () => answer(false);
+  $('again').onclick = () => { i = 0; ans = []; $('summary').classList.remove('on'); $('qcard').style.display = ''; $('qsurvey').textContent = 'The sculpture moves, speaks, and waits for your answer.'; show(); };
+  show();
+})();
+</script>
+</body>
+</html>

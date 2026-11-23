@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>MediMate · Yihan Zeng</title>
+<meta name="description" content="MediMate — a medication history app and a playable game about everyday antibiotic decisions.">
+<link rel="stylesheet" href="css/case.css">
+<style>:root { --acc: #4fc7b8 } .dev-phone .p-screen { background: #fff }</style>
+</head>
+<body>
+<div class="readbar"></div>
+<header class="top">
+  <a class="name" href="index.html"><span class="name-big">YIHAN ZENG</span><span class="name-sub">Industrial &amp; interaction design</span></a>
+  <nav class="menu"><a href="index.html">Work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+</header>
+
+<main>
+<section class="c-hero wrap">
+  <a class="c-back mono" href="index.html?project=medimate">← All projects</a>
+  <div class="c-kicker mono"><span>04 / 05</span><span>Health interaction &amp; game design</span></div>
+  <h1 class="c-title">MediMate</h1>
+  <p class="c-sub">Before reaching for an antibiotic — a medication history app and a playable game about the consequences of <em>everyday antibiotic decisions.</em></p>
+  <dl class="c-meta">
+    <div><dt>Programme</dt><dd>UNESCO Youth Education Research Centre · Art for 2030 · July 2026</dd></div>
+    <div><dt>Team</dt><dd>Five people · one month</dd></div>
+    <div><dt>My role</dt><dd>Analysed the questionnaire · designed the low-fidelity app flows · programmed the game</dd></div>
+    <div><dt>Research</dt><dd>161 questionnaire responses · stakeholder interviews</dd></div>
+    <div><dt>Outputs</dt><dd>~35 wireframes · hi-fi app (team) · playable game “Inside Defense”</dd></div>
+  </dl>
+  <figure class="c-cover"><img src="assets/medimate/images/cover.jpg" alt="MediMate app and the game Inside Defense" data-zoom="assets/medimate/boards/board-01.webp"></figure>
+</section>
+
+<nav class="c-nav" aria-label="Chapters"><ol>
+  <li><a href="#problem"><b>01</b>Problem</a></li>
+  <li><a href="#research"><b>02</b>Research</a></li>
+  <li><a href="#opportunity"><b>03</b>Opportunity</a></li>
+  <li><a href="#concept"><b>04</b>Concept &amp; journey</a></li>
+  <li><a href="#app"><b>05</b>App prototype ★</a></li>
+  <li><a href="#game"><b>06</b>Game ★</a></li>
+  <li><a href="#feedback"><b>07</b>Feedback</a></li>
+  <li><a href="#boards"><b>08</b>Boards</a></li>
+</ol></nav>
+
+<div class="wrap">
+<section class="c-sec" id="problem">
+  <div class="c-head reveal"><div class="c-num">01</div><div>
+    <h2 class="c-h">Resistance grows faster than new drugs arrive.</h2>
+    <p class="c-lede">Resistance existed long before antibiotics. What changed is the pressure we put on bacteria — and how fast resistant strains now travel. For an individual it stays invisible until a drug stops working.</p>
+  </div></div>
+  <div class="c-body">
+    <div class="stats reveal" style="--n:4">
+      <div class="stat"><b>1 in 6</b><span>common lab-confirmed bacterial infections were resistant in 2023 (WHO)</span></div>
+      <div class="stat"><b>40%+</b><span>of monitored pathogen–antibiotic pairs showed rising resistance, 2018–23</span></div>
+      <div class="stat"><b>460%+</b><span>rise in US NDM-CRE incidence, 2019–23 (CDC)</span></div>
+      <div class="stat"><b>×6</b><span>global antibiotic use: ≈10 billion DDD a year in 1978, ≈60 billion in 2026</span></div>
+    </div>
+    <div class="cols reveal" style="--n:3;margin-top:4vh">
+      <div class="card"><span class="mono">01</span><h4>Misuse creates selection pressure</h4><p>Every dose kills susceptible bacteria and leaves resistant ones. Unfinished courses and leftovers keep that pressure on.</p></div>
+      <div class="card"><span class="mono">02</span><h4>Resistance spreads faster than it emerges</h4><p>Hospitals, livestock farming and global travel turn a local problem into a global one.</p></div>
+      <div class="card"><span class="mono">03</span><h4>It stays invisible until too late</h4><p>Monitoring is patchy and new drugs arrive slowly, so people see little reason to change.</p></div>
+    </div>
+    <p class="reveal" style="color:#c5c5be;max-width:46em;margin-top:4vh">A stakeholder map showed antibiotic use concentrated in healthcare and livestock. We interviewed doctors, hospital managers and a dairy farmer — and placed prescribing, institutional IT and farm regulation outside our scope. We designed for the public: busy working adults, with teenagers as a game audience.</p>
+  </div>
+</section>
+
+<section class="c-sec" id="research">
+  <div class="c-head reveal"><div class="c-num">02</div><div>
+    <h2 class="c-h">What 161 people told us about antibiotics.</h2>
+    <p class="c-lede">An online questionnaire in four parts — background, usage, basic knowledge and resistance awareness. 137 respondents answered every knowledge question (average 4.63 / 10). I analysed the results.</p>
+  </div></div>
+  <div class="c-body">
+    <div class="stats reveal" style="--n:5">
+      <div class="stat"><b>85%</b><span>used antibiotics in the past year</span></div>
+      <div class="stat"><b>35%</b><span>followed instructions exactly last time</span></div>
+      <div class="stat"><b>29%</b><span>know what antibiotic resistance actually is</span></div>
+      <div class="stat"><b>2.9%</b><span>spotted every behaviour that raises resistance risk</span></div>
+      <div class="stat"><b>27%</b><span>often check antibiotic use in the food they buy</span></div>
+    </div>
+    <h3 class="c-sub-h">The last time they took antibiotics</h3>
+    <div class="bars reveal">
+      <div class="bar"><span>Followed instructions exactly</span><i style="--v:35"></i><b>35.0%</b></div>
+      <div class="bar"><span>Stopped once symptoms improved</span><i style="--v:18.2"></i><b>18.2%</b></div>
+      <div class="bar"><span>Reduced the dose or frequency</span><i style="--v:18.2"></i><b>18.2%</b></div>
+      <div class="bar"><span>Took them for longer</span><i style="--v:10.9"></i><b>10.9%</b></div>
+      <div class="bar"><span>Increased the dose</span><i style="--v:8"></i><b>8.0%</b></div>
+      <div class="bar"><span>Switched to another antibiotic</span><i style="--v:5.8"></i><b>5.8%</b></div>
+    </div>
+    <div class="cols reveal" style="--n:2;margin-top:5vh">
+      <div class="card"><span class="mono">Key insight</span><h4>Misuse happens before and during a course</h4><p>Self-rated knowledge barely predicted test scores: the “very well informed” group scored below average. 24.1% believe antibiotics treat viral infections; 26.3% would take them for a cold; 19% keep leftovers.</p></div>
+      <div class="card"><span class="mono">Who we chose</span><h4>Busy working adults, 26–45</h4><p>They had the highest share of informal sources (28.1%), and 26–35-year-olds were least likely to finish a course as instructed (20.6%). In their words: “I just think of them as anti-inflammatory medicine.”</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="c-sec" id="opportunity">
+  <div class="c-head reveal"><div class="c-num">03</div><div>
+    <h2 class="c-h">Four gaps, four features.</h2>
+    <p class="c-lede">Each opportunity starts from a number in our own data.</p>
+  </div></div>
+  <div class="c-body">
+    <table class="t reveal">
+      <tr><th>Evidence</th><th>Problem</th><th>Opportunity</th></tr>
+      <tr><td>50.4% stop early, cut the dose or keep leftovers</td><td>Courses are not finished</td><td><b>Course support</b> — log each course, remind every dose, show progress to the last day.</td></tr>
+      <tr><td>47.4% would reuse an old antibiotic when symptoms feel similar</td><td>Decisions rely on past habit</td><td><b>Decision support</b> — at the moment of use: is this an antibiotic, is it needed, what to ask a pharmacist.</td></tr>
+      <tr><td>21.2% rely mainly on leftovers or family and friends</td><td>No one sees the full history</td><td><b>Visible use history</b> — keep every course in one record and estimate exposure over time.</td></tr>
+      <tr><td>29.2% understand what resistance actually is</td><td>Resistance feels abstract</td><td><b>Explain resistance</b> — let people experience how today’s choice affects tomorrow’s infection.</td></tr>
+    </table>
+    <div class="hmw reveal"><span class="mono">How might we</span>help people pause and check before reusing antibiotics from a previous illness?</div>
+  </div>
+</section>
+
+<section class="c-sec" id="concept">
+  <div class="c-head reveal"><div class="c-num">04</div><div>
+    <h2 class="c-h">One companion for the whole medication cycle.</h2>
+    <p class="c-lede">Decide before use, finish the course, see the history, understand resistance.</p>
+  </div></div>
+  <div class="c-body">
+    <div class="cols reveal" style="--n:4">
+      <div class="card"><span class="mono">A · During a course</span><h4>Medication management</h4><p>Scan the box to log the course, get a reminder for every dose, see progress until the last day.</p></div>
+      <div class="card"><span class="mono">B · Before taking one</span><h4>Guidance &amp; support</h4><p>Check if a medicine is an antibiotic and fits the symptoms; get questions to ask a pharmacist.</p></div>
+      <div class="card"><span class="mono">C · Over time</span><h4>Digital twin</h4><p>Every course is saved in one record; the twin estimates antibiotic exposure. Not a diagnosis.</p></div>
+      <div class="card"><span class="mono">D · Any time</span><h4>Learning game</h4><p>A defence game where today’s antibiotic choice makes later bacteria stronger.</p></div>
+    </div>
+    <h3 class="c-sub-h">User journey — one illness and the next</h3>
+    <div class="steps reveal" style="--n:6">
+      <div><h4>Falls ill at work</h4><p>“I can’t take a day off.” → <i>Do I need an antibiotic?</i></p></div>
+      <div><h4>Gets antibiotics</h4><p>28.1% of 26–45s get them from leftovers or family → <i>Scan to start a course</i></p></div>
+      <div><h4>Takes the course</h4><p>“Did I take the evening dose?” → <i>Dose reminders</i></p></div>
+      <div><h4>Feels better</h4><p>18.2% stop once symptoms improve → <i>Finish the course, log it</i></p></div>
+      <div><h4>Falls ill again</h4><p>47.4% would reuse an old antibiotic → <i>Check past use first</i></p></div>
+      <div><h4>Understands</h4><p>“So that’s what misuse does.” → <i>Play, then see your exposure</i></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="c-sec" id="app">
+  <div class="c-head reveal"><div class="c-num">05</div><div>
+    <h2 class="c-h">Walk through the app flows.</h2>
+    <p class="c-lede">These are the low-fidelity flows I designed — about 35 screens in four flows. Tap inside the phone: Back at the top left, the main button at the bottom, and the tab bar on Home, Medication and Account.</p>
+  </div></div>
+  <div class="stage">
+    <div class="stage-head"><div><span class="mono">Prototype · Low-fidelity app (my work)</span><h3>Onboarding · Home · Medication · Account</h3></div>
+      <div class="how"><span><i></i>Tap inside the phone</span><span>Switch flows on the right</span></div></div>
+    <div class="proto" data-proto="app"></div>
+  </div>
+  <div class="c-body" style="margin-top:7vh">
+    <h3 class="c-sub-h">Before reusing leftover medicine</h3>
+    <div class="steps reveal" style="--n:3">
+      <div><h4>Scan or search</h4><p>Scan the package or search by name.</p></div>
+      <div><h4>Check the history</h4><p>Review past use — or see “No past course found”.</p></div>
+      <div><h4>Ask a professional</h4><p>Bring the medicine details to a pharmacist or clinician.</p></div>
+    </div>
+    <figure class="fig reveal"><img loading="lazy" src="assets/medimate/ui/hifi_mockups_overview.webp" alt="High-fidelity MediMate screens" style="background:#eef7f5"><figcaption>High-fidelity screens — visual design by the team, built on the flows above: dose reminder, course summary, account, medication, scan, AI guidance, digital-twin home, body archive and antibiotic exposure.</figcaption></figure>
+  </div>
+</section>
+
+<section class="c-sec" id="game">
+  <div class="c-head reveal"><div class="c-num">06</div><div>
+    <h2 class="c-h">Inside Defense — a game I programmed.</h2>
+    <p class="c-lede">Players place immune cells along infection routes to defend the body. Antibiotics give a strong temporary advantage — and raise resistance in later waves. Pick the right drug for the right enemy; the wrong one, or too much, makes the body’s background turn from green to red.</p>
+  </div></div>
+  <div class="c-body">
+    <table class="t reveal">
+      <tr><th>Pathogen</th><th>Behaviour</th><th>Infection site</th><th>Counter</th></tr>
+      <tr><td>P. aeruginosa</td><td>Biofilm defender</td><td>Hospital-acquired</td><td>Piperacillin / tazobactam</td></tr>
+      <tr><td>S. aureus</td><td>Armoured cluster</td><td>Skin &amp; wounds</td><td>Vancomycin</td></tr>
+      <tr><td>E. coli</td><td>Fast mover</td><td>Urinary system</td><td>Ciprofloxacin</td></tr>
+      <tr><td>S. pneumoniae</td><td>Swarm unit</td><td>Lungs</td><td>Amoxicillin</td></tr>
+    </table>
+    <div class="steps reveal" style="--n:6;margin-top:5vh">
+      <div><h4>Data structure</h4><p>Cells, bacteria, drugs and waves as data.</p></div>
+      <div><h4>Wave generation</h4><p>Escalating infections per level.</p></div>
+      <div><h4>Cell placement</h4><p>Build tiles along the route.</p></div>
+      <div><h4>Reproduction</h4><p>Bacteria multiply if left alone.</p></div>
+      <div><h4>Three attacks</h4><p>Macrophage, B cell, neutrophil.</p></div>
+      <div><h4>Resistance</h4><p>Background and enemies adapt.</p></div>
+    </div>
+  </div>
+  <div class="embed reveal">
+    <div class="bar"><span>Inside Defense · playable demo · best on desktop</span><a href="assets/medimate/prototype/index.html" target="_blank" rel="noopener">Open full screen ↗</a></div>
+    <a class="cover-play" href="assets/medimate/prototype/index.html" data-src="assets/medimate/prototype/index.html"><img src="assets/medimate/images/game-device.jpg" alt=""><span>▶ Play Inside Defense</span></a>
+  </div>
+</section>
+
+<section class="c-sec" id="feedback">
+  <div class="c-head reveal"><div class="c-num">07</div><div>
+    <h2 class="c-h">What players said.</h2>
+    <p class="c-lede">After playing the demo, participants commented on the visual design, clarity and strategic depth.</p>
+  </div></div>
+  <div class="c-body">
+    <div class="cols reveal" style="--n:3">
+      <div class="card"><span class="mono">Visual experience</span><p>“The cellular environment creates a unique and immersive world. The colourful organisms and combat effects make the biological system easy to understand.”</p></div>
+      <div class="card"><span class="mono">Accessibility</span><p>“The core mechanics are intuitive. Players quickly learned how to deploy immune cells and adapt strategies against different threats.”</p></div>
+      <div class="card"><span class="mono">Strategic depth</span><p>“The antibiotic system introduces meaningful decisions by balancing immediate survival with future resistance risks.”</p></div>
+    </div>
+    <p class="reveal" style="color:#c5c5be;margin-top:4vh">Next test: can players explain <em>why</em> resistance rose in later waves?</p>
+  </div>
+</section>
+
+<section class="c-sec" id="boards">
+  <div class="c-head reveal"><div class="c-num">08</div><div>
+    <h2 class="c-h">Original boards</h2>
+    <p class="c-lede">Click a board to open it; click again to zoom and pan.</p>
+  </div></div>
+  <div class="boards" data-proj="medimate" data-n="6" data-labels="Cover · global data|Technical analysis · stakeholders|User research · interviews|Opportunities · concept · journey|Prototype design|Game design · feedback"></div>
+</section>
+</div>
+
+<a class="c-next" href="mlog.html"><div><span class="mono">Next project · 05</span><b>MLOG</b></div><span class="arrow">→</span></a>
+</main>
+<footer class="foot"><span>© 2026 Yihan Zeng</span><a href="#">Back to top ↑</a></footer>
+
+<script>
+const U = 'assets/medimate/ui/';
+const back = [0,4,17,7,'prev','Back'], cont = [4,88,92,9,'next','Continue'];
+const tabs = [[0,93,33,7,'home','Home'],[33,93,34,7,'medhome','Medication'],[67,93,33,7,'acc','Account']];
+const sv = [4,84,92,7,'next','Save · next'];
+function S(src, title, note, hot, short) { return { src: U + src + '.webp', title, note, hot, short: short || title }; }
+window.PROTOS = {
+  app: { device: 'phone', ar: .462, thumbW: 92, noIsland: true,
+    screens: {
+      o1: S('onb_O01_welcome', 'Welcome', 'Medimate — “See the health changes you cannot feel.” Build a body record that grows with you.', [[4,88,92,9,'next','Get started']], 'Welcome'),
+      o2: S('onb_O02_body_archive_intro', 'Body archive', 'A health record you can feel: what your body is doing now, what it has experienced and what is changing quietly.', [back, cont]),
+      o3: S('onb_O02_product_intro', 'How it works', 'Body archive, medication, tests and the game Inside Defense — each part adds context to your personal digital twin.', [back, cont]),
+      o4: S('onb_O03_access_options', 'Start your archive', 'Create an account, sign in, or use Medimate as a guest with local-only storage.', [back, [4,26,92,9,'next','Create an account']], 'Access'),
+      o5: S('onb_O03_create_account', 'Create account', 'A private health space. Health-data consent is requested separately in the next steps.', [back, cont]),
+      o6: S('onb_O04_profile_mode', 'Profile type', 'Manage your own health, or a linked family member’s record with their consent.', [back, cont]),
+      o7: S('onb_O05_privacy_overview', 'Privacy', 'Private by default: no automatic sharing with hospitals or clinics; you can change consent any time. Not a medical diagnosis.', [back, cont]),
+      o8: S('onb_O05_data_choices', 'Data choices', 'Choose what the archive may store — required account basics, optional history, measurements and reports.', [back, cont]),
+      o9: S('onb_O07_health_history', 'Health history', 'Long-term context — major diagnoses, surgeries, infections, vaccinations — so later changes can be read against it.', [back, cont]),
+      o10: S('onb_O08_connect_data', 'Connect data', 'Optional sources: Apple Health, wearables, medication records, lab reports — or manual entry only.', [back, [4,88,92,9,'home','Continue to Home']]),
+      home: S('home_01_medimate_home', 'Home · digital twin', 'Your body, made visible: the twin, today’s antibiotic exposure, a body discovery and the entrance to Inside Defense.', [[4,18,92,50,'h2','Open body archive'], ...tabs], 'Home'),
+      h2: S('home_02_body_archive', 'My body archive', 'Current body state, live and self-reported data, and what your body has experienced.', [back, [4,48,92,30,'next','Open history'], ...tabs], 'Body archive'),
+      h3: S('home_03_health_timeline', 'Health timeline', 'Body data, symptoms, medication and clinical records on one timeline — patterns, not diagnoses.', [back, [4,30,92,50,'next','Antibiotic exposure']], 'Timeline'),
+      h4: S('home_04_antibiotic_exposure', 'Antibiotic exposure', 'Recorded antibiotic-days over the last 12 months, courses and types — the history that is usually invisible.', [back, [4,84,92,8,'next','Find a testing location']], 'Exposure'),
+      h5: S('home_05_testing_locations', 'Testing locations', 'Where a resistance test can be done. A clinician decides whether testing is appropriate.', [back, [4,30,92,50,'next','Customise']], 'Testing'),
+      h6: S('home_06_customize_character', 'Customise character', 'Personalise the avatar that represents your body.', [back, [4,88,92,9,'next','Save character']], 'Character'),
+      h7: S('home_07_customize_home', 'Customise home', 'Choose which body data appear around your character on the home screen.', [back, [4,88,92,9,'home','Save changes']], 'Home layout'),
+      medhome: S('med_T00_medication_home', 'Medication', 'Next dose, current course, and three entry points: scan medicine, new course, AI guidance.', [[4,24,92,10,'m1','New course'], ...tabs], 'Medication'),
+      m1: S('med_T01_create_course', 'Create course', 'Start a medication record: scan the package, scan a prescription or enter it manually.', [back, [4,22,92,10,'next','Scan medicine package']], 'New course'),
+      m2: S('med_T01_scan_medicine', 'Scan medicine', 'Place the package inside the frame. The drug name, strength and form are recognised.', [back, [40,72,20,9,'next','Capture']], 'Scan'),
+      m3: S('med_T01_recognition_result', 'Recognition result', 'Recognised medicine and course details to check. AI may be wrong — every field can be edited.', [back, cont], 'Result'),
+      m4: S('med_T01_ai_guidance', 'Do you need an antibiotic?', 'Decision support at the moment of use: what the guidance is based on, and a safer next step — confirm with your prescriber or pharmacist.', [back, [50,86,46,6,'next','Use prescription']], 'AI guidance'),
+      m5: S('med_T01_current_course', 'Current course', 'Today’s doses, course progress (6 / 14 doses) and tools to edit reminders or report a problem.', [back, [4,84,92,8,'next','Next dose']], 'Course'),
+      m6: S('med_T01_dose_reminder', 'Dose reminder', '20:00 — time for your dose. Confirm, snooze 30 minutes or skip with a reason.', [back, [4,72,92,6,'next','I took this dose']], 'Reminder'),
+      m7: S('med_T01_dose_confirmation', 'Dose confirmation', 'Record when you took it and how you feel — side effects become part of the history.', [back, [4,88,92,9,'next','Save dose record']], 'Confirm'),
+      m8: S('med_T01_course_summary', 'Course complete', '14 / 14 doses recorded. The course is kept in your body archive, and leftovers are flagged: don’t reuse or share.', [back, [50,86,46,6,'medhome','Back to medication']], 'Summary'),
+      acc: S('acc_A01_account_home', 'Account', 'Profile completeness and every setting that shapes your record.', [[4,40,92,40,'a2','Basic profile'], ...tabs], 'Account'),
+      a2: S('acc_A02_basic_profile', 'Basic profile', 'Name, sex, age and occupation — the baseline that health data is read against.', [back, sv, ...tabs]),
+      a3: S('acc_A03_health_background', 'Health background', 'Chronic conditions, long-term medication and lifestyle.', [back, sv, ...tabs]),
+      a4: S('acc_A04_allergies', 'Allergies', 'Antibiotic allergies and reaction history — critical before any course.', [back, sv, ...tabs]),
+      a5: S('acc_A05_data_sharing', 'Data sharing', 'Who can see what: clinicians you approve, family members, anonymous research — all off by default.', [back, sv, ...tabs]),
+      a6: S('acc_A06_privacy_data', 'Privacy & data', 'Permissions, access log, export and account deletion.', [back, [4,30,92,40,'next','Notifications'], ...tabs]),
+      a7: S('acc_A07_notifications', 'Notifications', 'Dose reminders, missed-dose follow-ups, body discoveries and quiet hours.', [back, sv, ...tabs]),
+      a8: S('acc_A08_help_about', 'Help & about', 'How to use Medimate, FAQ, support and the reminder that it does not provide medical diagnosis.', [back, [4,30,92,40,'acc','Back to account'], ...tabs])
+    },
+    flows: [
+      { name: 'Onboarding', keys: ['o1','o2','o3','o4','o5','o6','o7','o8','o9','o10'] },
+      { name: 'Home · twin', keys: ['home','h2','h3','h4','h5','h6','h7'] },
+      { name: 'Medication', keys: ['medhome','m1','m2','m3','m4','m5','m6','m7','m8'] },
+      { name: 'Account', keys: ['acc','a2','a3','a4','a5','a6','a7','a8'] }
+    ]
+  }
+};
+</script>
+<script src="js/proto.js"></script>
+<script src="js/case.js"></script>
+</body>
+</html>

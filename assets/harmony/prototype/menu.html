@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu · Harmony Osteria</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="menu">
+<main class="wrap">
+  <section class="pagehead">
+    <div><span class="label" id="when"></span><h1>Four courses, one choice in each.</h1></div>
+    <div><span class="price" id="price"></span><p>Every dish pairs one wild and one farmed ingredient. The wild share follows how many of that species are out there today, so it changes from day to day. The portion and the price do not.</p></div>
+  </section>
+  <div id="menu"></div>
+  <section class="notes">
+    <span class="label" style="color:var(--ink);padding-top:2px">Good to know</span>
+    <ul>
+      <li>When a species is too scarce to take, its dish is not available that day.</li>
+      <li>The share in each dish is set at 07:30 from the latest counts and holds for the day.</li>
+      <li>Vegetarian menu on request when you book. We cannot cook without the listed allergens in every dish.</li>
+      <li>Wine by the glass from Liguria and Piemonte. Water is free.</li>
+    </ul>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="geo.js"></script>
+<script src="glass.js"></script>
+<script src="site.js"></script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  $('#when').textContent = 'Menu for ' + HO.longDate(HO.now) + ' · lunch';
+  $('#price').textContent = '€' + PRICE + ' · four courses';
+  const delta = (m) => { const y = wildShare(YESTERDAY[m.sp]), t = wildShare(m.d), k = t - y; return k === 0 ? 'same as yesterday' : (k > 0 ? '▲ ' : '▼ ') + Math.abs(k) + ' since yesterday' };
+  $('#menu').innerHTML = MENU.map((row, c) => `<section class="course"><span class="label">${COURSES[c]}</span><div class="dishes">${row.map(m => {
+    const w = wildShare(m.d), off = OFF(m.d);
+    return `<article class="dish${off ? ' off' : ''}"><figure class="photo"><img src="img/dishes/${m.short}.png" alt="${m.it}${off ? ', not available today' : ''}" loading="lazy" width="1448" height="1086"></figure><h3>${m.it}</h3><p class="en">${m.en}</p>${off ? `<span class="na">Not available today</span>` :
+      `<div class="ratio" aria-label="${m.sp} ${w} percent, ${m.farm} ${100 - w} percent"><div class="bar"><i style="width:${w}%"></i></div><div class="nums"><span><b>${m.sp} ${w}</b> · ${m.farm} ${100 - w}</span><span>(${delta(m)})</span></div></div>`}
+      <p class="ing">${m.ing}</p><p class="all">Allergens: ${m.all}</p></article>` }).join('')}</div></section>`).join('');
+})();
+</script>
+</body>
+</html>

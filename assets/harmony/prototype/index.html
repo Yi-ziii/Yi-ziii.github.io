@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Harmony Osteria</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="index">
+<main>
+  <section class="hero"><div class="wrap">
+    <div class="stage">
+      <div id="wall" aria-label="The glass wall of the dining room, changing with each plate served"></div>
+      <div class="viewswitch" role="group" aria-label="View"><button data-v="out" aria-pressed="true">Outside</button><button data-v="in" aria-pressed="false">Inside</button></div>
+    </div>
+    <div class="wallbar">
+      <div class="nowline"><button id="pause" class="iconbtn" aria-pressed="false" aria-label="Pause lunch" title="Pause"><svg viewBox="0 0 12 12" aria-hidden="true"><g class="i-pause"><rect x="2.5" y="1.5" width="2.4" height="9"/><rect x="7.1" y="1.5" width="2.4" height="9"/></g><path class="i-play" d="M3 1.5v9l7.5-4.5z"/></svg></button><span class="now" id="now">Lunch · <b>12:30</b> · the wall is clear</span></div>
+      <button class="book" data-book>Book a table</button>
+    </div>
+  </div></section>
+
+  <section class="wrap intro">
+    <h1>A small osteria in the hills behind Genoa. <em>The menu follows the wild.</em></h1>
+    <div>
+      <p>Every dish is one wild and one farmed ingredient, served side by side. How much of the plate is wild depends on how many of that species are out there today. The portion and the price stay the same.</p>
+      <p>The glass wall keeps time with lunch. Each plate that leaves the kitchen moves the lower row one pane; darker means too few, white means too many.</p>
+      <a class="more" href="menu.html">Today's menu</a>
+    </div>
+  </section>
+
+  <section class="wrap wild">
+    <div class="head"><h2>The wild today</h2><span class="label" id="counted"></span></div>
+    <p class="lead">Each morning the camera traps, seed nets and catch records are counted. Every species gets one number, from far too few to far too many. That number sets the share of wild on its plate, and every plate served carries it onto one pane of the glass: <b>darker</b> when there are too few, <b>white</b> when there are too many, <b>clear</b> when it is in balance.</p>
+    <div class="dp" id="dp" role="img" aria-label="Each species today, from far too few to far too many"></div>
+  </section>
+
+  <section class="wrap visitbar">
+    <div><h3 class="label">Hours</h3><p>Lunch, every day, 12:30–15:00<br>Dinner, every day, 19:30–22:30</p></div>
+    <div><h3 class="label">Where</h3><p>Above Torriglia, in the Ligurian Apennines<br>About 40 minutes by car from Genova</p></div>
+    <div><h3 class="label">Book</h3><p>Ten tables, forty seats. Tables open three weeks ahead.</p><p style="margin-top:14px"><a class="more" href="#" data-book>Book a table</a></p></div>
+  </section>
+</main>
+<script src="data.js"></script>
+<script src="geo.js"></script>
+<script src="glass.js"></script>
+<script src="site.js"></script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+
+  $('#counted').textContent = 'Counted 06:00 · ' + HO.longDate(HO.now);
+  // 11-16: ranked dot plot — one dot per species on a −100…+100 scale, thin line from yesterday's ring to today's dot
+  const X = d => 50 + d / 2, cls = d => Math.abs(d) < 15 ? 'bal' : d < 0 ? 'lo' : 'hi';
+  const sg = d => (d > 0 ? '+' : d < 0 ? '−' : '±') + Math.abs(d);
+  let h = `<div class="axis"><span class="mono">Species, fewest first</span><div class="t mono"><span style="left:0">−100 too few</span><span style="left:25%">−50</span><span style="left:50%">0</span><span style="left:75%">+50</span><span style="left:100%">too many +100</span></div><span class="mono" style="text-align:right">Wild on the plate</span></div>`;
+  for (const m of MENU.flat().map(m => ({ ...m, y: YESTERDAY[m.sp] ?? m.d })).sort((a, b) => a.d - b.d)) {
+    const a = X(Math.min(m.y, m.d)), b = X(Math.max(m.y, m.d));
+    h += `<div class="row" title="${m.sp}: ${sg(m.d)} today, ${sg(m.y)} yesterday"><span class="name ${OFF(m.d) ? 'off' : ''}">${m.sp}</span><div class="track"><i class="q" style="left:25%"></i><i class="q" style="left:75%"></i><i class="zero"></i>`
+      + (m.y !== m.d ? `<i class="link" style="left:${a}%;width:${b - a}%"></i><i class="y" style="left:${X(m.y)}%"></i>` : '')
+      + `<i class="d ${cls(m.d)}" style="left:${X(m.d)}%"></i></div><span class="val"><span class="n">${sg(m.d)}</span><span class="mono">${OFF(m.d) ? 'not today' : wildShare(m.d) + ' %'}</span></span></div>`;
+  }
+  $('#dp').innerHTML = h;
+
+  let minute = 12 * 60 + 30, count = 0;
+  const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  const wall = GlassWall($('#wall'), { tip: $('#tip'), onServe: (d, n) => { count++; $('#now').innerHTML = `Lunch · <b>${fmt(minute)}</b> · ${count} plates served · last out: <b>${d.it}</b>, ${d.sp} ${GlassUtil.sign(d.d)}` } });
+  const avail = MENU.flat().filter(m => !OFF(m.d));
+  const go = () => { minute += 2 + Math.floor(Math.random() * 4); if (minute > 15 * 60) { minute = 12 * 60 + 30; count = 0; wall.reset() } wall.serve(avail[Math.floor(Math.random() * avail.length)], fmt(minute)) };
+  for (let i = 0; i < 7; i++) go();                       // the room is already a few tables into lunch
+  let timer = null, paused = false, visible = true;
+  const run = () => { clearInterval(timer); timer = null; if (!paused && visible && !document.hidden) timer = setInterval(go, 3600) };
+  new IntersectionObserver(e => { visible = e[0].isIntersecting; run() }).observe($('#wall'));
+  document.addEventListener('visibilitychange', run);
+  $('#pause').onclick = e => { paused = !paused; const b = e.currentTarget; b.setAttribute('aria-pressed', paused); b.setAttribute('aria-label', paused ? 'Resume lunch' : 'Pause lunch'); b.title = paused ? 'Play' : 'Pause'; run() };
+  document.querySelectorAll('[data-v]').forEach(b => b.onclick = () => { wall.show(b.dataset.v); document.querySelectorAll('[data-v]').forEach(x => x.setAttribute('aria-pressed', x === b)) });
+  run();
+})();
+</script>
+</body>
+</html>
