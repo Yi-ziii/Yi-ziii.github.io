@@ -7,6 +7,7 @@
 <title>Harmony Osteria · Yihan Zeng</title>
 <meta name="description" content="Harmony Osteria — a restaurant near Genoa where you taste how the wild is doing today.">
 <link rel="stylesheet" href="css/case.css">
+<link rel="stylesheet" href="css/story.css">
 <style>
 :root { --acc: #8fbf7a }
 .glasslab { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: clamp(24px, 4vw, 64px); align-items: start }
@@ -30,6 +31,12 @@
 .dial { width: 100%; max-width: 300px; margin: 10px auto 0; display: block }
 .presets { display: flex; gap: 8px; flex-wrap: wrap }
 @media (max-width: 900px) { .glasslab { grid-template-columns: 1fr } }
+
+.eink { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: clamp(16px, 3vw, 44px); align-items: start; max-width: 1100px; margin: 0 auto }
+.eink img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 70px #000c }
+.eink figcaption { margin-top: 16px; color: #c5c5be; font-size: 15px; line-height: 1.5 } .eink figcaption .mono { display: block; margin-bottom: 6px }
+.eink-arrow { align-self: center; font: 400 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--acc); writing-mode: horizontal-tb; white-space: nowrap }
+@media (max-width: 900px) { .eink { grid-template-columns: 1fr } .eink-arrow { justify-self: center } }
 </style>
 </head>
 <body>
@@ -45,6 +52,7 @@
   <div class="c-kicker mono"><span>03 / 05</span><span>Spatial &amp; service design</span></div>
   <h1 class="c-title long">Harmony<br>Osteria</h1>
   <p class="c-sub">A restaurant in the hills behind Genoa where you <em>taste how the wild is doing today.</em> The menu is rewritten every morning from last night’s wildlife counts.</p>
+  <div class="c-live big" aria-label="Live website"><a class="c-live-btn" href="harmony-osteria/" target="_blank" rel="noopener"><span class="dot"></span>Visit the osteria’s live website<i>↗</i></a><small>Interactive · tonight’s menu, written from last night’s counts</small></div>
   <dl class="c-meta">
     <div><dt>Context</dt><dd>Exchange semester, University of Genoa</dd></div>
     <div><dt>Discipline</dt><dd>Spatial, service &amp; interaction design</dd></div>
@@ -58,177 +66,234 @@
 <nav class="c-nav" aria-label="Chapters"><ol>
   <li><a href="#start"><b>01</b>Where it started</a></li>
   <li><a href="#background"><b>02</b>Background</a></li>
-  <li><a href="#system"><b>03</b>How it works</a></li>
-  <li><a href="#menu"><b>04</b>E-ink menu ★</a></li>
-  <li><a href="#glass"><b>05</b>Plate &amp; glass ★</a></li>
-  <li><a href="#algorithm"><b>06</b>Algorithm</a></li>
-  <li><a href="#prototype"><b>07</b>Prototype</a></li>
-  <li><a href="#website"><b>08</b>Website ★</a></li>
-  <li><a href="#boards"><b>09</b>Boards</a></li>
+  <li><a href="#menu"><b>03</b>The menu</a></li>
+  <li><a href="#glass"><b>04</b>Plate &amp; glass</a></li>
+  <li><a href="#algorithm"><b>05</b>Algorithm &amp; prototype</a></li>
+  <li><a href="#website"><b>06</b>Website ↗</a></li>
 </ol></nav>
 
 <div class="wrap">
+
+<!-- 01 -->
 <section class="c-sec" id="start">
   <div class="c-head reveal"><div class="c-num">01</div><div>
     <h2 class="c-h">“You can’t get them any more.”</h2>
-    <p class="c-lede">One evening a Genoese friend told me about bianchetti — newborn sardines fried into frittelle every winter. They have been off the legal catch since 2010, so the sardines can grow up. My friend only knew because a dish was gone.</p>
+    <p class="c-lede">I made this project during my exchange semester at the University of Genoa. One evening a Genoese friend told me about bianchetti, the tiny newborn sardines fried into frittelle every winter.</p>
   </div></div>
-  <div class="c-body">
-    <p class="reveal" style="font-size:22px;max-width:30em;color:#e2e2db">I wondered what else changes out there without us noticing — and whether <em>a meal could tell us sooner.</em></p>
+  <div class="split reveal" style="--a:.55fr">
+    <figure><img class="im" src="assets/harmony/01/01-bianchetti-fritters.webp" alt="Bianchetti frittelle" data-zoom="assets/harmony/01/01-bianchetti-fritters.webp"><figcaption class="caption">Bianchetti frittelle · off the legal catch since 2010</figcaption></figure>
+    <div class="txt">
+      <p>They have been off the legal catch since 2010, so that the sardines can grow up.</p>
+      <p>My friend only knew because a dish was gone. I wondered <mark>what else changes out there without us noticing</mark>, and whether a meal could tell us sooner.</p>
+      <h4>Harmony Osteria: a restaurant where you taste how the wild is doing today.</h4>
+      <p>Its menu follows real wildlife data, turning every meal into a signal of ecological change.</p>
+    </div>
   </div>
+  <figure class="sheet pad reveal" style="margin-top:7vh"><img src="assets/harmony/01/01-species-strip.webp" alt="The eleven wild species and two wild foods on the menu"></figure>
+  <p class="caption reveal">Wild boar · roe deer · red deer · chamois · hare · anchovy · bluefin tuna · swordfish · blue crab · chestnut · pine nuts</p>
 </section>
 
+<!-- 02 -->
 <section class="c-sec" id="background">
   <div class="c-head reveal"><div class="c-num">02</div><div>
     <h2 class="c-h">What we eat shapes wildlife. Wildlife shapes what we eat.</h2>
-    <p class="c-lede">A hunter felt every change — fewer tracks, a longer walk, less meat. The hunt itself was the census. Today we measure the wild better than ever, yet a meal tells us less and less.</p>
+    <p class="c-lede">Italian boar were hunted nearly to extinction, restocked, and are now overrun. A hunter once felt every one of those changes; today a meal tells us nothing.</p>
   </div></div>
-  <div class="c-body">
-    <div class="steps reveal" style="--n:5">
-      <div><h4>1890s</h4><p>Mark–recapture</p></div>
-      <div><h4>1960s</h4><p>Radio collars</p></div>
-      <div><h4>1990s</h4><p>Camera traps</p></div>
-      <div><h4>2008</h4><p>Environmental DNA</p></div>
-      <div><h4>2010s</h4><p>AI recognition</p></div>
-    </div>
-    <p class="reveal" style="color:#c5c5be;max-width:46em;margin-top:4vh">The chain from hill to plate got longer: farm, processing, global transport, supermarket. Every step removes uncertainty — and moves our food further from nature. Each link absorbs the change, so it reaches the table only as a collapse.</p>
-    <div class="stats reveal" style="--n:4">
-      <div class="stat"><b>1.5M</b><span>wild boar in Italy (ISPRA 2021) — hunted out in the early 1900s, restocked in the 1950s</span></div>
-      <div class="stat"><b>€120M</b><span>crop damage from boar, 2015–21 (ISPRA)</span></div>
-      <div class="stat"><b>−70%</b><span>clams farmed at Goro in 2024 against the decade before, as blue crab hit the Po delta</span></div>
-      <div class="stat"><b>0</b><span>of Liguria’s yearly boar counts reach the menu</span></div>
-    </div>
-    <div class="hmw reveal"><span class="mono">Question</span>What if, like a hunter, we could feel how our food is changing every time we eat?</div>
+  <div class="split reveal" style="--a:.8fr">
+    <figure><img class="im" src="assets/harmony/02/02-hunting.webp" alt="A hunter with his catch" data-zoom="assets/harmony/02/02-hunting.webp"><figcaption class="caption">Past: hunters felt every change</figcaption></figure>
+    <ol class="nums">
+      <li><b>1</b><h4>Today vs. yesterday</h4><p>Fewer tracks → a longer walk → less meat.</p></li>
+      <li><b>2</b><h4>This year vs. last year</h4><p>Same season, same hills — fewer, or more.</p></li>
+      <li><b>3</b><h4>And the other way</h4><p>Fewer animals → hunt less → eat something else.</p></li>
+      <li><b>→</b><h4>The hunt itself was the census.</h4><p>What he caught told him what was left — and what to eat tomorrow.</p></li>
+    </ol>
   </div>
+  <h3 class="c-sub-h reveal">Now we know the wild better than ever…</h3>
+  <figure class="sheet reveal"><img class="im" src="assets/harmony/02/02-monitoring-timeline.webp" alt="Monitoring from mark–recapture to AI recognition" data-zoom="assets/harmony/02/02-monitoring-timeline.webp"></figure>
+  <p class="muted reveal" style="margin-top:14px">We measure more and more — yet a meal tells us less and less. Liguria counts its boar every year; none of it reaches the menu.</p>
+  <h3 class="c-sub-h reveal">…but the chain from hill to plate got longer.</h3>
+  <figure class="sheet reveal"><img class="im" src="assets/harmony/02/02-hill-to-plate.webp" alt="From hills, hunt and meal to farm, processing, transport and supermarket" data-zoom="assets/harmony/02/02-hill-to-plate.webp"></figure>
+  <p class="muted reveal" style="margin-top:14px">Every step removes uncertainty — yet moves our food further from nature.</p>
+  <h3 class="c-sub-h reveal">So it stays silent, until a crisis.</h3>
+  <figure class="sheet reveal"><img class="im" src="assets/harmony/02/02-crisis-timeline.webp" alt="A flat line, then a shock: 1914, 1950, 1992, 2022" data-zoom="assets/harmony/02/02-crisis-timeline.webp"></figure>
+  <h3 class="c-sub-h reveal">Too many or too few, we learn it too late.</h3>
+  <div class="g reveal" style="--n:2">
+    <figure><img class="im" src="assets/harmony/02/02-wild-boar-trend.webp" alt="Wild boar in Italy, 1900–2021" data-zoom="assets/harmony/02/02-wild-boar-trend.webp"></figure>
+    <figure><img class="im" src="assets/harmony/02/02-blue-crab-clam-trend.webp" alt="Blue crab and clams in the Po delta, 2010–2024" data-zoom="assets/harmony/02/02-blue-crab-clam-trend.webp"></figure>
+  </div>
+  <div class="g reveal" style="--n:4;margin-top:4vh">
+    <div class="bignum"><b>1.5M</b><span>wild boar in Italy · ISPRA 2021</span></div>
+    <div class="bignum"><b>70 yrs</b><span>from one restocking decision to 1.5M boar</span></div>
+    <div class="bignum"><b>€120M</b><span>crop damage 2015–21 · ISPRA</span></div>
+    <div class="bignum"><b>−70%</b><span>clams farmed at Goro in 2024 against the decade before</span></div>
+  </div>
+  <div class="hmw2 reveal"><span class="mono">How might we</span><p>What if, like a hunter, we could feel how our food is changing every time we eat?</p></div>
 </section>
 
-<section class="c-sec" id="system">
-  <div class="c-head reveal"><div class="c-num">03</div><div>
-    <h2 class="c-h">One wild, one farmed — in a ratio that follows the wild.</h2>
-    <p class="c-lede">Inspired by the blue crab and the clam: wild and farmed animals compete for the same ground. So every dish pairs one wild species with one farmed one. More out there, a bigger share on the plate. Two boar on the cameras last night: a little boar. Six: a lot more.</p>
-  </div></div>
-  <div class="c-body">
-    <h3 class="c-sub-h">Eleven wild species, picked by four rules</h3>
-    <div class="cols reveal" style="--n:4">
-      <div class="card"><h4>It has swung hard</h4><p>Nearly gone, then too many — or the reverse.</p></div>
-      <div class="card"><h4>Watched for decades</h4><p>A long public record to read today against.</p></div>
-      <div class="card"><h4>A farmed partner</h4><p>One that tastes different, so the split can be tasted.</p></div>
-      <div class="card"><h4>All from Italy</h4><p>Sea, delta, Alps, Apennines — invasive ones too.</p></div>
-    </div>
-    <p class="reveal mono" style="margin-top:3vh;line-height:2">Anchovy · Bluefin tuna · Chamois · Blue crab · Hare · Red deer · Wild boar · Roe deer · Swordfish · Wild chestnut · Pine nuts</p>
-  </div>
-</section>
-
+<!-- 03 -->
 <section class="c-sec" id="menu">
-  <div class="c-head reveal"><div class="c-num">04</div><div>
-    <h2 class="c-h">The menu, on every table.</h2>
-    <p class="c-lede">E-ink, not a tablet: unlit and paper-like, it sits on the table like a printed menu. It redraws once a morning at 07:30 and uses power only when the page changes. One screen holds all twelve dishes; one tap opens a dish, ‹ Menu goes back.</p>
+  <div class="c-head reveal"><div class="c-num">03</div><div>
+    <h2 class="c-h">The food tells how the wild changes.</h2>
+    <p class="c-lede">Harmony Osteria, in the hills behind Genoa. Its menu is rewritten every morning from the wild counts: two boar on the cameras last night, a little boar on the plate; six, a lot more. This is the e-ink menu that sits on every table.</p>
   </div></div>
-  <div class="stage">
-    <div class="stage-head"><div><span class="mono">Prototype A · E-ink menu</span><h3>Read a row, open a dish</h3></div>
-      <div class="how"><span><i></i>Tap “Cinghiale e manzo”</span><span><i></i>‹ Menu to go back</span></div></div>
-    <div class="proto" data-proto="eink"></div>
+  <div class="eink reveal">
+    <figure><img src="assets/harmony/ui/eink_menu.webp" alt="E-ink menu: today’s twelve dishes" data-zoom="assets/harmony/ui/eink_menu.webp"><figcaption><span class="mono acc">Page 1 · Today’s menu</span>Four courses, twelve dishes. Every row shows the wild species, today’s wild / farmed split and its change since yesterday. Pappardelle with hare is sold out — the hare is far below its band.</figcaption></figure>
+    <span class="eink-arrow" aria-hidden="true">tap a dish →</span>
+    <figure><img src="assets/harmony/ui/eink_detail_cinghiale.webp" alt="E-ink dish page: Cinghiale e manzo al vino rosso" data-zoom="assets/harmony/ui/eink_detail_cinghiale.webp"><figcaption><span class="mono acc">Page 2 · One dish</span>Cinghiale e manzo al vino rosso: the wild boar is TOO MANY today, so the plate is 60 wild · 40 farmed. Last night’s camera, the dish, and the boar’s record from 1900 to today against its balance band.</figcaption></figure>
   </div>
-  <div class="c-body" style="margin-top:6vh">
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">How to read one row</span><p>Italian name with English below · the wild species · today’s split (■ wild, ▨ farmed) · ↑↓ since yesterday.</p></div>
-      <div class="card"><span class="mono">When there are too few</span><p>Hare and chamois are far below their bands today, so both dishes show as not available until they recover.</p></div>
-      <div class="card"><span class="mono">Accessibility</span><p>Big tap targets, 88 px and up; allergens with a key on every page.</p></div>
+  <div class="g reveal" style="--n:3;margin-top:4vh">
+    <div class="tile"><span class="mono">How to read one row</span><p>Italian name with English below · the wild species · today’s split (■ wild ▨ farmed) · ↑↓ since yesterday.</p></div>
+    <div class="tile"><span class="mono">E-ink, not a tablet</span><p>Unlit and paper-like. It redraws once a morning at 07:30 and uses power only when the page changes.</p></div>
+    <div class="tile"><span class="mono">When there are too few</span><p>Hare and chamois are far below their bands today, so both dishes show as not available until they recover.</p></div>
+  </div>
+
+  <h3 class="c-sub-h reveal">01 · Wild and farmed fight over the same ground.</h3>
+  <div class="split reveal" style="--a:1.1fr">
+    <figure class="sheet"><img class="im" src="assets/harmony/03/03-wild-and-farmed-pairing.webp" alt="The blue crab eats the farmed clams" data-zoom="assets/harmony/03/03-wild-and-farmed-pairing.webp"></figure>
+    <div class="txt"><p>In the Po delta the wild blue crab, arrived and multiplying, eats the farmed clams. Wild and farmed animals have always competed for the same food and space.</p><h4>So every dish in the osteria pairs one wild species with one farmed one.</h4></div>
+  </div>
+  <h3 class="c-sub-h reveal">02 · Eleven wild species, picked by four rules.</h3>
+  <div class="split reveal" style="--a:.9fr">
+    <figure class="sheet"><img class="im" src="assets/harmony/03/03-species-selection-map.webp" alt="Eleven wild species, all from Italy" data-zoom="assets/harmony/03/03-species-selection-map.webp"></figure>
+    <ol class="nums">
+      <li><b>1</b><h4>It has swung hard.</h4><p>Nearly gone, then too many, or the reverse.</p></li>
+      <li><b>2</b><h4>Watched for decades.</h4><p>A long public record to read today against.</p></li>
+      <li><b>3</b><h4>A farmed partner that tastes different.</h4><p>So the split can be tasted.</p></li>
+      <li><b>4</b><h4>All from Italy.</h4><p>Sea, delta, Alps, Apennines. Invasive ones too.</p></li>
+    </ol>
+  </div>
+  <h3 class="c-sub-h reveal">04 · One wild, one farmed, in a ratio that follows the wild.</h3>
+  <div class="split reveal" style="--a:1fr">
+    <figure class="sheet"><img class="im" src="assets/harmony/03/03-wild-to-farmed-ratio.webp" alt="Few boar: 10% wild. Many boar: 60% wild." data-zoom="assets/harmony/03/03-wild-to-farmed-ratio.webp"></figure>
+    <div class="g keep2 end" style="--n:2">
+      <figure class="tile"><img class="im" src="assets/harmony/03/03-blue-crab-tagliolini.webp" alt="Tagliolini al granchio blu e vongole" data-zoom="assets/harmony/03/03-blue-crab-tagliolini.webp"><span class="mono">Primo · blue crab too many</span><p>Tagliolini al granchio blu e vongole</p></figure>
+      <figure class="tile"><img class="im" src="assets/harmony/03/03-wild-boar-beef.webp" alt="Cinghiale e manzo al vino rosso" data-zoom="assets/harmony/03/03-wild-boar-beef.webp"><span class="mono">Secondo · boar too many</span><p>Cinghiale e manzo al vino rosso</p></figure>
     </div>
   </div>
+  <p class="muted reveal" style="margin-top:3vh">More out there, a bigger share on the plate.</p>
 </section>
 
+<!-- 04 -->
 <section class="c-sec" id="glass">
-  <div class="c-head reveal"><div class="c-num">05</div><div>
+  <div class="c-head reveal"><div class="c-num">04</div><div>
     <h2 class="c-h">The plate points, the glass answers.</h2>
-    <p class="c-lede">A dial you eat from: before serving, the upper ceramic plate is turned until its tab points to the dish’s wild share on the fixed 0–100 scale of the charger below. On the wall, glass becomes more opaque as a species moves away from balance — white for too many, dark for too few, clear when it is right.</p>
+    <p class="c-lede">The plate shows how much of the dish is wild; the glass wall shows how far each species is from balance — white for too many, dark for too few, clear when it is right. Both run live on the osteria’s website.</p>
   </div></div>
-  <div class="stage">
-    <div class="stage-head"><div><span class="mono">Prototype B · Glass wall &amp; plate simulator</span><h3>Change last night’s count</h3></div>
-      <div class="how"><span><i></i>Drag the count</span><span><i></i>Serve a plate</span></div></div>
-    <div class="glasslab">
-      <div>
-        <div class="window" id="win"><div class="panes"><div class="row up" id="upper"></div><div class="row low" id="lower"></div></div></div>
-        <div class="legend"><span>−100 · DARK · TOO FEW</span><span>0 · CLEAR · BALANCE</span><span>+100 · WHITE · TOO MANY</span></div>
-        <p class="caption">Upper band: one species’ whole record, earliest on the left, today at the right. Lower row: one pane per plate served — each new plate enters on the left and the row moves one pane right.</p>
-      </div>
-      <div class="ctrl-card">
-        <div class="presets"><button class="btn ghost" data-p="46">Boar · 46 today</button><button class="btn ghost" data-p="26">Roe deer · 26 today</button><button class="btn ghost" data-p="30">At balance · 30</button></div>
-        <label for="count">Detections last night — <span id="cv">46</span> (band 30 ± 10)</label>
-        <input type="range" id="count" min="0" max="70" value="46">
-        <svg class="dial" viewBox="0 0 200 200" aria-label="Plate dial">
-          <circle cx="100" cy="100" r="92" fill="#e9e3d6"/><circle cx="100" cy="100" r="70" fill="#f7f4ee" stroke="#cfc6b4"/>
-          <g id="ticks"></g>
-          <g id="ptr"><path d="M100 22 L108 36 L92 36 Z" fill="#6b4a2b"/></g>
-          <text x="100" y="104" text-anchor="middle" font-family="Plex,monospace" font-size="15" fill="#333" id="share">60% wild</text>
-          <text x="100" y="122" text-anchor="middle" font-family="Plex,monospace" font-size="8" fill="#777">ON YOUR PLATE TODAY</text>
-        </svg>
-        <div class="readout"><div><b id="zv">+1.6</b><span>z = (count − median) / spread</span></div><div><b id="dv">+92</b><span>degree d = 100 · tanh(z)</span></div></div>
-        <div class="formula" id="state">TOO MANY · PDLC frost · whiter glass</div>
-        <div style="margin-top:16px"><button class="btn" id="serve">Serve a plate →</button></div>
-      </div>
+  <a class="play-big reveal" href="harmony-osteria/" target="_blank" rel="noopener" aria-label="See the glass wall live on the osteria website">
+    <img src="assets/harmony/04/04-glass-wall-bands.webp" alt="">
+    <span class="play-tag">Live on the website ↗</span>
+    <span class="play-cta"><span class="ring"></span><span class="tri">▶</span></span>
+    <span class="play-label"><b>See the glass wall live</b><small>On the osteria’s website · tonight’s counts, the plates served, the glass</small></span>
+  </a>
+
+  <h3 class="c-sub-h reveal">The plate · a readable share</h3>
+  <div class="split reveal" style="--a:.6fr">
+    <figure><img class="im" src="assets/harmony/04/04-plate-dial.webp" alt="The two-piece plate with its 0–100 scale" data-zoom="assets/harmony/04/04-plate-dial.webp"></figure>
+    <div class="txt">
+      <h4>A dial you eat from.</h4>
+      <p>Before serving, turn the upper plate until its tab points to the dish’s wild share.</p>
+      <p><b>Upper plate · the pointer.</b> The ceramic upper plate holds the food. Its pointed tab marks the proportion on the rim.</p>
+      <p><b>Lower charger · the scale.</b> The 0–100 scale stays fixed, with zero towards the hills. The tab reads the percentage of wild ingredients.</p>
+      <figure class="sheet" style="margin-top:18px"><img class="im" src="assets/harmony/04/04-plate-section.webp" alt="Section: two stacked ceramic pieces" data-zoom="assets/harmony/04/04-plate-section.webp"></figure>
+    </div>
+  </div>
+  <h3 class="c-sub-h reveal">The glass · how to read it</h3>
+  <p class="muted reveal" style="max-width:44em">Glass becomes more opaque as the population moves away from balance. The wall has two bands.</p>
+  <figure class="sheet reveal"><img class="im" src="assets/harmony/04/04-glass-reading-guide.webp" alt="How to read the glass wall" data-zoom="assets/harmony/04/04-glass-reading-guide.webp"></figure>
+  <div class="g reveal" style="--n:2;margin-top:4vh">
+    <div class="txt"><span class="mono acc">① Upper · its whole record</span><h4>The band is one species’ history.</h4><p>One strip, one moment: years apart on the left, days apart near today. A new wild dish switches the whole band to its record.</p></div>
+    <div class="txt"><span class="mono acc">② Lower · one pane, one plate</span><h4>Each plate served fills one pane.</h4><p>It enters on the left; the row moves one pane right and the oldest plate drops off.</p></div>
+  </div>
+  <figure class="reveal" style="margin-top:6vh"><img class="im" src="assets/harmony/04/04-glass-wall-bands.webp" alt="The two glass bands in the dining hall" data-zoom="assets/harmony/04/04-glass-wall-bands.webp"></figure>
+  <h3 class="c-sub-h reveal">Two films, one pane · both stepless</h3>
+  <div class="split reveal" style="--a:1.3fr">
+    <figure class="sheet"><img class="im" src="assets/harmony/04/04-two-switchable-films.webp" alt="PDLC and SPD films laminated in one pane" data-zoom="assets/harmony/04/04-two-switchable-films.webp"></figure>
+    <div class="g keep2" style="--n:1;--gap:14px">
+      <div class="tile"><span class="mono">PDLC film · frost</span><p>Clear when powered. Less voltage, whiter. Used for too many.</p></div>
+      <div class="tile"><span class="mono">SPD film · tint</span><p>Clear when powered. Less voltage, darker. Used for too few.</p></div>
+      <div class="tile"><span class="mono">Both, one laminate</span><p>White · too many → clear · balance → dark · too few.</p></div>
     </div>
   </div>
 </section>
 
+<!-- 05 -->
 <section class="c-sec" id="algorithm">
-  <div class="c-head reveal"><div class="c-num">06</div><div>
-    <h2 class="c-h">From a night of footage to a degree on the glass.</h2>
-    <p class="c-lede">Infrared camera traps on the slopes behind Genoa wake on movement; the cards are read every morning. Sea, delta and Alpine species come from partners’ surveys.</p>
+  <div class="c-head reveal"><div class="c-num">05</div><div>
+    <h2 class="c-h">From a camera on the slope to a degree on the glass.</h2>
+    <p class="c-lede">Four steps turn last night’s footage into one number per species, between −100 and +100.</p>
   </div></div>
-  <div class="c-body">
-    <div class="steps reveal" style="--n:5">
-      <div><h4>Place</h4><p>Our own cameras along the paths animals use.</p></div>
-      <div><h4>See</h4><p>Clips cut into frames; YOLOv8 boxes each animal and keeps confident detections. Trained on a public dataset of 3,364 images.</p></div>
-      <div><h4>Count</h4><p>Detections per species become shares p<sub>i</sub> = n<sub>i</sub>/N — an index of activity, not a census.</p></div>
-      <div><h4>Measure</h4><p>Shannon H and Simpson D read the hillside as a whole. Example day: H = 1.49 of 1.61; D = 0.75.</p></div>
-      <div><h4>Degree</h4><p>Each species against its own record: d = 100·tanh(z), clamped to −100…+100.</p></div>
-    </div>
-    <div class="formula reveal" style="margin-top:4vh">Boar · 46 today, band 30 ± 10 → z = +1.6 → d = +92, almost white.<br>Roe deer · 26 today, band 30 ± 10 → z = −0.4 → d = −38, lightly dark.<br>Data older than 36 hours is not trusted — the species goes to 0 and the glass stays clear.</div>
+  <div class="split reveal" style="--a:1fr">
+    <figure><img class="im" src="assets/harmony/05/05-chestnut-camera.webp" alt="An infrared camera trap on a chestnut tree" data-zoom="assets/harmony/05/05-chestnut-camera.webp"><figcaption class="caption">Our own camera · AI-generated</figcaption></figure>
+    <div class="txt"><span class="mono acc">0 · Place — our cameras on the slope</span><p>Infrared camera traps the osteria keeps on the slopes behind Genoa, strapped to trees along the paths the animals use. Each wakes on movement, day or night; the cards are read every morning. Sea, delta and Alps come from partners’ surveys.</p></div>
   </div>
+  <div class="split reveal" style="--a:1fr;margin-top:8vh">
+    <div class="txt"><span class="mono acc">1 · See — from video to named animals</span><p>Each clip is cut into evenly spaced frames, at most a hundred per clip. YOLOv8 looks at a frame once and returns a box around every animal, its species and how sure it is.</p><p>This first model was trained on a public dataset — fox, koala, rabbit, 3,364 images — to prove the pipeline end to end. In operation it is retrained on what our cameras see: wild boar, roe deer, fallow deer, fox, hare.</p></div>
+    <div class="g keep2" style="--n:2">
+      <figure><img class="im" src="assets/harmony/05/05-boar-detection.webp" alt="Two boar at night, CAM 04 · 22:40" data-zoom="assets/harmony/05/05-boar-detection.webp"></figure>
+      <figure><img class="im" src="assets/harmony/05/05-dataset-example.webp" alt="A labelled frame" data-zoom="assets/harmony/05/05-dataset-example.webp"></figure>
+      <figure style="grid-column:1/-1" class="sheet"><img class="im" src="assets/harmony/05/05-detection-example.webp" alt="Training over 100 epochs" data-zoom="assets/harmony/05/05-detection-example.webp"><figcaption class="caption" style="padding:0 10px 8px">Training · 100 epochs — losses fall; precision and recall climb toward 1.</figcaption></figure>
+    </div>
+  </div>
+  <div class="g reveal" style="--n:2;margin-top:8vh">
+    <figure class="sheet"><img class="im" src="assets/harmony/05/05-species-counts.webp" alt="Step 2: count each species as a share" data-zoom="assets/harmony/05/05-species-counts.webp"></figure>
+    <figure class="sheet"><img class="im" src="assets/harmony/05/05-diversity-indices.webp" alt="Step 3: Shannon and Simpson indices" data-zoom="assets/harmony/05/05-diversity-indices.webp"></figure>
+  </div>
+  <div class="split reveal" style="--a:1fr;margin-top:4vh">
+    <figure class="sheet"><img class="im" src="assets/harmony/05/05-glass-opacity-scale.webp" alt="Step 4: the degree the glass receives" data-zoom="assets/harmony/05/05-glass-opacity-scale.webp"></figure>
+    <div class="txt"><span class="mono acc">4 · Degree — what the glass receives</span><p><mark>z = (count − median) / spread · d = 100 · tanh(z)</mark></p><p>Each species is compared only with its own record. Every morning at 06:00 the newest count becomes a degree. tanh keeps the wall calm: ordinary swings stay close to clear; only a real boom or collapse reaches white or dark.</p><p>Boar · 46 today, band 30 ± 10 → d = +92, almost white.</p></div>
+  </div>
+
+  <h3 class="c-sub-h reveal">The prototype · laminate · code</h3>
+  <div class="g reveal" style="--n:4">
+    <figure><img class="im" src="assets/harmony/05/05-prototype-01.webp" alt="Wiring the first prototype" data-zoom="assets/harmony/05/05-prototype-01.webp"></figure>
+    <figure><img class="im" src="assets/harmony/05/05-prototype-02.webp" alt="Arduino and relay board" data-zoom="assets/harmony/05/05-prototype-02.webp"></figure>
+    <figure><img class="im" src="assets/harmony/05/05-prototype-03.webp" alt="The relay board" data-zoom="assets/harmony/05/05-prototype-03.webp"></figure>
+    <figure><img class="im" src="assets/harmony/05/05-prototype-04.webp" alt="The bench setup" data-zoom="assets/harmony/05/05-prototype-04.webp"></figure>
+  </div>
+  <div class="split reveal" style="--a:.7fr;margin-top:5vh">
+    <figure class="sheet pad"><img class="im" src="assets/harmony/05/05-glass-exploded.webp" alt="One pane, exploded: glass, PDLC, PVB, SPD, glass" data-zoom="assets/harmony/05/05-glass-exploded.webp"></figure>
+    <ol class="nums">
+      <li><b>B</b><h4>Built</h4><p>One switchable PDLC film on a test pane, an Arduino and a relay board, wired and driven on the bench. A load cell under the plate sent the signal.</p></li>
+      <li><b>L</b><h4>Learned</h4><p>Each film can be switched on its own channel from code. A relay only gives on or off, so the pane could be clear or white, nothing in between.</p></li>
+      <li><b>N</b><h4>Next</h4><p>Relays become dimmers; a second film (SPD) adds the dark side. One test pane becomes 45 panes and 90 channels, and nine short-throw projectors print each species on its frosted pane.</p></li>
+    </ol>
+  </div>
+  <figure class="reveal" style="margin-top:5vh;max-width:640px"><img class="im" src="assets/harmony/05/05-prototype-controller-code.webp" alt="glass_controller.js · excerpt" data-zoom="assets/harmony/05/05-prototype-controller-code.webp"><figcaption class="caption">glass_controller.js · excerpt — 45 panes × 2 films = 90 channels</figcaption></figure>
 </section>
 
-<section class="c-sec" id="prototype">
-  <div class="c-head reveal"><div class="c-num">07</div><div>
-    <h2 class="c-h">The real build.</h2>
-    <p class="c-lede">One switchable PDLC film on a test pane, an Arduino board and a relay board, wired and driven by code on the bench. In the first version a load cell under the plate sent the signal.</p>
-  </div></div>
-  <div class="c-body">
-    <div class="cols reveal" style="--n:2">
-      <div class="card"><span class="mono">Learned</span><p>Each film can be switched on its own channel from code. A relay only gives on or off, so the pane could be clear or white, nothing in between.</p></div>
-      <div class="card"><span class="mono">Next</span><p>Real dimmers; a second film (SPD) adds the dark side. One test pane becomes 45 panes and 90 channels, driven by the counts and the plates served. Nine short-throw projectors print each species on its frosted pane.</p></div>
-    </div>
-    <figure class="fig reveal"><img loading="lazy" src="assets/harmony/boards/board-05.webp" alt="Algorithm and prototype board"><figcaption>Board 05 — the algorithm, the exploded pane (glass · PDLC · PVB · SPD · glass) and an excerpt of glass_controller.js.</figcaption></figure>
-  </div>
-</section>
-
+<!-- 06 -->
 <section class="c-sec" id="website">
-  <div class="c-head reveal"><div class="c-num">08</div><div>
-    <h2 class="c-h">The osteria’s own site.</h2>
-    <p class="c-lede">harmony-osteria.it — desktop and phone. A live status line shows lunch, plates served and the last wild dish; the house, the menu and a visit page follow.</p>
+  <div class="c-head reveal"><div class="c-num">06</div><div>
+    <h2 class="c-h">The osteria’s own website.</h2>
+    <p class="c-lede">Tonight’s menu, written at 07:30 from the counts — on desktop and on the phone. Open the live prototype.</p>
   </div></div>
-  <div class="embed reveal">
-    <div class="bar"><span>Harmony Osteria · website prototype</span><a href="harmony-osteria/" target="_blank" rel="noopener">Open full screen ↗</a></div>
-    <a class="cover-play" href="harmony-osteria/" data-src="harmony-osteria/"><img src="assets/harmony/images/bench.jpg" alt=""><span>▶ Open the website</span></a>
+  <a class="play-big reveal" href="harmony-osteria/" target="_blank" rel="noopener" aria-label="Open the Harmony Osteria website">
+    <img src="assets/harmony/06/06-website-house.webp" alt="">
+    <span class="play-tag">Live website ↗</span>
+    <span class="play-cta"><span class="ring"></span><span class="tri">▶</span></span>
+    <span class="play-label"><b>Click to open the website</b><small>harmony-osteria · desktop and phone</small></span>
+  </a>
+  <div class="g reveal" style="--n:3">
+    <figure><img class="im" src="assets/harmony/06/06-website-home.webp" alt="Home" data-zoom="assets/harmony/06/06-website-home.webp"><figcaption class="caption">Home · tonight’s menu</figcaption></figure>
+    <figure><img class="im" src="assets/harmony/06/06-website-inside.webp" alt="Inside" data-zoom="assets/harmony/06/06-website-inside.webp"><figcaption class="caption">Inside · the long room</figcaption></figure>
+    <figure><img class="im" src="assets/harmony/06/06-website-plan.webp" alt="The house plan" data-zoom="assets/harmony/06/06-website-plan.webp"><figcaption class="caption">House · plan · reserve a seat on the glass</figcaption></figure>
   </div>
-  <div class="c-body" style="margin-top:6vh">
-    <h3 class="c-sub-h">The details of the experience</h3>
-    <div class="steps reveal" style="--n:5">
-      <div><h4>The route</h4><p>West door, figurine wall, along the glass, the station screen, the round room, out by the north door.</p></div>
-      <div><h4>Figurine wall</h4><p>Niches in a lime wall, a plaster figure in each: what the menu depends on.</p></div>
-      <div><h4>Light on the glass</h4><p>One projector for every three panes. Too many: dark lines on white; too few: white lines on dark.</p></div>
-      <div><h4>Station screen</h4><p>On the wall by the north door: yesterday’s counts.</p></div>
-      <div><h4>The round room</h4><p>Eleven tables, one per species: how it is counted, what it left behind, and a poster that explains both.</p></div>
-    </div>
-  </div>
-</section>
 
-<section class="c-sec" id="boards">
-  <div class="c-head reveal"><div class="c-num">09</div><div>
-    <h2 class="c-h">Original boards</h2>
-    <p class="c-lede">Click a board to open it; click again to zoom and pan.</p>
-  </div></div>
-  <div class="boards" data-proj="harmony" data-n="6" data-labels="Cover · where it started|Background|The food tells how the wild changes|The plate points, the glass answers|The algorithm · the prototype|The website · the experience"></div>
+  <h3 class="c-sub-h reveal">The details of the experience</h3>
+  <div class="split reveal" style="--a:1fr">
+    <figure class="sheet"><img class="im" src="assets/harmony/06/06-visitor-route.webp" alt="The visitor route" data-zoom="assets/harmony/06/06-visitor-route.webp"></figure>
+    <div class="txt"><span class="mono acc">The route</span><p>West door, figurine wall, along the glass, the station screen, the round room, out by the north door.</p></div>
+  </div>
+  <div class="g reveal" style="--n:3;margin-top:6vh">
+    <figure class="tile"><img class="im" src="assets/harmony/06/06-figurine-wall.webp" alt="Figurine wall" data-zoom="assets/harmony/06/06-figurine-wall.webp"><span class="mono">Figurine wall</span><p>Niches in the lime wall, a plaster figure in each: what the menu depends on.</p></figure>
+    <figure class="tile"><img class="im" src="assets/harmony/06/06-projection-glass.webp" alt="Light on the glass" data-zoom="assets/harmony/06/06-projection-glass.webp"><span class="mono">Light on the glass</span><p>One projector for every three panes. Too many: dark lines on white. Too few: white lines on dark. In balance: just the hill.</p></figure>
+    <figure class="tile"><img class="im" src="assets/harmony/06/06-round-room.webp" alt="The round room" data-zoom="assets/harmony/06/06-round-room.webp"><span class="mono">The round room</span><p>Eleven tables, one per species: how it is counted, what it left behind, and a poster that explains both.</p></figure>
+    <figure class="tile"><img class="im" src="assets/harmony/06/06-station-screen.webp" alt="The station screen" data-zoom="assets/harmony/06/06-station-screen.webp"><span class="mono">The station screen</span><p>On the station wall by the north door: yesterday’s counts.</p></figure>
+    <figure class="tile"><img class="im" src="assets/harmony/06/06-wild-boar-table.webp" alt="Wild boar table" data-zoom="assets/harmony/06/06-wild-boar-table.webp"><span class="mono">Wild boar</span><p>A camera trap from the slope and a handful of bristles.</p></figure>
+    <figure class="tile"><img class="im" src="assets/harmony/01/01-hall-interior.webp" alt="The dining hall" data-zoom="assets/harmony/01/01-hall-interior.webp"><span class="mono">The hall</span><p>Twenty seats along the glass, facing the hill the menu comes from.</p></figure>
+  </div>
+  <p class="big-q reveal">Every meal becomes <em>a signal of how the wild is doing today.</em></p>
+  <p class="caption reveal" style="margin-top:6vh">Note · Some photos and scene images in this project were created with AI image tools; curves are schematic with marked points from the cited sources.</p>
 </section>
 </div>
 
@@ -236,63 +301,7 @@
 </main>
 <footer class="foot"><span>© 2026 Yihan Zeng</span><a href="#">Back to top ↑</a></footer>
 
-<script>
-const U = 'assets/harmony/ui/';
-const other = 'This sample opens the wild boar dish — try “Cinghiale e manzo”';
-const rows = [15.3, 20.6, 26, 34.3, 39.7, 45, 53.5, 58.8, 64.2, 72.4, 77.7, 83.1];
-const rowHot = rows.map((y, i) => i === 6 ? [5, y - 2.4, 90, 5, 'detail', 'Open Cinghiale e manzo'] : [5, y - 2.4, 90, 5, 'menu', null, 0, other]);
-window.PROTOS = {
-  eink: { device: 'eink', noStrip: true,
-    help: 'Tap a dish row to open it. In this sample only the wild boar dish has a detail page.',
-    screens: {
-      menu: { src: U+'eink_menu.webp', title: 'Today’s menu', note: 'Four courses, choose one of each. Every row shows the wild species, today’s wild/farmed split and its change since yesterday. Pappardelle with hare is sold out — the hare is far below its band.', tags: ['Updated 07:30','12 dishes'], hot: rowHot },
-      detail: { src: U+'eink_detail_cinghiale.webp', title: 'Cinghiale e manzo al vino rosso', note: 'The wild one: wild boar from the Ligurian Apennines — TOO MANY today (60 wild · 40 farmed). Last night’s camera, the dish, and a population curve from 1900 to today against the balance band.', tags: ['Wild boar','+70'], hot: [[5,2.5,8,5,'menu','‹ Menu'],[5,92.5,43,5,'detail',null,0,'Previous dish — not in this sample'],[52,92.5,43,5,'detail',null,0,'Next dish — not in this sample']] }
-    },
-    flows: [{ name: 'Menu', keys: ['menu','detail'] }]
-  }
-};
-</script>
-<script src="js/proto.js"></script>
 <script src="js/case.js"></script>
-<script>
-/* glass wall + plate dial simulator */
-(() => {
-  const up = document.getElementById('upper'), low = document.getElementById('lower');
-  const names = ['Cinghiale','Capriolo','Pesce spada','Granchio blu','Castagne','Alici','Cervo','Tonno rosso','Pinoli','Capriolo','Cinghiale','Alici','Cervo','Castagne','Pinoli'];
-  const paint = (el, d) => {
-    if (d >= 0) { el.style.background = `rgba(250,250,247,${0.08 + 0.86 * d / 100})`; el.style.setProperty('--b', (d / 100 * 6) + 'px'); el.classList.remove('dark'); }
-    else { el.style.background = `rgba(12,12,10,${0.08 + 0.86 * -d / 100})`; el.style.setProperty('--b', '0px'); el.classList.add('dark'); }
-  };
-  // upper band: a schematic boar record from early 1900s (too few) to today (too many)
-  for (let i = 0; i < 30; i++) { const p = document.createElement('div'); p.className = 'pane'; up.appendChild(p); }
-  up.style.gridTemplateColumns = 'repeat(30, 1fr)';
-  const hist = i => Math.round(100 * Math.tanh((i - 11) / 6));
-  [...up.children].forEach((p, i) => paint(p, hist(i)));
-  // lower log
-  const served = [];
-  for (let i = 0; i < 15; i++) { const p = document.createElement('div'); p.className = 'pane'; p.innerHTML = '<small></small>'; low.appendChild(p); served.push({ n: names[i], d: Math.round(Math.sin(i * 1.7) * 60) }); }
-  const drawLow = () => [...low.children].forEach((p, i) => { paint(p, served[i].d); p.querySelector('small').textContent = served[i].n; });
-  drawLow();
-  // dial ticks
-  const ticks = document.getElementById('ticks');
-  for (let v = 0; v <= 100; v += 10) { const a = (v / 100) * 300 - 150, r = a * Math.PI / 180; const x1 = 100 + 82 * Math.sin(r), y1 = 100 - 82 * Math.cos(r), x2 = 100 + 90 * Math.sin(r), y2 = 100 - 90 * Math.cos(r);
-    ticks.insertAdjacentHTML('beforeend', `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#8a7a62" stroke-width="1.5"/>` + (v % 20 === 0 ? `<text x="${100 + 76 * Math.sin(r)}" y="${100 - 76 * Math.cos(r) + 3}" font-size="7" text-anchor="middle" fill="#8a7a62" font-family="Plex,monospace">${v}</text>` : '')); }
-  const $ = id => document.getElementById(id), slider = $('count');
-  let d = 0;
-  function update() {
-    const c = +slider.value, z = (c - 30) / 10; d = Math.round(100 * Math.tanh(z));
-    $('cv').textContent = c; $('zv').textContent = (z >= 0 ? '+' : '') + z.toFixed(1); $('dv').textContent = (d >= 0 ? '+' : '') + d;
-    const share = Math.round(10 + 50 * (d + 100) / 200);
-    $('share').textContent = share + '% wild';
-    $('ptr').setAttribute('transform', `rotate(${(share / 100) * 300 - 150} 100 100)`);
-    $('state').textContent = Math.abs(d) < 15 ? 'BALANCE · glass stays clear' : d > 0 ? 'TOO MANY · PDLC frost · whiter glass · a bigger wild share' : 'TOO FEW · SPD tint · darker glass · a smaller wild share';
-    paint(up.lastElementChild, d);
-  }
-  slider.addEventListener('input', update);
-  document.querySelectorAll('[data-p]').forEach(b => b.onclick = () => { slider.value = b.dataset.p; update(); });
-  $('serve').onclick = () => { served.unshift({ n: 'Cinghiale', d }); served.pop(); drawLow(); };
-  update();
-})();
-</script>
+<script>document.querySelectorAll('.try').forEach(t => { const c = t.querySelector('.try-cover'); c && c.addEventListener('click', () => t.classList.add('started')); });</script>
 </body>
 </html>

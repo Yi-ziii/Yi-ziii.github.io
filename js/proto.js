@@ -81,7 +81,7 @@
         b.append(t, h('span', '', s.short || s.title)); b.onclick = () => go(k, true);
         strip.appendChild(b);
       });
-      const on = strip.querySelector('.on'); if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      const on = strip.querySelector('.on'); if (on) { const sr = strip.getBoundingClientRect(), br = on.getBoundingClientRect(); strip.scrollTo({ left: strip.scrollLeft + (br.left - sr.left) - (sr.width - br.width) / 2, behavior: 'smooth' }); }
     }
 
     let holdTimer = null, autoTimer = null;

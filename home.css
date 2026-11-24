@@ -85,12 +85,11 @@ em { font: italic 1.08em Garamond, Georgia, serif; color: var(--text) }
 .card-top .count { color: var(--muted) }
 .card-top .count b { color: var(--text); font-weight: 400 }
 .card h2 { font: 400 clamp(22px, 2vw, 32px)/1.15 var(--sans); letter-spacing: -.02em; margin: 12px 0 10px; max-width: 22em }
-.summary { margin: 0; color: #c9c9c2; font-size: clamp(14px, 1.05vw, 16px); max-width: 40em }
-.facts { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 18px; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line) }
+.summary { margin: 14px 0 0; color: #dcdcd5; font-size: clamp(15px, 1.15vw, 18px); line-height: 1.55; max-width: 38em }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line) }
 .facts dt { font: 400 10.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-bottom: 8px }
 .facts dd { margin: 0; font-size: 13px; line-height: 1.5; color: #bdbdb6 }
-.step { display: flex; gap: 8px; align-items: baseline }
-.step i { font: normal 10.5px var(--mono); color: var(--signal) }
+.facts.three { grid-template-columns: 1fr .7fr 1.6fr }
 .actions { display: flex; gap: 22px; align-items: center; margin-top: 18px }
 .cta { display: inline-flex; gap: 10px; align-items: center; background: var(--text); color: #000; text-decoration: none; font: 600 13.5px/1 var(--sans); padding: 12px 18px; border-radius: 2px; transition: background .2s }
 .cta i { font-style: normal; transition: transform .25s }
@@ -104,19 +103,6 @@ em { font: italic 1.08em Garamond, Georgia, serif; color: var(--text) }
 .progress i { flex: 1; height: 1px; background: #2a2a2a; position: relative }
 .progress i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--prog, .2) * 100%); background: var(--signal); transition: width .5s cubic-bezier(.2,.7,.2,1) }
 
-/* ---------- live pages ---------- */
-.live { padding: 16vh var(--gutter) 10vh; border-top: 1px solid var(--line) }
-.live-lede { color: #c9c9c2; max-width: 36em; margin: 0 0 5vh }
-.live-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line) }
-.live-list a { display: grid; grid-template-columns: 3.5em 1fr auto; align-items: baseline; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--line); color: var(--text); text-decoration: none; transition: padding-left .25s, color .25s }
-.live-list a:hover, .live-list a:focus-visible { padding-left: 14px; color: var(--signal) }
-.lv-no { font: 400 11px/1 var(--mono); letter-spacing: .14em; color: var(--signal) }
-.lv-title { font-size: clamp(19px, 1.7vw, 26px); line-height: 1.25 }
-.lv-title small { display: block; margin-top: 6px; font-size: 14px; color: #8f8f88 }
-.lv-url { font: 400 12px/1.4 var(--mono); letter-spacing: .04em; color: #8f8f88; white-space: nowrap }
-.live-list a:hover .lv-url { color: var(--signal) }
-@media (max-width: 900px) { .live-list a { grid-template-columns: 2.6em 1fr } .lv-url { grid-column: 2; white-space: normal } }
-
 /* ---------- about / contact ---------- */
 .about, .contact { padding: 16vh var(--gutter) 10vh; border-top: 1px solid var(--line) }
 .dot-h { font: 900 clamp(56px, 11vw, 190px)/.9 Doto, "Arial Black", sans-serif; margin: 18px 0 6vh; color: #fff; letter-spacing: .01em }
@@ -127,6 +113,16 @@ em { font: italic 1.08em Garamond, Georgia, serif; color: var(--text) }
 .about-facts div { border-top: 1px solid var(--line); padding-top: 12px }
 .about-facts dt { font: 400 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--signal); margin-bottom: 8px }
 .about-facts dd { margin: 0; color: #c9c9c2; font-size: 15px }
+.about-facts small { color: var(--muted); font-size: 13px }
+.cv { margin-top: 12vh }
+.cv-list { list-style: none; margin: 18px 0 0; padding: 0 }
+.cv-list li { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line) }
+.cv-list li:last-child { border-bottom: 1px solid var(--line) }
+.cv-d { font: 400 12px/1.6 var(--mono); letter-spacing: .1em; color: var(--signal) }
+.cv-list h4 { margin: 0; font-size: clamp(18px, 1.6vw, 24px); font-weight: 500; letter-spacing: -.01em }
+.cv-r { display: block; margin-top: 4px; font: 400 11.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
+.cv-list p { margin: 10px 0 0; color: #c9c9c2; max-width: 48em; font-size: 15px }
+@media (max-width: 760px) { .cv-list li { grid-template-columns: 1fr; gap: 8px } }
 .contact-list { list-style: none; margin: 0; padding: 0; max-width: 1100px }
 .contact-list li { display: grid; grid-template-columns: 180px 1fr; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line) }
 .contact-list li:last-child { border-bottom: 1px solid var(--line) }
@@ -166,4 +162,40 @@ em { font: italic 1.08em Garamond, Georgia, serif; color: var(--text) }
 @media (prefers-reduced-motion: reduce) {
   :root { scroll-behavior: auto }
   .layer, .card, .work, .lens, .cta i { transition: none }
+}
+
+/* ---------- trial: picture as full-page background (body.bgfull, desktop only) ---------- */
+@media (min-width: 901px) {
+  body.bgfull .split { position: relative; clip-path: inset(0) }
+  body.bgfull .left { position: relative; z-index: 2 }
+  body.bgfull .info, body.bgfull .progress { position: relative; z-index: 1 }
+  body.bgfull .right { position: sticky; grid-template-rows: minmax(0, 1fr) auto auto }
+  body.bgfull .info { grid-row: 2 } body.bgfull .progress { grid-row: 3 }
+  body.bgfull .stage-wrap { position: fixed; inset: 0; z-index: 0; cursor: default }
+  body.bgfull .stage { container-type: normal }
+  body.bgfull .layer { place-items: stretch; transform: scale(1.03) }
+  body.bgfull .layer.current { transform: none }
+  body.bgfull .pic { width: 100%; height: 100%; aspect-ratio: auto }
+  body.bgfull .pic img { object-fit: cover; object-position: var(--fp, 60% 50%); -webkit-mask-image: none; mask-image: none }
+  body.bgfull .pic .screen { opacity: .62 }
+  body.bgfull .lens { -webkit-mask-image: radial-gradient(circle 230px at var(--x,-500px) var(--y,-500px), #000 30%, rgba(0,0,0,.75) 50%, transparent 100%);
+    mask-image: radial-gradient(circle 230px at var(--x,-500px) var(--y,-500px), #000 30%, rgba(0,0,0,.75) 50%, transparent 100%) }
+  body.bgfull .stage-wrap::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(5,5,5,.86) 0%, rgba(5,5,5,.62) 34%, rgba(5,5,5,.18) 56%, rgba(5,5,5,.10) 72%, rgba(5,5,5,.35) 100%),
+      linear-gradient(0deg, rgba(5,5,5,.92) 0%, rgba(5,5,5,.70) 26%, rgba(5,5,5,0) 52%),
+      linear-gradient(180deg, rgba(5,5,5,.75) 0%, rgba(5,5,5,0) 16%) }
+  body.bgfull .split::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 45vh; z-index: 0; pointer-events: none; background: linear-gradient(rgba(5,5,5,0), #050505 85%) }
+  body.bgfull .pic.fit-side img { object-fit: contain; object-position: 88% 60%; -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000 52%); mask-image: linear-gradient(90deg, transparent 30%, #000 52%) }
+  body.bgfull .pic.fit-side .lens { -webkit-mask-image: radial-gradient(circle 230px at var(--x,-500px) var(--y,-500px), #000 30%, rgba(0,0,0,.75) 50%, transparent 100%); mask-image: radial-gradient(circle 230px at var(--x,-500px) var(--y,-500px), #000 30%, rgba(0,0,0,.75) 50%, transparent 100%) }
+  body.bgfull .pic.fit-side .screen { opacity: .72 }
+  body.bgfull .lens-hint { display: none }
+  body.bgfull .info { text-shadow: 0 1px 14px rgba(0,0,0,.6) }
+}
+
+/* click to select, click again to open (desktop) */
+@media (min-width: 901px) {
+  .work.current .work-meta::after { content: "Click again to open →"; margin-left: auto; color: var(--text); letter-spacing: .14em }
+  .work-meta { display: flex }
+  .work:not(.current) { cursor: pointer }
 }

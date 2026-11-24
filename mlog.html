@@ -7,7 +7,38 @@
 <title>MLOG · Yihan Zeng</title>
 <meta name="description" content="MLOG — an employee-initiated work-logging badge, app and manager dashboard.">
 <link rel="stylesheet" href="css/case.css">
-<style>:root { --acc: #4d8dff }</style>
+<link rel="stylesheet" href="css/story.css">
+<style>:root { --acc: #4d8dff }
+.court { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(24px, 4vw, 64px); align-items: center }
+.court-img { position: relative; margin: 0 }
+.court-img img { width: 100%; display: block }
+.court-tag { position: absolute; bottom: 4%; display: flex; flex-direction: column; gap: 4px; padding: 8px 12px; border-left: 2px solid var(--acc); background: #000c; font: 400 12px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #ddd }
+.court-tag b { color: var(--acc); font-weight: 600 } .court-tag.l { left: 2% } .court-tag.r { right: 2%; border-left: 0; border-right: 2px solid var(--acc); text-align: right }
+.court-txt p { color: #c9c9c2 } .court-txt em { color: var(--acc); font-style: normal }
+.ivs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 28px); margin-top: 3vh }
+.iv { border: 1px solid #2c2c2c; border-radius: 10px; padding: 22px; background: #121212; display: flex; flex-direction: column }
+.iv .iv-h { display: flex; gap: 14px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #2c2c2c }
+.iv .iv-h img { width: 58px; height: 58px; border-radius: 50% }
+.iv h4 { margin: 0; font-size: 20px } .iv .iv-h span { font: 400 12px var(--mono); color: var(--muted); letter-spacing: .06em }
+.iv ol { list-style: none; margin: 0; padding: 0; flex: 1 }
+.iv li { display: grid; grid-template-columns: 30px 1fr; column-gap: 8px; padding: 14px 0; border-bottom: 1px dashed #2c2c2c }
+.iv li b { grid-row: span 2; font: 600 11px var(--mono); color: var(--acc); padding-top: 3px }
+.iv h5 { margin: 0 0 4px; font-size: 15px } .iv li p { margin: 0; color: #bdbdb6; font-size: 14px; line-height: 1.5 }
+.iv-f { margin-top: 16px; padding: 14px; border-radius: 8px; background: #1b1b1b } .iv-f p { margin: 6px 0 0; font-size: 14.5px; color: #eee }
+.ergo { display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: clamp(24px, 4vw, 56px); margin-top: 6vh; align-items: start }
+.ergo-sheet { margin: 0; position: relative; max-height: 420px; overflow: hidden; border-radius: 6px; cursor: zoom-in }
+.ergo-sheet img { width: 100%; display: block; filter: invert(.92) hue-rotate(180deg) }
+.ergo-sheet::after { content: ""; position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(transparent, #000) }
+.ergo-sheet figcaption { position: absolute; left: 12px; bottom: 12px; z-index: 1; font-size: 11px; color: var(--acc); letter-spacing: .1em }
+.bignum.hi b { color: var(--acc) }
+@media (max-width: 900px) { .court, .ivs, .ergo { grid-template-columns: 1fr } .ergo-sheet { max-width: 320px } }
+
+.ext { position: relative; max-width: 330px; margin: 0 auto }
+.ext img { width: 100%; display: block }
+.ext-pt { position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; background: var(--acc); color: #111; display: grid; place-items: center; font: 600 13px var(--mono); box-shadow: 0 0 0 6px #4d8dff33 }
+.ext-pt b { font-weight: 700 }
+.ext-list li { cursor: default }
+</style>
 </head>
 <body>
 <div class="readbar"></div>
@@ -29,19 +60,18 @@
     <div><dt>Touchpoints</dt><dd>Smart badge · Employee app · Management web</dd></div>
     <div><dt>Outputs</dt><dd>Hardware form, wireframes, hi-fi UI, information architecture</dd></div>
   </dl>
-  <figure class="c-cover"><img src="assets/mlog/ui/render_badge_pair.webp" alt="The two MLOG badge finishes" data-zoom="assets/mlog/ui/render_badge_pair.webp"></figure>
+  <figure class="c-cover"><img style="object-fit:contain;max-height:none" src="assets/mlog/01/01-cover-dark.webp" alt="MLOG: badge, employee app and manager dashboard" data-zoom="assets/mlog/01/01-cover-dark.webp"></figure>
 </section>
 
 <nav class="c-nav" aria-label="Chapters"><ol>
   <li><a href="#context"><b>01</b>Context</a></li>
-  <li><a href="#why"><b>02</b>Why it persists</a></li>
-  <li><a href="#research"><b>03</b>Research</a></li>
-  <li><a href="#insight"><b>04</b>Insight</a></li>
-  <li><a href="#concept"><b>05</b>Concept</a></li>
-  <li><a href="#product"><b>06</b>Product</a></li>
-  <li><a href="#testing"><b>07</b>Testing</a></li>
-  <li><a href="#interface"><b>08</b>Interface ★</a></li>
-  <li><a href="#boards"><b>09</b>Boards</a></li>
+  <li><a href="#situation"><b>02</b>Situation &amp; interviews</a></li>
+  <li><a href="#survey"><b>03</b>Survey &amp; theory</a></li>
+  <li><a href="#concept"><b>04</b>Principles &amp; concept</a></li>
+  <li><a href="#product"><b>05</b>Product design</a></li>
+  <li><a href="#testing"><b>06</b>Ergonomics</a></li>
+  <li><a href="#final"><b>07</b>Final product</a></li>
+  <li><a href="#interface"><b>08</b>User journey</a></li>
 </ol></nav>
 
 <div class="wrap">
@@ -50,261 +80,248 @@
 <section class="c-sec" id="context">
   <div class="c-head reveal"><div class="c-num">01</div><div>
     <h2 class="c-h">Does your workstation feel like a prison?</h2>
-    <p class="c-lede">In China, surveillance is so pervasive it has become normal. Among all its forms, the workplace is one of the most heavily monitored — and the setting that provokes the strongest public resentment.</p>
+    <p class="c-lede">In China, surveillance is everywhere — so pervasive that it has become normalized. Among all its forms, the workplace is one of the most heavily monitored, and one that provokes the strongest resentment.</p>
   </div></div>
-  <div class="c-body">
-    <div class="stats reveal" style="--n:4">
-      <div class="stat"><b>200M+</b><span>CCTV cameras in China’s “Skynet” system by 2019 — about four times the US</span></div>
-      <div class="stat"><b>470M</b><span>urban employees in China (National Bureau of Statistics, 2023)</span></div>
-      <div class="stat"><b>¥300</b><span>price of monitoring software that reads employee chats without their knowledge</span></div>
-      <div class="stat"><b>23M+</b><span>workers under digital surveillance even if only 5% of employers adopt it</span></div>
-    </div>
-    <h3 class="c-sub-h">Three reported cases</h3>
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">Case 01 · Sina Finance</span><h4>Chat records for less than $50</h4><p>Software installed without notice captures social media, browsing history, live screens and file operations — and antivirus tools may fail to detect it.</p></div>
-      <div class="card"><span class="mono">Case 02 · Legal Daily</span><h4>Restroom time measured and penalised</h4><p>Non-working activities — restroom use, chatting — feed into internal notices, performance reviews and salary deductions.</p></div>
-      <div class="card"><span class="mono">Case 03 · Xinhua</span><h4>Cameras facing every screen</h4><p>Cameras pointed at workstations record presence, posture and screens, then measure hours and assess behaviour.</p></div>
-    </div>
-    <p class="reveal" style="margin-top:4vh;color:#c5c5be;max-width:44em">To check whether others shared the same feeling, I gathered a large volume of posts from Zhihu. The words people used were <em>violated, suffocating, trapped, policed, dehumanised.</em> Yet opposition has not slowed adoption: the conditions that produce surveillance keep getting stronger.</p>
-    <figure class="fig reveal"><img src="assets/mlog/boards/board-02.webp" alt="Research board: current situation, cases and sentiment" loading="lazy"><figcaption>Board 02 — cases, Zhihu sentiment and the structural conditions behind workplace surveillance. Click to zoom.</figcaption></figure>
+  <div class="split reveal" style="--a:1.3fr">
+    <figure><img class="im" src="assets/mlog/01/01-surveillance-photos.webp" alt="Cameras in streets and offices" data-zoom="assets/mlog/01/01-surveillance-photos.webp"></figure>
+    <div class="bignum"><b>200M+</b><span>CCTV cameras in China’s “Skynet” system by 2019 — roughly four times the number in the United States.</span></div>
   </div>
+  <div class="g reveal" style="--n:3;margin-top:7vh">
+    <div class="tile"><span class="mono">Case 01 · Sina Finance</span><h4>Chat records for less than $50.</h4><p>Monitoring software at about RMB 300 installs without employees knowing and captures social media, browsing, live screens and files.</p></div>
+    <div class="tile"><span class="mono">Case 02 · Legal Daily / Xinhua</span><h4>Restroom time measured and penalized.</h4><p>Non-work activity during work hours feeds notices, performance reviews and salary deductions.</p></div>
+    <div class="tile"><span class="mono">Case 03 · Legal Daily / Xinhua</span><h4>Cameras facing screens.</h4><p>Cameras capture presence, posture and computer screens to track attendance and assess behaviour.</p></div>
+  </div>
+  <p class="big-q reveal">Employees resist it, yet it keeps expanding — <em>because the conditions driving it are growing stronger.</em></p>
 </section>
 
 <!-- 02 -->
-<section class="c-sec" id="why">
+<section class="c-sec" id="situation">
   <div class="c-head reveal"><div class="c-num">02</div><div>
-    <h2 class="c-h">Surveillance is discipline, not observation.</h2>
-    <p class="c-lede">Rather than blame the employer, I treated the problem like a courtroom and heard the defendant: why does monitoring exist, and why can’t it simply be removed?</p>
+    <h2 class="c-h">Workplace surveillance, a structural condition.</h2>
+    <p class="c-lede">Low-cost tools, everyday behaviour turned into metrics, and formal safeguards that unequal power makes hard to use.</p>
   </div></div>
-  <div class="c-body">
-    <blockquote class="quote reveal">“Visibility is a trap.”<cite>Michel Foucault — people who might be watched start watching themselves</cite></blockquote>
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">01</span><h4>Unequal power</h4><p>Survival is not negotiable. Workers can leave in theory, rarely in practice — so “refusal” exists only on paper.</p></div>
-      <div class="card"><span class="mono">02</span><h4>Management needs certainty</h4><p>Uncertainty is a cost and prediction has economic value. Managers will not give up visibility.</p></div>
-      <div class="card"><span class="mono">03</span><h4>Data always enters decisions</h4><p>Once recorded, data is used for ranking and selection. When survival depends on evaluation, evaluation demands data.</p></div>
+  <div class="g reveal" style="--n:3">
+    <figure><img class="im" src="assets/mlog/02/02-evidence-01.webp" alt="Low-cost access" data-zoom="assets/mlog/02/02-evidence-01.webp"></figure>
+    <figure><img class="im" src="assets/mlog/02/02-evidence-02.webp" alt="From output to behavior" data-zoom="assets/mlog/02/02-evidence-02.webp"></figure>
+    <figure><img class="im" src="assets/mlog/02/02-evidence-03.webp" alt="Protections and power" data-zoom="assets/mlog/02/02-evidence-03.webp"></figure>
+  </div>
+  <h3 class="c-sub-h reveal">How employees describe it</h3>
+  <div class="split reveal" style="--a:.8fr">
+    <figure><img class="im" src="assets/mlog/02/02-word-cloud.webp" alt="Words employees use: violated, suffocating, controlled" data-zoom="assets/mlog/02/02-word-cloud.webp"></figure>
+    <figure><img class="im" src="assets/mlog/02/02-employee-perspectives.webp" alt="Exploratory accounts from Zhihu" data-zoom="assets/mlog/02/02-employee-perspectives.webp"></figure>
+  </div>
+  <figure class="reveal" style="margin-top:3vh"><img class="im" src="assets/mlog/02/02-control-at-work.webp" alt="How control operates today" data-zoom="assets/mlog/02/02-control-at-work.webp"></figure>
+  <p class="muted reveal" style="margin-top:2vh">Control no longer relies on explicit threats. Refusal can be possible on paper and costly in practice.</p>
+
+  <h3 class="c-sub-h reveal">A change of perspective: the employer’s case</h3>
+  <div class="court reveal">
+    <figure class="court-img"><img src="assets/mlog/02/02-courtroom-dark.webp" alt="A courtroom: the employee as plaintiff, the company as defendant" data-zoom="assets/mlog/02/02-courtroom-dark.webp">
+      <span class="court-tag l"><b>Plaintiff</b>Employee</span><span class="court-tag r"><b>Defendant</b>Employer</span></figure>
+    <div class="court-txt">
+      <p>Up to here the story is told from the employee’s side — the plaintiff. But a fair hearing needs both parties. The company sits at the defendant’s table, and it has a case too: it has to coordinate work, judge performance and stay accountable.</p>
+      <p>So the design cannot only protect employees. It has to protect <b style="color:var(--acc)">both</b> sides — the worker’s autonomy and the employer’s legitimate need to see work getting done.</p>
+      <h4>What makes monitoring seem necessary to employers?</h4>
+      <span class="mono acc">From employees → to employers</span>
     </div>
-    <p class="reveal" style="margin-top:4vh;color:#c5c5be;max-width:44em">This is a structural binding between dependency and measurement — no single policy, system or company can undo it. So the question changes from <em>how do we remove monitoring</em> to <em>how could monitoring be experienced differently?</em></p>
+  </div>
+  <div class="g reveal" style="--n:2;margin-top:5vh">
+    <figure><img class="im" src="assets/mlog/02/02-workplace-surveillance-cycle.webp" alt="Why surveillance persists: three conditions" data-zoom="assets/mlog/02/02-workplace-surveillance-cycle.webp"></figure>
+    <figure><img class="im" src="assets/mlog/02/02-discipline-loop.webp" alt="Surveillance as discipline" data-zoom="assets/mlog/02/02-discipline-loop.webp"></figure>
+  </div>
+  <h3 class="c-sub-h reveal">Interviews · HR, middle managers and company owners</h3>
+  <p class="muted reveal" style="max-width:46em">Semi-structured, anonymized interviews across different companies, reached through personal referrals — to learn why employers monitor and how they weigh efficiency, risk, trust and accountability.</p>
+  <div class="ivs reveal">
+    <article class="iv"><div class="iv-h"><img src="assets/mlog/02/avatar-hr.webp" alt=""><div><h4>HR</h4><span>Process and accountability</span></div></div><ol><li><b>01</b><h5>Why monitor?</h5><p>To track attendance, workflow and task completion as part of routine management.</p></li><li><b>02</b><h5>What gets tracked?</h5><p>Browsing, chats, screens, login time and inactivity. The boundary between job output and behavior can blur.</p></li><li><b>03</b><h5>How do staff respond?</h5><p>Some worry about privacy, while others adapt. Open resistance was described as rare.</p></li></ol><div class="iv-f"><span class="mono acc">Finding</span><p>HR frames monitoring as a routine tool for coordination and accountability.</p></div></article>
+    <article class="iv"><div class="iv-h"><img src="assets/mlog/02/avatar-mm.webp" alt=""><div><h4>Middle Managers</h4><span>Coordination and risk</span></div></div><ol><li><b>01</b><h5>How is it used?</h5><p>To track progress, response times and attendance, and see where the team’s work is getting stuck.</p></li><li><b>02</b><h5>How does it affect trust?</h5><p>Some staff feel mistrusted. Managers use shared expectations and data to coordinate.</p></li><li><b>03</b><h5>What matters most?</h5><p>Efficiency and accountability help managers spot bottlenecks and decide who needs support.</p></li></ol><div class="iv-f"><span class="mono acc">Finding</span><p>Middle managers turn monitoring policy into everyday decisions about how work gets done.</p></div></article>
+    <article class="iv"><div class="iv-h"><img src="assets/mlog/02/avatar-owner.webp" alt=""><div><h4>Company Owners</h4><span>Predictability and control</span></div></div><ol><li><b>01</b><h5>Why adopt it?</h5><p>People may not report the truth or see their own inefficiencies. Monitoring gives the data to manage performance.</p></li><li><b>02</b><h5>How is it used?</h5><p>To evaluate performance, spot problems early and decide promotions, teams and process changes.</p></li><li><b>03</b><h5>What about privacy?</h5><p>Discomfort is acknowledged, but within legal limits owners feel the benefits outweigh it.</p></li></ol><div class="iv-f"><span class="mono acc">Finding</span><p>Owners frame surveillance as a structural necessity for predictability and control.</p></div></article>
+  </div>
+  <div class="split reveal" style="--a:1fr;margin-top:6vh">
+    <div class="txt"><span class="mono acc">What the three interviews show</span><h4>Owners see surveillance as a way to make work predictable and maintain control.</h4><p>HR frames monitoring as routine governance. Middle managers focus on daily coordination. Owners want predictability and long-term control.</p></div>
+    <div class="txt"><span class="mono acc">Design opportunity</span><h4>Surveillance becomes normalized when it is justified as necessary, used as practical, and valued as strategic.</h4><p>It begins with organizational needs, becomes part of everyday management, and is reinforced by long-term goals. That makes work visibility a design requirement alongside employee control.</p></div>
   </div>
 </section>
 
 <!-- 03 -->
-<section class="c-sec" id="research">
+<section class="c-sec" id="survey">
   <div class="c-head reveal"><div class="c-num">03</div><div>
-    <h2 class="c-h">Three perspectives, 142 voices.</h2>
-    <p class="c-lede">Semi-structured, anonymised interviews with people from different companies and levels of power, followed by a questionnaire of 142 respondents (mostly aged 31–40, mainly from the creative industries).</p>
+    <h2 class="c-h">142 people on being recorded at work.</h2>
+    <p class="c-lede">Largest age group 31–40, mainly creative industries. Together with the interviews, it showed that work visibility is a requirement — and employee control is the condition.</p>
   </div></div>
-  <div class="c-body">
-    <table class="t reveal">
-      <tr><th>Perspective</th><th>Why they monitor</th><th>What they really fear</th><th>Research insight</th></tr>
-      <tr><td>HR</td><td>Progress management, risk warning and accountability — “who did what, when, and where it went wrong”.</td><td>Subjective, untraceable performance decisions.</td><td>Surveillance is normalised through managerial language: efficiency, not control.</td></tr>
-      <tr><td>Middle managers</td><td>Working-hour, online-status and activity logs are “upward self-protection” when a project slips.</td><td>Being blamed for “losing control” with no process data to show.</td><td>They operationalise surveillance in daily work while balancing staff relations.</td></tr>
-      <tr><td>Company owners</td><td>Governance, audit and legal self-protection: “unprovable management equals negligent management”.</td><td>Organisational blind spots — problems nobody notices or dares to report.</td><td>Monitoring is framed as a structural necessity; they want fewer but truer data.</td></tr>
-    </table>
-
-    <h3 class="c-sub-h">What makes people feel “watched” at work?</h3>
-    <div class="bars reveal">
-      <div class="bar"><span>The records are continuous and ongoing</span><i style="--v:59.86"></i><b>59.9%</b></div>
-      <div class="bar"><span>Performance is directly linked to the records</span><i style="--v:59.15"></i><b>59.2%</b></div>
-      <div class="bar"><span>Worried it may be misread as “not working”</span><i style="--v:55.63"></i><b>55.6%</b></div>
-      <div class="bar"><span>Not sure what the company has recorded</span><i style="--v:30.28"></i><b>30.3%</b></div>
-    </div>
-    <h3 class="c-sub-h">When would you accept being recorded?</h3>
-    <div class="bars reveal">
-      <div class="bar"><span>The record was triggered by me</span><i style="--v:73.24"></i><b>73.2%</b></div>
-      <div class="bar"><span>I know the specific content</span><i style="--v:56.34"></i><b>56.3%</b></div>
-      <div class="bar"><span>It does not happen continuously</span><i style="--v:46.48"></i><b>46.5%</b></div>
-      <div class="bar"><span>It gives feedback or rewards</span><i style="--v:34.51"></i><b>34.5%</b></div>
-      <div class="bar"><span>I cannot accept any form of monitoring</span><i style="--v:0"></i><b>0%</b></div>
-    </div>
-    <div class="stats reveal" style="--n:3;margin-top:5vh">
-      <div class="stat"><b>37%</b><span>“I don’t like being monitored, but I can accept it” — the most common attitude</span></div>
-      <div class="stat"><b>53%</b><span>average perceived pressure on a 1–10 slider for current monitoring</span></div>
-      <div class="stat"><b>67%</b><span>found employee-triggered, visible and controllable recording more acceptable</span></div>
-    </div>
-    <h3 class="c-sub-h">Academic grounding</h3>
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><h4>Performance for the system</h4><p>Continuous monitoring distorts work: people do what is visible, avoid risky tasks and game metrics.</p></div>
-      <div class="card"><h4>Opacity breaks trust</h4><p>“Not knowing what is recorded is scarier than being recorded.” Uncertainty breeds anxiety and resistance.</p></div>
-      <div class="card"><h4>Agency restores acceptance</h4><p>Self-determination theory (Deci &amp; Ryan) and reactance theory (Brehm): autonomous, voluntary actions are accepted and sustained.</p></div>
-    </div>
+  <div class="g reveal" style="--n:3">
+    <figure><img class="im" src="assets/mlog/03/03-survey-q1.webp" alt="Q1 monitoring practices" data-zoom="assets/mlog/03/03-survey-q1.webp"></figure>
+    <figure><img class="im" src="assets/mlog/03/03-survey-q2.webp" alt="Q2 attitudes" data-zoom="assets/mlog/03/03-survey-q2.webp"></figure>
+    <figure><img class="im" src="assets/mlog/03/03-survey-q3.webp" alt="Q3 pressure" data-zoom="assets/mlog/03/03-survey-q3.webp"></figure>
+    <figure><img class="im" src="assets/mlog/03/03-survey-q4.webp" alt="Q4 why people feel watched" data-zoom="assets/mlog/03/03-survey-q4.webp"></figure>
+    <figure><img class="im" src="assets/mlog/03/03-survey-q5.webp" alt="Q5 response to the proposed workflow" data-zoom="assets/mlog/03/03-survey-q5.webp"></figure>
+    <figure><img class="im" src="assets/mlog/03/03-survey-q6.webp" alt="Q6 conditions for acceptance" data-zoom="assets/mlog/03/03-survey-q6.webp"></figure>
   </div>
+  <div class="g reveal" style="--n:4;margin-top:5vh">
+    <div class="bignum"><b>53.2%</b><span>perceived pressure from current monitoring</span></div>
+    <div class="bignum"><b>59.9%</b><span>feel watched because records are continuous</span></div>
+    <div class="bignum"><b>73.2%</b><span>most accept recording they triggered themselves</span></div>
+    <div class="bignum"><b>66.9%</b><span>found employee-triggered, visible records more acceptable</span></div>
+  </div>
+  <h3 class="c-sub-h reveal">Why visibility turns into pressure</h3>
+  <div class="g reveal" style="--n:2">
+    <figure class="tile"><img class="im" src="assets/mlog/03/03-panopticon-dark.webp" alt="The panopticon" data-zoom="assets/mlog/03/03-panopticon-dark.webp"><span class="mono">Visibility is a trap · Foucault</span><p>Since people cannot know when someone is watching, they start regulating their own behaviour in advance.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/03/03-escalation-loop-dark.webp" alt="The escalation loop" data-zoom="assets/mlog/03/03-escalation-loop-dark.webp"><span class="mono">When monitoring expands</span><p>More data, more often, more places — until workers monitor themselves.</p></figure>
+  </div>
+  <div class="split reveal" style="--a:1.2fr;margin-top:6vh">
+    <figure><img class="im" src="assets/mlog/03/03-trust-breakdown-dark.webp" alt="How opacity erodes trust" data-zoom="assets/mlog/03/03-trust-breakdown-dark.webp"></figure>
+    <div class="txt"><h4>What is recorded? Who can see it? How is it used?</h4><p>When these answers are unclear, uncertainty creates anxiety, weakens trust and leads to resistance or workarounds.</p></div>
+  </div>
+  <div class="hmw2 reveal"><span class="mono">How might we</span><p>Make work visible to organizations without making employees feel constantly watched?</p></div>
 </section>
 
 <!-- 04 -->
-<section class="c-sec" id="insight">
+<section class="c-sec" id="concept">
   <div class="c-head reveal"><div class="c-num">04</div><div>
-    <h2 class="c-h">The problem is not recording. It is how recording happens.</h2>
-    <p class="c-lede">People resist monitoring that is continuous, opaque and punitive — not monitoring itself. Acceptance rises when they can trigger it, see it and get something back.</p>
+    <h2 class="c-h">People adapt to what is measured.</h2>
+    <p class="c-lede">Under continuous monitoring, visible work gets prioritized, uncertain work is avoided and scores become the goal. Clear boundaries, control and feedback can reduce the pressure.</p>
   </div></div>
-  <div class="c-body">
-    <div class="hmw reveal"><span class="mono">How might we</span>make work visible to organisations without making employees feel constantly watched?</div>
-    <h3 class="c-sub-h">Five design directions</h3>
-    <div class="steps reveal" style="--n:5">
-      <div><h4>Minimise collection</h4><p>Record whether a task is done, not the whole behavioural trace.</p></div>
-      <div><h4>Reduce felt intensity</h4><p>Recording starts only when the employee triggers it.</p></div>
-      <div><h4>Voluntary submission</h4><p>Employees describe what they just did, in their own words.</p></div>
-      <div><h4>Reciprocity</h4><p>Every submission gets a confirmation, feedback or reward.</p></div>
-      <div><h4>Visible to the employee</h4><p>People can always review what they have uploaded today.</p></div>
-    </div>
-    <h3 class="c-sub-h">Directions I chose not to pursue</h3>
-    <div class="cols reveal" style="--n:4">
-      <div class="card no"><h4>Remove leadership</h4><p>Flattening organisations is an institutional change beyond design.</p></div>
-      <div class="card no"><h4>Eliminate surveillance</h4><p>Denies the structure instead of working within it — no company would adopt it.</p></div>
-      <div class="card no"><h4>Let employees opt out</h4><p>“Choice” is formal in employment and turns structural pressure into personal blame.</p></div>
-      <div class="card no"><h4>A culture of trust</h4><p>Trust can’t be institutionalised; when culture fails, monitoring returns.</p></div>
-    </div>
+  <div class="g reveal" style="--n:2">
+    <figure class="tile"><img class="im" src="assets/mlog/04/04-behavior-and-metrics-dark.webp" alt="Behavior under continuous monitoring" data-zoom="assets/mlog/04/04-behavior-and-metrics-dark.webp"><span class="mono">Academic research</span><p>A system may reward the appearance of progress over the outcome.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/04/04-transparent-records-dark.webp" alt="Transparency, control and feedback" data-zoom="assets/mlog/04/04-transparent-records-dark.webp"><span class="mono">Transparency, control and feedback</span><p>Explain what is recorded and why · give employees control over the record · close the loop with feedback.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/04/04-self-determination-dark.webp" alt="Self-determination theory" data-zoom="assets/mlog/04/04-self-determination-dark.webp"><span class="mono">01 · Self-determination theory</span><p>People engage willingly when they have meaningful choice, can use their skills and feel connected — autonomy, competence, relatedness.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/04/04-reactance-dark.webp" alt="Psychological reactance" data-zoom="assets/mlog/04/04-reactance-dark.webp"><span class="mono">02 · Psychological reactance</span><p>When freedom feels restricted, people resist. Voluntary capture restores a choice at the moment of recording.</p></figure>
   </div>
+  <h3 class="c-sub-h reveal">Three design principles</h3>
+  <div class="g reveal" style="--n:3">
+    <div class="tile"><span class="mono">01 · Employee-initiated</span><p>Start a short voice log from the badge; make it clear when capture starts and stops.</p></div>
+    <div class="tile"><span class="mono">02 · Transparent visibility</span><p>Review and edit the record in the app, then choose what to share.</p></div>
+    <div class="tile"><span class="mono">03 · Reciprocal feedback</span><p>The app confirms submission and brings the manager’s response back to the same record.</p></div>
+  </div>
+  <div class="hmw2 reveal" style="margin-top:7vh"><span class="mono">Design position · workplace rights notice</span><p>You have the right not to be constantly monitored. Anything passively captured without your active consent shall not be used for evaluation.</p></div>
+  <h3 class="c-sub-h reveal">Design concept · one record, three interfaces</h3>
+  <figure class="reveal" style="max-width:900px;margin:0 auto"><img class="im" src="assets/mlog/04/04-design-concept.webp" alt="Record flow and access" data-zoom="assets/mlog/04/04-design-concept.webp"></figure>
+  <p class="muted reveal" style="margin-top:2vh">Private drafts stay in the employee workspace. Managers see confirmed records only, and their feedback returns to the employee app. Directions left out: ending all monitoring, removing management, collecting data in the background, relying on trust alone.</p>
 </section>
 
 <!-- 05 -->
-<section class="c-sec" id="concept">
+<section class="c-sec" id="product">
   <div class="c-head reveal"><div class="c-num">05</div><div>
-    <h2 class="c-h">One record, three touchpoints.</h2>
-    <p class="c-lede">MLOG does not eliminate monitoring. It redesigns how monitoring is experienced, initiated and interpreted: employee-initiated, transparently visible and reciprocal.</p>
+    <h2 class="c-h">Why a badge?</h2>
+    <p class="c-lede">A familiar object at work. Employees already wear a badge for access and identification; putting it on can also mark the start of the workday.</p>
   </div></div>
-  <div class="c-body">
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">01 · Hardware</span><h4>Smart badge</h4><p>Quick voice logging, identity and access, minimal feedback. Each submission gets an immediate response.</p></div>
-      <div class="card"><span class="mono">02 · To employee</span><h4>Mobile app</h4><p>Review and edit transcripts, see your history, earn points and spend them in the store or lucky draw.</p></div>
-      <div class="card"><span class="mono">03 · To HR / manager</span><h4>Management web</h4><p>Only confirmed records arrive: team overview, log search, approvals and AI-assisted evaluation.</p></div>
-    </div>
-    <p class="reveal" style="margin-top:4vh;color:#c5c5be;max-width:44em">Data flow: employee → badge voice log → app confirmation → cloud processing → AI task evaluation → manager dashboard → points back to the employee. Points have a base layer for every valid record and a dynamic layer weighted by task difficulty; they convert into allowances, store items or a performance factor.</p>
-    <div class="grid-figs reveal" style="--n:2;--ar:auto">
-      <figure><img src="assets/mlog/ui/ia_employee_app.webp" alt="Information architecture of the employee app" style="aspect-ratio:auto;background:#fff"><figcaption class="caption">Information architecture — employee app</figcaption></figure>
-      <figure><img src="assets/mlog/ui/ia_management_web.webp" alt="Information architecture of the management web" style="aspect-ratio:auto;background:#fff"><figcaption class="caption">Information architecture — management web</figcaption></figure>
-    </div>
+  <div class="g reveal" style="--n:3">
+    <figure class="tile"><img class="im" src="assets/mlog/05/05-badge-rationale-01-dark.webp" alt="Workplace-native integration" data-zoom="assets/mlog/05/05-badge-rationale-01-dark.webp"><span class="mono">1 · Workplace-native</span><p>The badge extends a familiar object used for identity and access.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/05/05-badge-rationale-02-dark.webp" alt="Designed to blend in" data-zoom="assets/mlog/05/05-badge-rationale-02-dark.webp"><span class="mono">2 · Stay in the task</span><p>Holding one button to speak avoids opening another screen.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/05/05-badge-rationale-03-dark.webp" alt="Ritualized interaction" data-zoom="assets/mlog/05/05-badge-rationale-03-dark.webp"><span class="mono">3 · Clear start and end</span><p>Wear → Hold → Speak → Release.</p></figure>
   </div>
+  <h3 class="c-sub-h reveal">From Walkman to MLOG</h3>
+  <div class="split reveal" style="--a:1.1fr">
+    <figure><img class="im" src="assets/mlog/05/05-walkman-decisions.webp" alt="From Walkman to MLOG" data-zoom="assets/mlog/05/05-walkman-decisions.webp"></figure>
+    <div class="txt"><p>I compared work badges, handheld game devices, Braun radios and the iPod. The Walkman’s tactile click and immediate feedback suggested a familiar press-to-record interaction — a clear beginning and end let people know when the microphone is on.</p></div>
+  </div>
+  <div class="g reveal" style="--n:4;margin-top:5vh">
+    <figure><img class="im" src="assets/mlog/05/05-badge-in-hand.webp" alt="Badge in hand" data-zoom="assets/mlog/05/05-badge-in-hand.webp"></figure>
+    <figure><img class="im" src="assets/mlog/05/05-hardware-example-01.webp" alt="Holding to record" data-zoom="assets/mlog/05/05-hardware-example-01.webp"></figure>
+    <figure><img class="im" src="assets/mlog/05/05-hardware-example-03.webp" alt="Recording 00:24" data-zoom="assets/mlog/05/05-hardware-example-03.webp"></figure>
+    <figure><img class="im" src="assets/mlog/05/05-thumbwheel.webp" alt="The record button" data-zoom="assets/mlog/05/05-thumbwheel.webp"></figure>
+  </div>
+  <figure class="reveal" style="margin-top:4vh"><img class="im" src="assets/mlog/05/05-recording-control-and-screen.webp" alt="Two screens, different content" data-zoom="assets/mlog/05/05-recording-control-and-screen.webp"></figure>
+  <div class="g reveal" style="--n:2;margin-top:2vh">
+    <div class="tile"><span class="mono">On the badge</span><p>Check that the mic is on and see how long it has been recording.</p></div>
+    <div class="tile"><span class="mono">In the app</span><p>Review or edit the draft, then decide whether to share it.</p></div>
+  </div>
+  <h3 class="c-sub-h reveal">Design directions in use</h3>
+  <ol class="nums reveal" style="max-width:52em">
+    <li><b>01</b><h4>Minimize data collection</h4><p>Capture the work outcome in a short note.</p></li>
+    <li><b>02</b><h4>Limit recording duration</h4><p>A physical button with a clear start and stop.</p></li>
+    <li><b>03</b><h4>Make submission voluntary</h4><p>The employee describes the event and chooses whether to share.</p></li>
+    <li><b>04</b><h4>Close the feedback loop</h4><p>A visible receipt confirms submission; replies return to the record.</p></li>
+    <li><b>05</b><h4>Show what was shared</h4><p>The employee can review the history of submitted logs.</p></li>
+  </ol>
 </section>
 
 <!-- 06 -->
-<section class="c-sec" id="product">
+<section class="c-sec" id="testing">
   <div class="c-head reveal"><div class="c-num">06</div><div>
-    <h2 class="c-h">Why a badge? Why a Walkman?</h2>
-    <p class="c-lede">A badge is already worn every day and accepted at work, so it adds no new habit. Putting it on marks the start of the working day.</p>
+    <h2 class="c-h">Four paper prototypes, twelve hands.</h2>
+    <p class="c-lede">Four sizes (A–D) tested for one-handed holding and button interaction. Participants rated top-button comfort, side-button comfort, screen perception and overall size from 1 to 10.</p>
   </div></div>
-  <div class="c-body">
-    <div class="cols reveal" style="--n:2">
-      <div>
-        <h4>Form reference</h4>
-        <p>I compared workplace badges, Nintendo Mini Classics, Braun radios and the iPod, and chose the Walkman. It is a recognisable cultural object whose buttons created a clear behaviour loop — press play, sound starts; press stop, it ends. It could also record.</p>
-        <p>The design relies on <em>mental-model transfer</em>: the familiar “press to record” gesture moves into a work context, lowering learning cost and making the action feel deliberate.</p>
-      </div>
-      <div>
-        <h4>Ritualised interaction</h4>
-        <div class="steps" style="--n:2">
-          <div><h4>Wear the badge</h4><p>The transition from off-duty to on-duty.</p></div>
-          <div><h4>Press</h4><p>A deliberate starting point for a record.</p></div>
-          <div><h4>Speak</h4><p>Capture the moment in your own voice.</p></div>
-          <div><h4>Complete</h4><p>A clear ending that invites reflection.</p></div>
-        </div>
+  <div class="split reveal" style="--a:.8fr;align-items:stretch">
+    <figure><img class="im" style="height:100%;object-fit:cover" src="assets/mlog/06/06-paper-models-dark.webp" alt="Four paper models" data-zoom="assets/mlog/06/06-paper-models-dark.webp"></figure>
+    <div class="g keep2" style="--n:2;--gap:10px">
+      <figure><img class="im" src="assets/mlog/06/06-prototype-a.webp" alt="Model A" data-zoom="assets/mlog/06/06-prototype-a.webp"></figure><figure><img class="im" src="assets/mlog/06/06-prototype-b.webp" alt="Model B" data-zoom="assets/mlog/06/06-prototype-b.webp"></figure>
+      <figure><img class="im" src="assets/mlog/06/06-prototype-c.webp" alt="Model C" data-zoom="assets/mlog/06/06-prototype-c.webp"></figure><figure><img class="im" src="assets/mlog/06/06-prototype-d.webp" alt="Model D" data-zoom="assets/mlog/06/06-prototype-d.webp"></figure>
+    </div>
+  </div>
+  <figure class="reveal" style="margin-top:6vh"><img class="im" src="assets/mlog/06/06-comparative-evaluation.webp" alt="Comparative evaluation" data-zoom="assets/mlog/06/06-comparative-evaluation.webp"></figure>
+  <div class="ergo reveal">
+    <figure class="ergo-sheet"><img src="assets/mlog/06/06-ergonomic-study.webp" alt="The questionnaire participants filled in (Chinese)" data-zoom="assets/mlog/06/06-ergonomic-study.webp"><figcaption class="mono">The rating sheet · click to read</figcaption></figure>
+    <div class="ergo-res">
+      <div class="split" style="--a:.55fr;align-items:center">
+        <figure><img class="im" src="assets/mlog/06/06-evaluation-profile.webp" alt="Large vs small variation" data-zoom="assets/mlog/06/06-evaluation-profile.webp"></figure>
+        <div class="txt"><p>Raw averages are skewed by how differently people use a scale, so scores were normalized within each participant.</p><h4>Model D scored best overall; C kept strong compactness and grip.</h4><p>The final design uses D as the size reference and keeps some compact features from C. Next: fewer protrusions, a better thumb-contact area, and a rebalanced screen-to-width ratio.</p></div>
       </div>
     </div>
-    <div class="grid-figs reveal" style="--n:3;--ar:4/5">
-      <figure><img src="assets/mlog/ui/render_badge_in_hand.webp" alt="Badge held in hand while recording"><figcaption class="caption">Top button: one-touch voice logging</figcaption></figure>
-      <figure><img src="assets/mlog/images/in-use.jpg" alt="Badge worn on a lanyard"><figcaption class="caption">Low-presence wear at work</figcaption></figure>
-      <figure><img src="assets/mlog/ui/render_phone_lanyard.webp" alt="Badge with lanyard"><figcaption class="caption">Status dial, work-time light bar, screen</figcaption></figure>
-    </div>
-    <h3 class="c-sub-h">Device composition · approx. ¥50–90 core hardware per unit</h3>
-    <table class="t reveal">
-      <tr><th>Part</th><th>Purpose</th><th>Spec</th><th>Cost</th></tr>
-      <tr><td>Chip</td><td>Audio capture, processing, Bluetooth</td><td>Low-power MCU with BLE 5.0</td><td>¥15–25</td></tr>
-      <tr><td>Screen</td><td>Recording status, points, battery</td><td>3×6 cm OLED</td><td>¥8–15</td></tr>
-      <tr><td>Microphone</td><td>Voice recording</td><td>Digital MEMS, I2S/PDM</td><td>¥3–6</td></tr>
-      <tr><td>NFC</td><td>Identity and access control</td><td>ISO14443 controller + coil</td><td>¥6–12</td></tr>
-      <tr><td>Battery</td><td>Full-day use</td><td>500–800 mAh Li-ion, USB-C</td><td>¥10–18</td></tr>
-      <tr><td>Speaker</td><td>Short voice cues</td><td>Compact micro speaker</td><td>¥4–8</td></tr>
-      <tr><td>Vibration motor</td><td>Silent confirmation</td><td>Single / double patterns</td><td>¥3–6</td></tr>
-    </table>
   </div>
 </section>
 
 <!-- 07 -->
-<section class="c-sec" id="testing">
+<section class="c-sec" id="final">
   <div class="c-head reveal"><div class="c-num">07</div><div>
-    <h2 class="c-h">Four paper badges in one hand.</h2>
-    <p class="c-lede">Four cardboard prototypes (A–D) kept the same aspect ratio and changed only overall size, with a simulated side button, to test one-handed holding and pressing.</p>
+    <h2 class="c-h">MLOG · My Work, My Log.</h2>
+    <p class="c-lede">A wearable work-logging system that helps employees actively record key work moments, turning fragmented actions into clear, consent-based work records.</p>
   </div></div>
-  <div class="c-body">
-    <div class="stats reveal" style="--n:4">
-      <div class="stat"><b>12</b><span>participants with real work experience · 9 female / 3 male · all right-handed · mostly 26–35, 156–175 cm</span></div>
-      <div class="stat"><b>4</b><span>dimensions rated 1–10: top-button comfort, side-button comfort, screen perception, overall size</span></div>
-      <div class="stat"><b>7 : 5</b><span>preferred a top button over a side button</span></div>
-      <div class="stat"><b>D</b><span>highest normalised score — used as the primary size reference</span></div>
+  <figure class="reveal"><img class="im" src="assets/mlog/07/07-product-render-01.webp" alt="MLOG badge render" data-zoom="assets/mlog/07/07-product-render-01.webp"></figure>
+  <div class="split reveal" style="--a:.6fr;margin-top:6vh">
+    <div class="ext">
+      <img src="assets/mlog/07/07-badge-exterior.webp" alt="MLOG badge exterior" data-zoom="assets/mlog/07/07-badge-exterior.webp">
+      <span class="ext-pt" style="left:18%;top:1.6%"><b>1</b></span>
+      <span class="ext-pt" style="left:95%;top:6%"><b>2</b></span>
+      <span class="ext-pt" style="left:80%;top:40%"><b>3</b></span>
+      <span class="ext-pt" style="left:44%;top:62%"><b>4</b></span>
     </div>
-    <h3 class="c-sub-h">Average raw score</h3>
-    <div class="bars reveal">
-      <div class="bar"><span>Model D</span><i style="--v:78.1"></i><b>7.81</b></div>
-      <div class="bar"><span>Model C</span><i style="--v:73.2"></i><b>7.32</b></div>
-      <div class="bar"><span>Model B</span><i style="--v:64.6"></i><b>6.46</b></div>
-      <div class="bar"><span>Model A</span><i style="--v:51.7"></i><b>5.17</b></div>
-    </div>
-    <p class="reveal" style="color:#c5c5be;max-width:44em;margin-top:3vh">Because people use rating scales differently, I applied within-participant range normalisation before ranking. Smaller, more compact models performed better. The final form uses D’s size, keeps C’s compactness and grip, and the next iteration reduces protrusions, enlarges the thumb-contact area and rebalances screen size and width.</p>
-    <figure class="fig reveal"><img src="assets/mlog/images/hardware-test.jpg" alt="Four paper mockups used to compare one-handed grip" loading="lazy"><figcaption>Paper mockups A–D used to compare one-handed grip.</figcaption></figure>
+    <ol class="nums ext-list">
+      <li><b>1</b><h4>Top button</h4><p>One-touch voice recording and log capture. Hold to speak, release to stop — a clear start and end.</p></li>
+      <li><b>2</b><h4>Status dial</h4><p>Switch between work states, such as focus or available, without taking out a phone.</p></li>
+      <li><b>3</b><h4>Work-time light bar</h4><p>The white bar shrinks as the working day goes on, showing the remaining working time.</p></li>
+      <li><b>4</b><h4>Screen</h4><p>Who is wearing the badge, the last log and the current focus state — key information at a glance.</p></li>
+    </ol>
   </div>
+  <div class="g reveal" style="--n:2;margin-top:6vh">
+    <figure><img class="im" src="assets/mlog/07/07-hero-render.webp" alt="Worn at work" data-zoom="assets/mlog/07/07-hero-render.webp"></figure>
+    <figure><img class="im" src="assets/mlog/07/07-product-render-02.webp" alt="Worn on a lanyard" data-zoom="assets/mlog/07/07-product-render-02.webp"></figure>
+  </div>
+  <figure class="reveal" style="margin-top:3vh"><img class="im" src="assets/mlog/07/07-hardware-detail.webp" alt="Device composition" data-zoom="assets/mlog/07/07-hardware-detail.webp"></figure>
 </section>
 
-<!-- 08 INTERFACE -->
+<!-- 08 -->
 <section class="c-sec" id="interface">
   <div class="c-head reveal"><div class="c-num">08</div><div>
-    <h2 class="c-h">Try it: follow one work record.</h2>
-    <p class="c-lede">Every screen below is clickable. Start with the full loop across all three devices, then explore each touchpoint on its own.</p>
+    <h2 class="c-h">One work record, from badge to manager.</h2>
+    <p class="c-lede">Start work, capture a moment on the badge, confirm it on the phone, and get feedback from the manager.</p>
   </div></div>
-
-  <div class="stage" id="trio-stage">
-    <div class="stage-head"><div><span class="mono">Prototype A · Linked devices</span><h3>Badge → Phone → Manager</h3></div>
-      <div class="how"><span><i></i>Hold the orange button</span><span><i></i>Then confirm on the phone</span></div></div>
-    <div class="trio">
-      <div id="t-badge"><div class="p-device dev-badge"><div class="lanyard"></div><div class="lightbar"></div><button class="btn-top" aria-label="Hold to record"></button><div class="p-screen"><img src="assets/mlog/ui/badge_01_home.webp" alt="Badge screen"><div class="toast"></div></div></div><div class="lbl mono">Smart badge</div></div>
-      <div id="t-phone"><div class="p-device dev-phone"><div class="p-screen"><img src="assets/mlog/ui/hifi_logs.webp" alt="Employee app"><div class="toast"></div></div></div><div class="lbl mono">Employee app</div></div>
-      <div id="t-web"><div class="p-device dev-browser"><div class="bar"><i></i><i></i><i></i><span>mlog.work/manager</span></div><div class="p-screen" style="--ar:1.6"><img src="assets/mlog/ui/web_hifi_01.webp" alt="Manager dashboard"><div class="toast"></div></div></div><div class="lbl mono">Management web</div></div>
-    </div>
-    <div class="trio-steps">
-      <div data-s="0"><b>01 · Badge</b>Hold the top button and describe the work you just finished.</div>
-      <div data-s="1"><b>02 · Badge</b>Release — the transcript is sent to your phone, not to your manager.</div>
-      <div data-s="2"><b>03 · Phone</b>Review and edit the transcript, then confirm it.</div>
-      <div data-s="3"><b>04 · Manager</b>Only the confirmed record appears in the team log. You earn points.</div>
-    </div>
-    <div class="trio-cta"><button class="btn ghost" id="t-reset">↺ Restart</button><span class="mono" id="t-msg">Hold the orange button on the badge.</span></div>
+  <h3 class="c-sub-h reveal">User journey</h3>
+  <div class="g reveal" style="--n:6;--gap:10px">
+    <figure class="tile"><img class="im" src="assets/mlog/08/08-journey-01.webp" alt="Start work" data-zoom="assets/mlog/08/08-journey-01.webp"><p>Start work</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/08/08-journey-02.webp" alt="Work event" data-zoom="assets/mlog/08/08-journey-02.webp"><p>A work event</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/08/08-journey-03.webp" alt="Initiate recording" data-zoom="assets/mlog/08/08-journey-03.webp"><p>Initiate recording</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/08/08-journey-04.webp" alt="Review and confirm" data-zoom="assets/mlog/08/08-journey-04.webp"><p>Review &amp; confirm</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/08/08-journey-05.webp" alt="Feedback and reward" data-zoom="assets/mlog/08/08-journey-05.webp"><p>Feedback &amp; reward</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/08/08-journey-06.webp" alt="Manager review" data-zoom="assets/mlog/08/08-journey-06.webp"><p>Manager review</p></figure>
+  </div>
+  <div class="g reveal" style="--n:2;margin-top:5vh">
+    <figure><img class="im" src="assets/mlog/08/08-employee-persona.webp" alt="Employee persona: Aashray" data-zoom="assets/mlog/08/08-employee-persona.webp"></figure>
+    <figure><img class="im" src="assets/mlog/08/08-manager-persona.webp" alt="Manager persona: Selena" data-zoom="assets/mlog/08/08-manager-persona.webp"></figure>
   </div>
 
-  <div class="stage">
-    <div class="stage-head"><div><span class="mono">Prototype B · Smart badge screen</span><h3>Glanceable feedback on 3×6 cm</h3></div>
-      <div class="how"><span><i></i>Tap the bottom icons</span><span><i></i>Hold the orange button</span></div></div>
-    <div class="proto" data-proto="badge"></div>
+  <h3 class="c-sub-h reveal">Employee app · hi-fi</h3>
+  <div class="g reveal" style="--n:4;--gap:clamp(14px,2vw,28px)">
+    <figure class="tile"><img class="im" src="assets/mlog/ui/hifi_logs.webp" alt="Logs" data-zoom="assets/mlog/ui/hifi_logs.webp"><span class="mono">Logs</span><p>Review, edit and confirm each record before it is shared.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/ui/hifi_points.webp" alt="Points" data-zoom="assets/mlog/ui/hifi_points.webp"><span class="mono">Points</span><p>Every confirmed record earns points.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/ui/hifi_store.webp" alt="Store" data-zoom="assets/mlog/ui/hifi_store.webp"><span class="mono">Store</span><p>Points turn into small rewards.</p></figure>
+    <figure class="tile"><img class="im" src="assets/mlog/ui/hifi_me.webp" alt="Me" data-zoom="assets/mlog/ui/hifi_me.webp"><span class="mono">Me</span><p>Profile, badge connection, battery and sync.</p></figure>
   </div>
-
-  <div class="stage">
-    <div class="stage-head"><div><span class="mono">Prototype C · Employee app</span><h3>From wireframe to hi-fi</h3></div>
-      <div class="how"><span><i></i>Tap inside the phone</span><span>Switch Wireframe / Hi-fi</span></div></div>
-    <div class="proto" data-proto="app"></div>
+  <h3 class="c-sub-h reveal">Management web</h3>
+  <div class="g reveal" style="--n:2">
+    <figure><img class="im" src="assets/mlog/ui/web_hifi_01.webp" alt="Manager dashboard" data-zoom="assets/mlog/ui/web_hifi_01.webp"></figure>
+    <figure><img class="im" src="assets/mlog/ui/web_hifi_02.webp" alt="Team logs" data-zoom="assets/mlog/ui/web_hifi_02.webp"></figure>
   </div>
-
-  <div class="stage">
-    <div class="stage-head"><div><span class="mono">Prototype D · Management web</span><h3>Team visibility from confirmed records only</h3></div>
-      <div class="how"><span><i></i>Use the sidebar</span></div></div>
-    <div class="proto wide" data-proto="web"></div>
-  </div>
-
-  <div class="c-body" style="margin-top:8vh">
-    <h3 class="c-sub-h">User journey</h3>
-    <div class="steps reveal" style="--n:6">
-      <div><h4>Start work</h4><p>Wearing the badge begins the workday.</p></div>
-      <div><h4>Work event</h4><p>The employee decides if a moment is worth recording.</p></div>
-      <div><h4>Initiate</h4><p>Recording is intentional, never passive.</p></div>
-      <div><h4>Review</h4><p>Edit the transcript, choose what is shared.</p></div>
-      <div><h4>Feedback</h4><p>Points and recognition make documentation positive.</p></div>
-      <div><h4>Manager review</h4><p>Visibility into progress without private data.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 09 -->
-<section class="c-sec" id="boards">
-  <div class="c-head reveal"><div class="c-num">09</div><div>
-    <h2 class="c-h">Original boards</h2>
-    <p class="c-lede">The full presentation boards, page by page. Click any board to open it, then click again to zoom in and move the mouse to pan.</p>
-  </div></div>
-  <div class="boards" data-proj="mlog" data-n="10" data-labels="Title|Current situation|Why · interviews|Interviews · questionnaire|Insight · academic research|Concept · system|Product design|Ergonomic test|Exterior · UI|User journey"></div>
+  <p class="muted reveal" style="margin-top:2vh">Managers only see records the employee has confirmed, and their feedback goes back to the same record in the app.</p>
+  <p class="caption reveal" style="margin-top:6vh">Note · Some scene images and illustrations in this project were created with AI image tools and then edited.</p>
 </section>
 </div>
 
@@ -312,83 +329,6 @@
 </main>
 <footer class="foot"><span>© 2026 Yihan Zeng</span><a href="#">Back to top ↑</a></footer>
 
-<script>
-const U = 'assets/mlog/ui/';
-const tabs = [[0,90.5,25,9.5,'logs','Logs'],[25,90.5,25,9.5,'works','Work'],[50,90.5,25,9.5,'points','Points'],[75,90.5,25,9.5,'me','Me']];
-window.PROTOS = {
-  badge: { device: 'badge', noStrip: false, thumbW: 70, stripLabel: 'Badge screens',
-    help: 'Tap Activity / Main / Logs at the bottom of the screen. Hold the orange button on top of the badge to record.',
-    screens: {
-      home: { src: U+'badge_01_home.webp', title: 'Main', short: 'Main', note: 'Who is wearing the badge, the last log and the current focus state. Readable at a glance, without unlocking a phone.', tags: ['Status','Identity'], hot: [[2,88,30,11,'activity','Activity'],[66,88,32,11,'logs','Logs']] },
-      rec: { src: U+'badge_02_recording.webp', title: 'Recording', short: 'Recording', note: 'While the button is held the screen shows a live waveform and transcript. Releasing it ends the record — a clear start and stop.', tags: ['Voice','Live transcript'], hot: [] },
-      logs: { src: U+'badge_03_logs.webp', title: 'Logs', short: 'Logs', note: 'Today’s logs. New ones show “Confirming” until the employee approves them on the phone.', tags: ['Today','Pending'], hot: [[2,88,30,11,'activity','Activity'],[34,88,31,11,'home','Main']] },
-      activity: { src: U+'badge_04_activity.webp', title: 'Activity', short: 'Activity', note: 'Reminders, points earned for each record and presence check-out — every submission gets something back.', tags: ['Points','Reminders'], hot: [[34,88,31,11,'home','Main'],[66,88,32,11,'logs','Logs']] }
-    },
-    flows: [{ name: 'Badge', keys: ['home','rec','logs','activity'] }]
-  },
-  app: { device: 'phone', ar: .4618, thumbW: 96, modeLabels: ['Wireframe','Hi-fi'],
-    screens: {
-      in: { src: U+'wf_in.webp', title: 'Log in', short: 'Log in', note: 'Sign in with the company account that is paired with the badge.', hot: [[14,57.5,72,6,'logs','Log in']] },
-      logs: { src: U+'wf_logs.webp', title: 'Logs', short: 'Logs', alt: 'h_logs', note: 'A timeline of today’s records, filterable by time, type and status. Each entry can be opened, edited or deleted before it is confirmed.', tags: ['Timeline','Filters'], hot: [[4,30,92,15,'detail','Open a log'], ...tabs] },
-      detail: { src: U+'wf_log_details.webp', title: 'Log details', short: 'Details', note: 'Audio playback, editable transcript, tags and project. The employee decides what to share before anything reaches a manager.', tags: ['Review','Edit','Share'], hot: [[0,0,20,6,'logs','Back']] },
-      works: { src: U+'wf_works.webp', title: 'Work', short: 'Work', note: 'Calendar, tasks, check-ins, requests and documents — the work context that logs attach to.', hot: [...tabs] },
-      points: { src: U+'wf_points.webp', title: 'Points', short: 'Points', alt: 'h_points', note: 'Points earned this week and today’s challenge. Being seen becomes an asset instead of a one-way cost.', tags: ['Reciprocity'], hot: [[2,27,47,25,'shop','Store'],[51,27,47,25,'draw','Lucky draw'], ...tabs] },
-      shop: { src: U+'wf_shop.webp', title: 'Store', short: 'Store', alt: 'h_store', note: 'Spend points on vouchers and everyday items.', hot: [[0,0,20,6,'points','Back']] },
-      draw: { src: U+'wf_draw.webp', title: 'Lucky draw', short: 'Draw', note: 'A spin-the-wheel reward funded by points.', hot: [[0,0,20,6,'points','Back']] },
-      me: { src: U+'wf_me.webp', title: 'Me', short: 'Me', alt: 'h_me', note: 'Profile, achievement history, settings and the paired badge status.', hot: [...tabs] },
-      h_logs: { src: U+'hifi_logs.webp', title: 'Logs', short: 'Logs', note: 'Hi-fi: each record carries a status — Approved, In review, Rejected — so the employee always knows what the company sees.', tags: ['Status','Transparency'], hot: [[4,30,92,15,'detail','Open a log (wireframe)'], ...tabs] },
-      h_points: { src: U+'hifi_points.webp', title: 'Points', short: 'Points', note: 'Hi-fi: progress to the next reward and two ways to spend.', hot: [[2,28,47,24,'shop','Store'],[51,28,47,24,'draw','Lucky draw (wireframe)'], ...tabs] },
-      h_store: { src: U+'hifi_store.webp', title: 'Store', short: 'Store', note: 'Hi-fi: recommended items, categories and a cart priced in CC points.', hot: [[0,0,20,6,'points','Back']] },
-      h_me: { src: U+'hifi_me.webp', title: 'Me', short: 'Me', note: 'Hi-fi: badge connection, battery and sync status sit next to the profile.', hot: [...tabs] }
-    },
-    flows: [{ name: 'Employee app', keys: ['in','logs','detail','works','points','shop','draw','me'] }]
-  },
-  web: { device: 'browser', ar: 1.6, url: 'mlog.work/manager', thumbW: 220, wide: true,
-    screens: {
-      over: { src: U+'web_hifi_01.webp', title: 'Overview', short: 'Overview', note: 'Team members, log volume, pending approvals, workload alerts and completed tasks — the team’s day at a glance.', hot: [[1.5,18.3,13,3.6,'logs','Logs']] },
-      logs: { src: U+'web_hifi_02.webp', title: 'Logs', short: 'Logs', note: 'Search and filter confirmed logs by employee, date, project and status. Selecting one shows the transcript, confirmation status and an AI evaluation radar.', hot: [[1.5,8.6,13,3.6,'over','Overview']] }
-    },
-    flows: [{ name: 'Manager', keys: ['over','logs'] }]
-  }
-};
-</script>
-<script src="js/proto.js"></script>
 <script src="js/case.js"></script>
-<script>
-/* badge physical button (prototype B) */
-(() => {
-  const el = document.querySelector('[data-proto="badge"]'); const dev = el.querySelector('.dev-badge');
-  const b = document.createElement('button'); b.className = 'btn-top'; b.setAttribute('aria-label', 'Hold to record'); dev.appendChild(b);
-  const down = e => { e.preventDefault(); b.classList.add('down'); el._go('rec'); };
-  const up = () => { if (!b.classList.contains('down')) return; b.classList.remove('down'); el._go('logs'); const t = el.querySelector('.toast'); t.textContent = 'Sent to your phone for review'; t.classList.add('on'); setTimeout(() => t.classList.remove('on'), 2200); };
-  b.addEventListener('pointerdown', down); addEventListener('pointerup', up); b.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') down(e); }); b.addEventListener('keyup', up);
-})();
-/* linked three-device demo (prototype A) */
-(() => {
-  const S = document.getElementById('trio-stage'), U = 'assets/mlog/ui/';
-  const bImg = S.querySelector('#t-badge img'), pImg = S.querySelector('#t-phone img'), wImg = S.querySelector('#t-web img');
-  const btn = S.querySelector('.btn-top'), msg = S.querySelector('#t-msg'), steps = [...S.querySelectorAll('.trio-steps div')];
-  const cols = ['#t-badge', '#t-phone', '#t-web'].map(s => S.querySelector(s));
-  let st = 0, pScreen = S.querySelector('#t-phone .p-screen');
-  const toast = (sel, t) => { const x = S.querySelector(sel + ' .toast'); x.textContent = t; x.classList.add('on'); setTimeout(() => x.classList.remove('on'), 2600); };
-  function set(n) {
-    st = n; steps.forEach((s, i) => s.classList.toggle('on', i === n));
-    cols.forEach((c, i) => c.classList.toggle('dim', !((n <= 1 && i === 0) || (n === 2 && i === 1) || (n === 3 && i === 2))));
-    const old = pScreen.querySelector('.hot'); if (old) old.remove();
-    if (n === 0) { bImg.src = U+'badge_01_home.webp'; pImg.src = U+'hifi_logs.webp'; wImg.src = U+'web_hifi_01.webp'; msg.textContent = 'Hold the orange button on the badge.'; }
-    if (n === 1) { bImg.src = U+'badge_02_recording.webp'; msg.textContent = 'Recording… release the button when you are done.'; }
-    if (n === 2) {
-      bImg.src = U+'badge_03_logs.webp'; pImg.src = U+'wf_log_details.webp'; msg.textContent = 'Review the transcript on the phone and tap Save.'; toast('#t-phone', 'New log to review');
-      const h = document.createElement('button'); h.className = 'hot'; h.style.cssText = 'left:76%;top:93%;width:22%;height:6%'; h.innerHTML = '<span class="tip">Save &amp; confirm</span>'; h.onclick = () => set(3); pScreen.appendChild(h);
-      pScreen.closest('.p-device').classList.add('show-hots');
-    }
-    if (n === 3) { pScreen.closest('.p-device').classList.remove('show-hots'); pImg.src = U+'hifi_points.webp'; wImg.src = U+'web_hifi_02.webp'; toast('#t-phone', '+12 points'); toast('#t-web', 'Confirmed record received'); msg.textContent = 'Done — the manager sees only what you confirmed.'; }
-  }
-  btn.addEventListener('pointerdown', e => { e.preventDefault(); if (st === 0) { btn.classList.add('down'); set(1); } });
-  addEventListener('pointerup', () => { if (st === 1) { btn.classList.remove('down'); set(2); } });
-  S.querySelector('#t-reset').onclick = () => set(0);
-  set(0);
-})();
-</script>
 </body>
 </html>

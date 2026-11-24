@@ -7,7 +7,193 @@
 <title>LookCoin · Yihan Zeng</title>
 <meta name="description" content="LookCoin — a speculative city where a verified minute of looking becomes a unit of currency.">
 <link rel="stylesheet" href="css/case.css">
-<style>:root { --acc: #e6f22e }</style>
+<style>
+:root { --acc: #e6f22e }
+.muted { color: #bdbdb6 } .acc { color: var(--acc) } .serif { font: italic 400 1em Garamond, Georgia, serif; color: var(--acc) }
+.c-sub-h { margin-top: 11vh }
+mark { background: var(--acc); color: #111; padding: 0 .25em; border-radius: 2px }
+.sheet { margin: 0; background: #fff; border-radius: 6px; overflow: hidden }
+.sheet img, .bleed-img img { width: 100%; display: block; cursor: zoom-in }
+.bleed-img { margin: 3vh calc(-1 * var(--gutter)) 0 } .bleed-img.dark { background: #000 }
+.caption { font: 400 12px/1.5 var(--mono); color: var(--muted); margin-top: 10px }
+figure { margin: 0 }
+img[data-zoom] { cursor: zoom-in }
+/* 01 */
+.big554 { display: flex; gap: clamp(20px, 3vw, 48px); align-items: center; margin: 5vh 0 }
+.big554 > b { font: 900 clamp(110px, 13vw, 200px)/.8 Doto, sans-serif; color: var(--acc) }
+.big554 h4 { font: 400 clamp(26px, 2.6vw, 40px)/1.15 var(--sans); margin: 0 0 10px } .big554 p { margin: 0 0 12px; font-size: 19px; color: #c5c5be } .big554 small { font: 400 11px var(--mono); color: var(--muted) }
+.day { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, .55fr) minmax(0, 2.4fr); gap: 14px; align-items: stretch; margin-top: 9vh }
+.day-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-rows: repeat(4, 1fr) }
+.day-list li { border-top: 1px solid var(--line); padding: 10px 0 }
+.day-list h4 { font: 400 19px/1.2 var(--sans); margin: 6px 0 8px }
+.day-pics img, .day-crowd img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px }
+.lc-stats { margin-top: 3vh }
+.lc-stats .stat b { font-size: clamp(40px, 4vw, 64px) }
+.roi { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr) minmax(0, .9fr); gap: clamp(20px, 3vw, 48px); align-items: end; margin: 3vh 0 8vh }
+.roi-bars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; height: 300px; align-items: end; border-bottom: 1px solid #ffffff40; margin-top: 18px }
+.roi-bars div { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; text-align: center }
+.roi-bars i { display: block; height: 0; background: #ddd; transition: height 1.2s cubic-bezier(.2,.7,.2,1) } .in .roi-bars i { height: calc(var(--h) * 1%) }
+.roi-bars i.dots { background: radial-gradient(#111 1.2px, #ddd 1.4px) 0 0 / 7px 7px } .roi-bars i.acc { background: var(--acc) }
+.roi-bars b { font: 400 15px var(--mono); margin-bottom: 8px } .roi-bars span { font: 400 11px var(--mono); color: var(--muted); position: relative; top: 28px; height: 0 }
+.roi-donut { text-align: center } .roi-donut p { font: 400 12px/1.8 var(--mono); color: var(--muted); text-align: left; display: inline-block }
+.donut { width: min(240px, 100%); aspect-ratio: 1; margin: 18px auto; border-radius: 50%; background: conic-gradient(var(--acc) calc(var(--p) * 1%), #222 0); display: grid; place-items: center; position: relative }
+.donut::before { content: ""; position: absolute; inset: 22%; border-radius: 50%; background: var(--bg) }
+.donut b { position: relative; font: 600 clamp(36px, 3.4vw, 52px) var(--sans) }
+.sw { display: inline-block; width: 12px; height: 12px; background: #222; margin-right: 8px; vertical-align: -1px } .sw.acc { background: var(--acc) }
+.roi-man img { width: 100%; border-radius: 6px }
+.check { display: grid; grid-template-columns: minmax(0, .55fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: start }
+.check figure img { width: 100%; border-radius: 4px; position: sticky; top: 100px }
+.tests { list-style: none; margin: 0; padding: 0 }
+.tests li { border-top: 1px solid var(--line); padding: 22px 0; position: relative }
+.tests h4 { font: 400 26px/1.2 var(--sans); margin: 0 0 8px } .tests p { color: #c5c5be; margin: 0 0 8px; max-width: 36em } .tests small { font: 400 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
+.pass { position: absolute; right: 0; top: 24px; background: var(--acc); color: #111; font: 600 13px var(--mono); padding: 4px 10px; letter-spacing: .1em }
+/* 02 */
+.mk { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); align-items: start }
+.mk .mono { display: block; margin-bottom: 14px } .mk p { margin-top: 14px }
+.units { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; font-size: 14px; color: #bdbdb6 } .units b { display: block; font: 600 22px var(--sans); color: var(--text) }
+.bignum { margin-top: 26px; border-top: 2px solid var(--acc); padding-top: 12px } .bignum b { display: block; font: 900 clamp(44px, 4.6vw, 72px)/1 Doto, sans-serif; color: var(--acc) } .bignum span { color: #c5c5be }
+.bj { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 64px); align-items: center; margin-top: 4vh }
+.src { font: 400 11px/1.6 var(--mono); color: var(--muted); margin-top: 26px }
+.svs { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center }
+.svs img { width: 100%; border-radius: 6px }
+.svs-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px } .svs-cols mark { font: 400 26px var(--sans) } .svs-cols h4 { font: 400 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 24px 0 6px } .svs-cols p { margin: 0; font-size: 18px; color: #d6d6cf }
+.gap { margin-top: 9vh; border: 1px solid var(--acc); border-radius: 6px; padding: clamp(24px, 3vw, 48px) } .gap .mono { color: var(--acc) } .gap p { color: #c5c5be; max-width: 46em; font-size: 18px }
+.gap-q { font: 400 clamp(28px, 3vw, 46px)/1.15 var(--sans) !important; color: var(--text) !important; margin: 18px 0 0 } .gap-q em { font-family: Garamond, Georgia, serif; color: var(--acc) }
+/* 03 */
+.co { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 48px) } .co > div { border-top: 2px solid var(--acc); padding-top: 16px } .co p { font-size: 18px; line-height: 1.55; color: #d6d6cf }
+.six { list-style: none; margin: 3vh 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px }
+.six li { border-top: 1px solid var(--acc); padding-top: 12px } .six b { font: 400 12px var(--mono); color: var(--acc) } .six h4 { font: 600 16px/1.25 var(--sans); margin: 8px 0 6px } .six p { margin: 0; font-size: 14px; color: #bdbdb6 }
+/* 04 */
+.hud-hero img { width: 100%; display: block }
+.journey { list-style: none; margin: 5vh 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5vh 22px }
+.journey li { position: relative } .journey img { width: 100%; display: block }
+.journey b { position: absolute; top: 0; left: 0; background: var(--acc); color: #111; font: 600 13px var(--mono); padding: 3px 8px }
+.journey h4 { font: 400 22px/1.2 var(--sans); margin: 12px 0 6px } .journey p { margin: 0; color: #bdbdb6; font-size: 15px }
+q { display: inline-block; margin-top: 12px; border: 1px solid #ffffff55; border-radius: 14px 14px 14px 3px; padding: 6px 12px; font: italic 16px Garamond, Georgia, serif; color: #e8e8e0 } q::before, q::after { content: "" }
+.rate { display: flex; align-items: center; justify-content: center; gap: clamp(14px, 2vw, 32px); margin: 8vh 0 0; flex-wrap: wrap }
+.rate > div { border: 1px solid #ffffff40; padding: 18px 24px; text-align: center } .rate > div.acc { border-color: var(--acc); background: var(--acc); color: #111 } .rate > div.acc .mono { color: #111 }
+.rate b { display: block; font: 900 clamp(34px, 3.4vw, 54px)/1.1 Doto, sans-serif; margin-top: 6px } .rate i { font: 400 34px var(--sans); color: var(--muted); font-style: normal }
+.phones { list-style: none; margin: 4vh 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px }
+.phones img { width: 100%; max-width: 260px; display: block; margin: 0 auto 14px; border-radius: 22px; box-shadow: 0 24px 50px #000a }
+.phones h4 { font: 400 20px var(--sans); margin: 0 0 6px } .phones p { margin: 0; color: #bdbdb6; font-size: 15px }
+/* 05 */
+.ctrls { list-style: none; padding: 0; margin: 0 0 6vh; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px }
+.ctrls li { border: 1px solid var(--line); border-radius: 6px; padding: 14px; font-size: 14px; color: #bdbdb6 } .ctrls b { display: block; font: 600 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--acc); margin-bottom: 6px }
+.wp { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center }
+.wp img { width: 100%; display: block; border-radius: 4px } .wp h4 { font: 400 clamp(26px, 2.4vw, 36px)/1.15 var(--sans); margin: 10px 0 12px }
+.lens2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px } .lens2 figcaption { font: 400 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 6px }
+.wsteps { list-style: none; margin: 7vh 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px }
+.wsteps img { width: 100%; display: block; border-radius: 4px; margin-bottom: 12px } .wsteps .mono { color: var(--acc) } .wsteps p { color: #bdbdb6; font-size: 15px; margin: 8px 0 0 }
+.streets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
+.streets > div { background: var(--panel); border-radius: 6px; padding: 14px } .streets img { width: 100%; display: block; border-radius: 4px }
+.streets h4 { font: 600 13px var(--mono); letter-spacing: .14em; text-transform: uppercase; margin: 14px 0 8px }
+.streets i { display: block; height: 5px; background: #333; position: relative } .streets i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--v) * 1%); background: var(--acc) }
+.streets p { color: #bdbdb6; font-size: 14px } .streets b { font: 400 12px var(--mono); color: var(--text) }
+.panels3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px } .panels3 img { width: 100%; display: block; border-radius: 4px }
+.panels3 figcaption { color: #bdbdb6; font-size: 15px; margin-top: 10px } .panels3 figcaption b { display: block; font: 600 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text); margin-bottom: 4px }
+.play-card { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); color: inherit; text-decoration: none; transition: border-color .3s; margin-top: 10vh }
+.play-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.2,1) }
+.play-card:hover { border-color: var(--acc) } .play-card:hover img { transform: scale(1.04) }
+.play-txt { padding: clamp(24px, 3vw, 48px); display: flex; flex-direction: column; justify-content: space-between; gap: 30px }
+.play-txt b { font: 400 clamp(34px, 3.6vw, 56px)/1.05 var(--sans); letter-spacing: -.02em }
+.play-go { align-self: flex-start; background: var(--acc); color: #000; border-radius: 999px; padding: 12px 22px; font-weight: 600 }
+/* 06 */
+.world { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center }
+.world img { width: 100%; border-radius: 4px } .bar.here span { color: var(--acc) }
+.trip { display: grid; grid-template-columns: 624fr 1252fr 624fr; gap: 6px; margin: 3vh calc(-1 * var(--gutter)) 0 }
+.trip img { width: 100%; display: block } .trip figcaption { font: 400 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 8px var(--gutter) 0 0; text-align: center }
+.scenes { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; gap: clamp(20px, 3vw, 48px); margin-top: 6vh }
+.scenes ol { list-style: none; margin: 10px 0 0; padding: 0 } .scenes li { border-top: 1px solid var(--line); padding: 12px 0 12px 44px; position: relative }
+.scenes li b { position: absolute; left: 0; top: 12px; background: var(--acc); color: #111; font: 600 12px var(--mono); padding: 2px 6px }
+.scenes h4 { font: 600 14px var(--mono); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 4px } .scenes p { margin: 0; color: #bdbdb6; font-size: 15px }
+/* 07 */
+.comic { margin: 0 calc(-1 * var(--gutter)) } .comic img { width: 100%; display: block } .comic figcaption { padding: 0 var(--gutter) }
+.beats { list-style: none; padding: 0; margin: 5vh 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px }
+.beats li { border-top: 2px solid var(--acc); padding-top: 12px } .beats p { color: #c5c5be; font-size: 16px }
+.refl { margin-top: 13vh; border-top: 1px solid var(--line); padding-top: 8vh }
+.refl-head h3 { font: 400 clamp(40px, 5vw, 80px)/1 var(--sans); letter-spacing: -.02em; margin: 0 0 18px; max-width: 12em } .refl-head p { font-size: 20px; color: #c5c5be; max-width: 34em }
+.refl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); margin-top: 6vh }
+.devs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 }
+.devs img { width: 100%; aspect-ratio: 144/88; object-fit: cover; border-radius: 4px; display: block } .devs figcaption { font: 400 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 6px }
+.refl ul { padding-left: 1.1em; color: #d0d0c9 } .refl li { margin-bottom: 10px } .refl li::marker { color: var(--acc) }
+.refl-hw { font: 400 clamp(22px, 2vw, 30px)/1.3 var(--sans); margin-top: 5vh }
+.quote.big { font-size: clamp(36px, 4.6vw, 72px); color: var(--acc); max-width: 14em; margin-top: 10vh }
+@media (max-width: 900px) {
+  .day, .roi, .check, .mk, .bj, .svs, .svs-cols, .co, .wp, .world, .play-card, .refl-grid, .scenes { grid-template-columns: 1fr }
+  .day-crowd { grid-column: 1 / -1 } .day { grid-template-columns: 1fr 1fr }
+  .six, .phones, .wsteps, .beats { grid-template-columns: 1fr 1fr } .journey, .streets, .panels3 { grid-template-columns: 1fr }
+  .ctrls { grid-template-columns: 1fr 1fr } .big554 { flex-direction: column; align-items: flex-start }
+  .check figure img { position: static } .trip { grid-template-columns: 1fr } .trip .t-c { order: -1 }
+}
+/* v14 */
+.sheet.pad { padding: clamp(14px, 2vw, 28px) }
+.yt-top { display: flex; align-items: center; gap: 26px; color: #111; margin-bottom: 10px } .yt-top img { width: 38%; cursor: default } .yt-top span { font: 400 clamp(18px, 1.6vw, 24px)/1.2 var(--sans); border-left: 1px solid #ccc; padding-left: 22px }
+.roi-man { background: radial-gradient(ellipse 60% 55% at 62% 58%, #2c2c2a, #000 72%); color: var(--text); border: 1px solid #ffffff1f; border-radius: 6px; padding: 18px 18px 16px; position: relative; overflow: hidden }
+.roi-man h4 { margin: 0; font: 600 clamp(26px, 2.4vw, 38px)/1.15 var(--sans); position: relative; z-index: 2 } .roi-man h4 mark { padding: 0 .2em }
+.roi-man img { width: 78%; display: block; margin: -10px 0 0 auto; position: relative; z-index: 1; -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent) }
+.roi-man figcaption { font-size: 14px; line-height: 1.45; margin-top: 8px; color: #c5c5be }
+.mapfig img { width: 100%; display: block; cursor: zoom-in } .mapfig .caption { margin-top: 0 }
+.wp-pics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px } .wp-pics figcaption { font: 400 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 6px }
+/* company homepage mock */
+.site { border: 1px solid #ffffff2e; border-radius: 10px; overflow: hidden; background: #f4f4ef; color: #111; box-shadow: 0 40px 90px #000c }
+.site-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: #1b1b1b } .site-bar i { width: 11px; height: 11px; border-radius: 50%; background: #444 }
+.site-bar span { margin-left: 18px; flex: 1; max-width: 420px; background: #2a2a2a; color: #aaa; font: 400 12px var(--mono); border-radius: 6px; padding: 5px 12px }
+.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 18px clamp(18px, 3vw, 44px); border-bottom: 1px solid #ddd }
+.site-nav img { height: clamp(34px, 3.4vw, 52px); width: auto; cursor: default }
+.site-nav nav { display: flex; align-items: center; gap: clamp(12px, 2vw, 30px); font-size: 14px } .site-nav b { background: #111; color: var(--acc); padding: 9px 16px; border-radius: 999px; font-weight: 600 }
+.site-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: stretch; min-height: 480px }
+.site-hero-txt { padding: clamp(28px, 4vw, 64px); display: flex; flex-direction: column; justify-content: center }
+.site-hero-txt .mono { color: #777 } .site-hero-txt h3 { font: 400 clamp(44px, 5.4vw, 86px)/.98 var(--sans); letter-spacing: -.03em; margin: 14px 0 22px } .site-hero-txt p { font-size: 18px; max-width: 30em; line-height: 1.5 }
+.site-cta { display: flex; gap: 18px; align-items: center; margin-top: 26px } .site-cta b { background: var(--acc); padding: 13px 24px; border-radius: 999px; font-weight: 600 } .site-cta span { font-weight: 600 }
+.site-hero > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; cursor: default }
+.site-cols { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #ddd }
+.site-cols > div { padding: clamp(20px, 2.6vw, 40px) } .site-cols > div + div { border-left: 1px solid #ddd } .site-cols .mono { color: #777 } .site-cols h4 { font: 400 26px/1.15 var(--sans); margin: 10px 0 10px } .site-cols p { margin: 0; font-size: 15.5px; line-height: 1.5; color: #333 }
+/* big play entries */
+.play-big, .try-cover { --cta: 132px }
+.play-big { position: relative; display: block; border-radius: 10px; overflow: hidden; margin: 2vh 0 8vh; border: 2px solid var(--acc); box-shadow: 0 0 0 0 #e6f22e66; animation: glow 2.4s ease-in-out infinite; color: #fff; text-decoration: none }
+.play-big img { width: 100%; display: block; filter: brightness(.72); transition: transform 1.2s cubic-bezier(.2,.7,.2,1), filter .4s }
+.play-big:hover img { transform: scale(1.03); filter: brightness(.55) }
+.play-cta { position: absolute; left: 50%; top: 46%; width: var(--cta); height: var(--cta); transform: translate(-50%, -50%); display: grid; place-items: center }
+.play-cta .ring { position: absolute; inset: 0; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 0 #e6f22eaa; animation: pulse 1.8s ease-out infinite }
+.play-cta .tri { position: relative; font-size: calc(var(--cta) * .36); color: #111; margin-left: .18em; line-height: 1 }
+.play-big:hover .play-cta, .try-cover:hover .play-cta { transform: translate(-50%, -50%) scale(1.08) } .play-cta { transition: transform .3s }
+.play-label { position: absolute; left: 0; right: 0; top: calc(46% + var(--cta) / 2 + 18px); text-align: center; padding: 0 20px }
+.play-label b { display: block; font: 600 clamp(30px, 3.4vw, 54px)/1.05 var(--sans); letter-spacing: -.02em; text-shadow: 0 4px 24px #000 } .play-label small { display: block; margin-top: 10px; font: 400 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #eee; text-shadow: 0 2px 10px #000 }
+.play-tag { position: absolute; left: 18px; top: 18px; background: var(--acc); color: #111; font: 600 13px var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 7px 12px; border-radius: 3px }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 #e6f22eaa } 100% { box-shadow: 0 0 0 34px #e6f22e00 } }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 #e6f22e00 } 50% { box-shadow: 0 0 40px 2px #e6f22e55 } }
+.try { position: relative; margin-top: 2vh; border: 2px solid var(--acc); border-radius: 10px; animation: glow 2.4s ease-in-out infinite }
+.try-cover .play-cta { top: 34% } .try-cover .play-label { top: calc(34% + var(--cta) / 2 + 18px) }
+.try-cover { position: absolute; inset: 0; z-index: 5; border: 0; border-radius: 8px; cursor: pointer; color: #fff; background: radial-gradient(ellipse at 50% 45%, #000a, #000d 75%); backdrop-filter: blur(3px); font: inherit; transition: opacity .4s }
+.try.started { animation: none; border-color: #ffffff22 } .try.started .try-cover { opacity: 0; pointer-events: none }
+.lenses { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4vh 22px }
+.lenses img { width: 100%; display: block; filter: drop-shadow(0 12px 22px #0008) } .lenses b { display: block; font: 600 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--acc); margin: 10px 0 4px } .lenses p { margin: 0; color: #bdbdb6; font-size: 14.5px }
+.lenses li.pay img { margin-top: 12% }
+.phones img { max-width: 200px }
+@media (max-width: 900px) {
+  .site-hero, .site-cols { grid-template-columns: 1fr } .site-cols > div + div { border-left: 0; border-top: 1px solid #ddd } .site-nav nav a { display: none } .site-hero > img { max-height: 340px }
+  .lenses { grid-template-columns: 1fr 1fr } .play-big, .try-cover { --cta: 84px } .play-label b { font-size: 26px }
+  .play-big img { aspect-ratio: 4/3; object-fit: cover }
+}
+
+/* phone homepage mock (v16) */
+.cophone { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(32px, 6vw, 110px); align-items: center }
+.phone { --ph: min(78vh, 760px); height: var(--ph); aspect-ratio: 9 / 19.5; border-radius: calc(var(--ph) * .075); border: 10px solid #1d1d1d; outline: 1px solid #ffffff33; background: #fff; color: #111; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 50px 100px #000e, 0 0 0 1px #000 inset; user-select: none }
+.ph-status { display: flex; justify-content: space-between; align-items: center; padding: 10px 22px 4px; font: 600 12px var(--sans); position: relative }
+.ph-status .notch { position: absolute; left: 50%; top: 6px; transform: translateX(-50%); width: 34%; height: 20px; background: #111; border-radius: 12px }
+.ph-url { margin: 4px 14px 8px; background: #f0f0ee; border-radius: 9px; text-align: center; font: 400 11px var(--sans); color: #666; padding: 5px }
+.ph-head { padding: 4px 16px 10px; border-bottom: 1px solid #eee } .ph-head img { height: 34px; width: auto; display: block; cursor: default }
+.ph-hero { position: relative; flex: 1; min-height: 0; overflow: hidden }
+.ph-hero img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; display: block; cursor: default }
+.ph-hero-txt { position: absolute; left: 0; right: 0; top: 0; padding: 20px 18px }
+.ph-hero-txt span { font: 400 9.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #777 }
+.ph-hero-txt h3 { font: 500 clamp(28px, 3.4vh, 36px)/1.02 var(--sans); letter-spacing: -.02em; margin: 8px 0 0 }
+.ph-body { padding: 14px 18px 18px; font-size: 12.5px; line-height: 1.5; border-top: 1px solid #eee } .ph-body p { margin: 0 }
+.co-notes { display: grid; gap: 4vh }
+.co-notes > div { border-top: 2px solid var(--acc); padding-top: 14px; max-width: 34em }
+.co-notes h4 { font: 400 clamp(24px, 2.2vw, 32px)/1.15 var(--sans); margin: 10px 0 8px } .co-notes p { margin: 0; color: #c5c5be; font-size: 17px; line-height: 1.55 }
+@media (max-width: 900px) { .cophone { grid-template-columns: 1fr; justify-items: center } .phone { --ph: min(84vh, 680px) } }
+</style>
 </head>
 <body>
 <div class="readbar"></div>
@@ -22,6 +208,7 @@
   <div class="c-kicker mono"><span>02 / 05</span><span>Speculative design</span></div>
   <h1 class="c-title">LookCoin</h1>
   <p class="c-sub">A near-future city where smart glasses verify where we look, and human attention is measured, priced and paid for in <em>its own currency.</em></p>
+  <div class="c-live" aria-label="Live pages"><a class="c-live-btn" href="lookcoin-city/" target="_blank" rel="noopener"><span class="dot"></span>Explore the city simulation<i>↗</i></a></div>
   <dl class="c-meta">
     <div><dt>Discipline</dt><dd>Speculative &amp; interaction design, worldbuilding</dd></div>
     <div><dt>Setting</dt><dd>A fictional Beijing, 2035 — year 9 of LookCoin</dd></div>
@@ -29,171 +216,321 @@
     <div><dt>Touchpoints</dt><dd>AR glasses HUD · companion app · browser simulation</dd></div>
     <div><dt>Outputs</dt><dd>Service system, UI, playable city, comic</dd></div>
   </dl>
-  <figure class="c-cover"><img src="assets/lookcoin/images/cover.jpg" alt="The LookCoin banknote" data-zoom="assets/lookcoin/boards/board-01.webp"></figure>
+  <figure class="c-cover"><img src="assets/lookcoin/figma/00-cover-full.webp" alt="The LookCoin banknote: 1 VAU = 1 verified minute" data-zoom="assets/lookcoin/figma/00-cover-full.webp"></figure>
 </section>
 
 <nav class="c-nav" aria-label="Chapters"><ol>
-  <li><a href="#reality"><b>01</b>Reality · 2026</a></li>
-  <li><a href="#commodity"><b>02</b>Attention as commodity</a></li>
+  <li><a href="#reality"><b>01</b>A child’s day</a></li>
+  <li><a href="#market"><b>02</b>The attention market</a></li>
   <li><a href="#company"><b>03</b>The company</a></li>
-  <li><a href="#glasses"><b>04</b>Glasses HUD ★</a></li>
-  <li><a href="#app"><b>05</b>App ★</a></li>
-  <li><a href="#city"><b>06</b>Playable city ★</a></li>
-  <li><a href="#world"><b>07</b>The world</a></li>
-  <li><a href="#reflection"><b>08</b>Reflection</a></li>
-  <li><a href="#boards"><b>09</b>Boards</a></li>
+  <li><a href="#prototype"><b>04</b>Play the city ↗</a></li>
+  <li><a href="#interface"><b>05</b>Try the glasses ↗</a></li>
+  <li><a href="#daily"><b>06</b>Daily life</a></li>
+  <li><a href="#story"><b>07</b>Story &amp; reflection</a></li>
 </ol></nav>
 
 <div class="wrap">
+
+<!-- 01 REALITY -->
 <section class="c-sec" id="reality">
   <div class="c-head reveal"><div class="c-num">01</div><div>
-    <h2 class="c-h">Attention already has a market.</h2>
-    <p class="c-lede">The project starts with ordinary advertising on a commute. Online, brands already pay for exposures, clicks and views. On the street, nobody is paid back.</p>
+    <h2 class="c-h">A day through a child’s eyes.</h2>
+    <p class="c-lede">How much advertising does one person see in a day? Children wore cameras to record the brands around them, and researchers counted every brand in the images.</p>
   </div></div>
-  <div class="c-body">
-    <div class="stats reveal" style="--n:4">
-      <div class="stat"><b>554</b><span>brand exposures per child in a 10-hour day — nearly one a minute (Kids’Cam study)</span></div>
-      <div class="stat"><b>$8M</b><span>for 30 seconds of the 2025 Super Bowl, watched by 127.7M people</span></div>
-      <div class="stat"><b>£4.11</b><span>returned for every £1 of ad spend over 24 months (141 brands, £1.8bn)</span></div>
-      <div class="stat"><b>$294.6bn</b><span>US internet advertising revenue, 2025</span></div>
+  <figure class="sheet reveal"><img src="assets/lookcoin/figma/01-kid-brand-exposures.webp" alt="A child wearing a camera; packaging, signs and clothing carrying brands" data-zoom="assets/lookcoin/figma/01-kid-brand-exposures.webp"></figure>
+  <div class="big554 reveal"><b>554</b><div><h4>Average brand exposures per child</h4><p>Per 10-hour day — <mark>nearly one exposure every minute.</mark></p><small>Source: Watkins et al., Kids’Cam, 2022. Exposures, not unique brands or verified attention.</small></div></div>
+
+  <div class="day reveal">
+    <ol class="day-list">
+      <li><span class="mono">07:42 · Elevator</span><h4>Before work begins</h4><mark>6.4 sec taken</mark></li>
+      <li><span class="mono">08:10 · Bus</span><h4>On the way to work</h4><mark>7.2 sec taken</mark></li>
+      <li><span class="mono">12:46 · Metro</span><h4>Through the metro</h4><mark>5.8 sec taken</mark></li>
+      <li><span class="mono">18:22 · Street</span><h4>On the way home</h4><mark>3.1 sec taken</mark></li>
+    </ol>
+    <figure class="day-pics"><img src="assets/lookcoin/figma/01-day-timeline-photos.webp" alt="Ads in an elevator, a bus, the metro and on a street" data-zoom="assets/lookcoin/figma/01-day-timeline-photos.webp"></figure>
+    <figure class="day-crowd"><img src="assets/lookcoin/figma/01-billboards-crowd.webp" alt="A crowd beneath giant screens: Super Bowl, Meta, Kylie Jenner × Snap" data-zoom="assets/lookcoin/figma/01-billboards-crowd.webp"></figure>
+  </div>
+  <div class="stats reveal lc-stats" style="--n:3">
+    <div class="stat"><b>$8M</b><span><strong>Super Bowl 2025 · 127.7M viewers.</strong> Brands are not buying the game: they buy 30 seconds of 127.7 million people’s shared field of vision.</span></div>
+    <div class="stat"><b>3.58B</b><span><strong>Meta 2025 · daily users, $200.97B annual revenue.</strong> The platform’s core asset is not content but the traffic it can aggregate, distribute and predict.</span></div>
+    <div class="stat"><b>−$1.3B</b><span><strong>Kylie Jenner × Snap, 2018.</strong> One post to 24.5M followers wiped $1.3B off Snap’s market value.</span></div>
+  </div>
+
+  <h3 class="c-sub-h reveal">Advertising pays back.</h3>
+  <div class="roi reveal">
+    <div class="roi-chart">
+      <span class="mono">Profit ROI · profit generated per £1 of media spend</span>
+      <div class="roi-bars">
+        <div style="--h:24"><b>£1.00</b><i></i><span>Spend</span></div>
+        <div style="--h:45"><b>£1.87</b><i class="dots"></i><span>0–13 weeks</span></div>
+        <div style="--h:100"><b>£4.11</b><i class="acc"></i><span>0–24 months</span></div>
+      </div>
     </div>
-    <div class="cols reveal" style="--n:2;margin-top:5vh">
-      <div class="card"><span class="mono">On-screen</span><h4>Measured and exchanged</h4><p>Platforms record views, watch time, clicks and interactions (CPM, CPC, CPV). Viewers trade attention for free content.</p></div>
-      <div class="card"><span class="mono">Outdoors</span><h4>Estimated and unpaid</h4><p>Reach is guessed from foot traffic and location. In Beijing’s densest districts every ten steps pass 4–7 ad surfaces — and passers-by receive nothing.</p></div>
+    <div class="roi-donut">
+      <span class="mono">Share of total ad-generated profit</span>
+      <div class="donut" style="--p:58"><b>58%</b></div>
+      <p><i class="sw acc"></i>After 13 weeks · 58%<br><i class="sw"></i>First 13 weeks · 42%</p>
     </div>
-    <div class="hmw reveal"><span class="mono">The gap = the opportunity</span>On screen, a brand can force a five-second ad you can’t skip. Outdoors, no brand can make anyone look long enough to count. What if the street could verify a glance — and pay for it?</div>
-    <figure class="fig reveal"><img loading="lazy" src="assets/lookcoin/boards/board-02.webp" alt="Reality board"><figcaption>Board 02 — a day through a child’s eyes, the advertising ROI study and the attention-commodity check.</figcaption></figure>
+    <figure class="roi-man"><h4><mark>Advertising</mark><br><mark>pays back</mark></h4><img src="assets/lookcoin/figma/01-man-counting-money.webp" alt="A man counting banknotes"><figcaption>Over the long term, every <mark>£1</mark> spent on advertising returns about <mark>£4</mark> in profit on average.</figcaption></figure>
+  </div>
+  <p class="muted reveal" style="max-width:44em">A study covering 141 brands and £1.8 billion in advertising spend: over the long term, every £1 spent on advertising returns about £4 in profit. Value builds over time — the commercial effect outlasts the view. This helps explain why the advertising industry thrives.</p>
+
+  <h3 class="c-sub-h reveal">Does attention pass as a commodity?</h3>
+  <div class="check reveal">
+    <figure><img src="assets/lookcoin/figma/01-attention-commodity-receipt.webp" alt="Attention · commodity eligibility check: five passes" data-zoom="assets/lookcoin/figma/01-attention-commodity-receipt.webp"></figure>
+    <ol class="tests">
+      <li><span class="pass">PASS</span><h4>01 · Finite</h4><p>Every person has only 24 hours each day. Attention spent on one target cannot be stored, recovered or used again.</p><small>Supply · 24 hours / person / day</small></li>
+      <li><span class="pass">PASS</span><h4>02 · Rivalrous</h4><p>Within one verified interval, full attention can go to only one focal target. The same second cannot be sold twice.</p><small>Rule · 1 second / 1 verified target</small></li>
+      <li><span class="pass">PASS</span><h4>03 · In demand</h4><p>Brands, media and platforms already pay to enter people’s field of view, because attention can shape awareness, desire and purchasing.</p><small>Market evidence · 30 s of shared view / up to $8M</small></li>
+      <li><span class="pass">PASS</span><h4>04 · Measurable</h4><p>Eye tracking can record what a person looks at, for how long and under what conditions. AR glasses carry that measurement from screens into reality.</p><small>Measurement · target + duration + identity + context</small></li>
+      <li><span class="pass">PASS</span><h4>05 · Divisible</h4><p>Attention divides into seconds, impressions and verified gaze units that can be aggregated, compared, priced and exchanged.</p><small>Unit · 1 verified gaze second</small></li>
+    </ol>
   </div>
 </section>
 
-<section class="c-sec" id="commodity">
+<!-- 02 MARKET -->
+<section class="c-sec" id="market">
   <div class="c-head reveal"><div class="c-num">02</div><div>
-    <h2 class="c-h">Does attention pass the commodity test?</h2>
-    <p class="c-lede">Before inventing a currency, I checked attention against the five properties of a tradable good. It passed all five.</p>
+    <h2 class="c-h">Attention already has a market.</h2>
+    <p class="c-lede">Brands pay for exposure, clicks and views. On screen, the exchange is measured to the second. On the street, it is only guessed.</p>
   </div></div>
-  <div class="c-body">
-    <div class="steps reveal" style="--n:5">
-      <div><h4>Finite</h4><p>24 hours per person per day; spent attention can’t be stored or reused.</p></div>
-      <div><h4>Rivalrous</h4><p>One verified second goes to one focal target only.</p></div>
-      <div><h4>In demand</h4><p>Brands already pay up to $8M for 30 seconds of shared view.</p></div>
-      <div><h4>Measurable</h4><p>Eye tracking records target, duration, identity and context.</p></div>
-      <div><h4>Divisible</h4><p>Seconds aggregate into verified gaze units that can be priced.</p></div>
+  <div class="mk reveal">
+    <div>
+      <span class="mono acc">Case analysis · on-screen</span>
+      <figure class="sheet pad"><div class="yt-top"><img src="assets/lookcoin/figma/02-youtube-logo.webp" alt="YouTube"><span>A community<br>funded by ads</span></div><img src="assets/lookcoin/figma/02-youtube-diagram.webp" alt="Advertisers, YouTube, creators and viewers" data-zoom="assets/lookcoin/figma/02-youtube-diagram.webp"></figure>
+      <p class="muted">A community funded by ads. Viewers exchange time and attention for free content; the platform makes sure to attract and measure it.</p>
+    </div>
+    <div>
+      <figure class="sheet pad"><img src="assets/lookcoin/figma/02-cpm-cpc-cpv-icons.webp" alt="CPM, CPC and CPV"></figure>
+      <div class="units"><div><b>CPM</b>Cost per 1,000 impressions</div><div><b>CPC</b>Cost per click</div><div><b>CPV</b>Cost per view</div></div>
+      <div class="bignum"><b>$294.6bn</b><span>U.S. internet advertising revenue, 2025</span></div>
     </div>
   </div>
+
+  <h3 class="c-sub-h reveal">Case analysis: public advertising in Beijing</h3>
+  <figure class="bleed-img reveal"><img src="assets/lookcoin/figma/02-beijing-street.webp" alt="A Beijing shopping street lined with ads" data-zoom="assets/lookcoin/figma/02-beijing-street.webp"></figure>
+  <div class="bj reveal">
+    <figure class="mapfig"><img src="assets/lookcoin/figma/02-beijing-density-map.webp" alt="Beijing advertisements · attention density map" data-zoom="assets/lookcoin/figma/02-beijing-density-map.webp"><figcaption class="caption">Beijing advertisements · attention density map — total display area in each 1 km² grid</figcaption></figure>
+    <div>
+      <p class="muted">Beijing’s strong economy, busy commercial districts and dense outdoor advertising make it a compelling setting to explore how urban attention can be measured and rewarded.</p>
+      <div class="bignum"><b>4–7</b><span>ad surfaces every 10 steps in the densest commercial areas</span></div>
+      <div class="bignum"><b>80–250 m²</b><span>of display area along those 10 steps</span></div>
+      <p class="src">Sources: Beijing Municipal Commission of Urban Management, Outdoor Advertising Facilities Special Plan (2022–2035) · Beijing Municipal Civil Affairs Bureau, 2025 boundary base map · JCDecaux, 21,100+ panels across 291 metro stations.</p>
+    </div>
+  </div>
+
+  <h3 class="c-sub-h reveal">Screen vs. street</h3>
+  <div class="svs reveal">
+    <figure><img src="assets/lookcoin/figma/02-screen-vs-street.webp" alt="On a phone vs. on the street" data-zoom="assets/lookcoin/figma/02-screen-vs-street.webp"></figure>
+    <div class="svs-cols">
+      <div><mark>On-screen</mark><h4>Measurement</h4><p>Platforms record views, viewing time, clicks and interactions.</p><h4>Viewer exchange</h4><p>Attention gives access to content.</p></div>
+      <div><mark>Outdoor</mark><h4>Measurement</h4><p>Reach is estimated from foot traffic, location and display exposure.</p><h4>Viewer exchange</h4><p>Passersby rarely receive a direct return.</p></div>
+    </div>
+  </div>
+  <div class="gap reveal"><span class="mono">The gap = the opportunity</span><p>On screen, viewers get free content and brands can force a view: a 5-second ad you can’t skip. Outdoors, passersby get nothing back, and brands can’t make anyone look long enough to count.</p><p class="gap-q">What if the street could verify a glance — <em>and pay for it?</em></p></div>
 </section>
 
+<!-- 03 COMPANY -->
 <section class="c-sec" id="company">
   <div class="c-head reveal"><div class="c-num">03</div><div>
-    <h2 class="c-h">LookCoin — “We value your attention.”</h2>
-    <p class="c-lede">A fictional company aggregates individual attention into a measurable, tradable resource and sells it to brands. Users are paid in the company’s own currency and spend it inside its network.</p>
+    <h2 class="c-h">Meet the company.</h2>
+    <p class="c-lede">A fictional company that turns individual attention into a measurable, tradable resource, and pays for it in its own currency. This is how it presents itself.</p>
   </div></div>
-  <div class="c-body">
-    <div class="hmw reveal" style="text-align:center"><span class="mono">The formula</span>Output (money) = Verified time × Rate</div>
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">LC</span><h4>LookCoin</h4><p>The currency you receive: your reward for verified ad-viewing time.</p></div>
-      <div class="card"><span class="mono">VAU</span><h4>Verified Attention Unit</h4><p>1 VAU = 1 verified minute. Only the time you actually spend looking counts.</p></div>
-      <div class="card"><span class="mono">LAR</span><h4>LookCoin Attention Rate</h4><p>LC per VAU, set by supply and demand, brand bids and your own “attention value” — and locked when you accept an offer.</p></div>
+  <div class="cophone reveal">
+    <div class="phone" aria-label="The LookCoin homepage on a phone">
+      <div class="ph-status"><span>9:41</span><i class="notch"></i><span>●●● ▮</span></div>
+      <div class="ph-url">lookcoin.com</div>
+      <div class="ph-head"><img src="assets/lookcoin/figma/03-logo.webp" alt="LookCoin · We value your attention"></div>
+      <div class="ph-hero">
+        <img src="assets/lookcoin/figma/03-hq-skyline.webp" alt="Beijing skyline covered in LookCoin billboards">
+        <div class="ph-hero-txt"><span>File 01 · Company overview</span><h3>We value your attention.</h3></div>
+      </div>
+      <div class="ph-body"><p>LookCoin connects <mark>human attention</mark> with <mark>brand demand</mark>. We aggregate individual attention into a measurable, tradable resource, packaging it for sale to brands.</p></div>
     </div>
-    <h3 class="c-sub-h">Service system</h3>
-    <p class="reveal" style="color:#c5c5be;max-width:46em">Six parts move attention from the street to the balance sheet: <b>retail attention supply</b> (glasses record and verify viewing), a <b>private attention desk</b> for exclusive high-value viewers, a <b>pricing engine</b> that computes LAR in real time, an <b>attention exchange</b> with spot and futures markets, <b>institutional demand</b> from brands and their brokers, and <b>LC issuance &amp; settlement</b> where LC earned = delivered VAU × locked LAR.</p>
-    <figure class="fig reveal"><img loading="lazy" src="assets/lookcoin/boards/board-04.webp" alt="Company and service system board"><figcaption>Board 04 — company overview and the internal service system diagram. Click to zoom.</figcaption></figure>
+    <div class="co-notes">
+      <div><span class="mono">01 · About LookCoin</span><h4>Attention, packaged.</h4><p>LookCoin connects human attention with brand demand, aggregating individual attention into a measurable, tradable resource for brands.</p></div>
+      <div><span class="mono">02 · Technology</span><h4>Glasses that verify.</h4><p>Affordable wearable devices record what people view and for how long. The device network verifies viewing and organises it into audience packages.</p></div>
+      <div><span class="mono">03 · Currency &amp; settlement</span><h4>Paid in LookCoin.</h4><p>Users earn the company’s own currency, LookCoin (LC), through verified viewing, and spend it within its network.</p></div>
+    </div>
   </div>
+  <figure class="sheet pad reveal" style="margin-top:6vh"><img src="assets/lookcoin/figma/03-equation.webp" alt="Output (money) = Verified time × Rate" data-zoom="assets/lookcoin/figma/03-equation.webp"></figure>
+  <div class="cols reveal" style="--n:3;margin-top:3vh">
+    <div class="card"><span class="mono">LC · LookCoin</span><h4>The currency you receive</h4><p>Your total reward for verified ad-viewing time.</p></div>
+    <div class="card"><span class="mono">VAU · Verified Attention Unit</span><h4>1 VAU = 1 verified minute</h4><p>Only the time you actually spend watching an ad is delivered.</p></div>
+    <div class="card"><span class="mono">LAR · LookCoin Attention Rate</span><h4>LC per VAU</h4><p>Set by supply and demand, brand bids and your own attention value — locked when you accept the offer.</p></div>
+  </div>
+
+  <h3 class="c-sub-h reveal">Service system diagram</h3>
+  <p class="muted reveal" style="max-width:46em">An internal document of how attention moves from the street to the balance sheet. Click to zoom in.</p>
+  <figure class="bleed-img dark reveal"><img src="assets/lookcoin/figma/03-service-system-diagram.webp" alt="LookCoin service system diagram" data-zoom="assets/lookcoin/figma/03-service-system-diagram.webp"></figure>
+  <ol class="six reveal">
+    <li><b>01</b><h4>Retail attention supply</h4><p>Glasses record, verify and measure everyday viewing.</p></li>
+    <li><b>02</b><h4>Private attention desk</h4><p>A broker manages exclusive, high-value viewers.</p></li>
+    <li><b>03</b><h4>Pricing engine</h4><p>Computes the live LAR from bids, demand and risk.</p></li>
+    <li><b>04</b><h4>Attention exchange</h4><p>Spot and futures markets for verified attention.</p></li>
+    <li><b>05</b><h4>Institutional demand</h4><p>Brand brokers and attention dealers buy delivery.</p></li>
+    <li><b>06</b><h4>LC issuance &amp; settlement</h4><p>LC earned = delivered VAU × locked LAR.</p></li>
+  </ol>
 </section>
 
-<section class="c-sec" id="glasses">
+<!-- 04 WEB PROTOTYPE -->
+<section class="c-sec" id="prototype">
   <div class="c-head reveal"><div class="c-num">04</div><div>
-    <h2 class="c-h">Look at it. Get paid.</h2>
-    <p class="c-lede">The glasses are the personal interface. Your mouse is your gaze: rest on a highlighted area to look at it. Some actions need a sustained gaze, just as they would in the glasses.</p>
+    <h2 class="c-h">A browser simulation of how verified gaze becomes money.</h2>
+    <p class="c-lede">Play it first: scan a city for the street that pays most, then hold your gaze on an ad until it pays you.</p>
   </div></div>
-  <div class="stage">
-    <div class="stage-head"><div><span class="mono">Prototype A · AR glasses</span><h3>From attention to everyday value</h3></div>
-      <div class="how"><span><i></i>Move = gaze</span><span><i></i>Rest on a target to select</span><span>Hold gaze to confirm</span></div></div>
-    <div class="proto wide" data-proto="hud"></div>
-  </div>
-  <div class="c-body" style="margin-top:6vh">
-    <div class="steps reveal" style="--n:3">
-      <div><h4>Explore</h4><p>Open the map and compare nearby offers. Choose an ad by location and live rate.</p></div>
-      <div><h4>Verify &amp; earn</h4><p>3 seconds of gaze confirms the offer; 15 seconds completes verified viewing and LC settles at the accepted rate.</p></div>
-      <div><h4>Spend &amp; review</h4><p>Pay for a recognised product with LC or USD; review earnings and permissions in the app.</p></div>
+    <a class="play-big reveal" href="lookcoin-city/" target="_blank" rel="noopener" aria-label="Play the LookCoin city simulation">
+    <img src="assets/lookcoin/figma/05-web-00-homepage.webp" alt="">
+    <span class="play-cta"><span class="ring"></span><span class="tri">▶</span></span>
+    <span class="play-label"><b>Click to play</b><small>Walk the city · desktop browser · your mouse is your gaze</small></span>
+    <span class="play-tag">Interactive ↗</span>
+  </a>
+  <ul class="ctrls reveal">
+    <li><b>Move</b>The cursor is your gaze.</li><li><b>Click</b>Price a zone or open a panel.</li><li><b>Drag</b>Look around the street.</li><li><b>Scroll</b>Zoom in.</li><li><b>Hold</b>Keep your gaze on an ad for 15 s.</li>
+  </ul>
+  <div class="wp reveal"><div class="wp-pics">
+    <figure class="wp-main"><img src="assets/lookcoin/figma/05-web-01a-without-lens.webp" alt="What you see" data-zoom="assets/lookcoin/figma/05-web-01a-without-lens.webp"></figure><figure class="wp-main"><img src="assets/lookcoin/figma/05-web-01b-under-lens.webp" alt="Under your cursor" data-zoom="assets/lookcoin/figma/05-web-01b-under-lens.webp"></figure>
+    </div><div>
+      <span class="mono acc">00 · Homepage</span><h4>The map is the home page.</h4>
+      <p class="muted">Move the cursor across the city: a circle reveals the hidden ad-density dots. Bigger dots, more ads. The map stays hidden, so you scan the city for the street that pays most before walking there.</p>
+      
     </div>
   </div>
+  <ol class="wsteps reveal">
+    <li><img src="assets/lookcoin/figma/05-web-01-price-zone.webp" alt="" data-zoom="assets/lookcoin/figma/05-web-01-price-zone.webp"><span class="mono">01 · Price a zone</span><p>Click a spot. The card shows where you clicked, the ad density around it (0–100) and the average revenue per day.</p></li>
+    <li><img src="assets/lookcoin/figma/05-web-02-zones.webp" alt="" data-zoom="assets/lookcoin/figma/05-web-02-zones.webp"><span class="mono">02 · Enter a street</span><p>The zone you clicked decides which of three streets you land in.</p></li>
+    <li><img src="assets/lookcoin/figma/05-web-03-street.webp" alt="" data-zoom="assets/lookcoin/figma/05-web-03-street.webp"><span class="mono">03 · Look around</span><p>Drag to look around, scroll to zoom. Only the circle around your cursor stays lit.</p></li>
+    <li><img src="assets/lookcoin/figma/05-web-04-get-paid.webp" alt="" data-zoom="assets/lookcoin/figma/05-web-04-get-paid.webp"><span class="mono">04 · Get paid</span><p>Hold on an ad for 15 s: the ring closes, the ad is marked PAID and LC is added at your role rate.</p></li>
+  </ol>
+  <p class="mono reveal" style="margin:7vh 0 2vh">Three streets — every gaze is paid the same; the city is not.</p>
+  <div class="streets reveal">
+    <div><img src="assets/lookcoin/figma/05-web-street-commercial.webp" alt=""><h4>Commercial</h4><i style="--v:86"></i><p>Mall-facade screens, a central media wall, tower and street displays. Ads fill 86% of your view.</p><b>8 paid ads · up to 240 LC a walk</b></div>
+    <div><img src="assets/lookcoin/figma/05-web-street-residential.webp" alt=""><h4>Residential</h4><i style="--v:41"></i><p>A bus shelter, a street display, a pavement panel and two shop fronts. Visual load 41%.</p><b>5 paid ads · up to 150 LC a walk</b></div>
+    <div><img src="assets/lookcoin/figma/05-web-street-villa.webp" alt=""><h4>Villa</h4><i style="--v:18"></i><p>One panel at the gate, one on a utility box, one on the corner. Visual load 18%.</p><b>3 paid ads · up to 90 LC a walk</b></div>
+  </div>
+  <p class="mono reveal" style="margin:9vh 0 2vh">05 · Spend &amp; review — click the top bar of the map</p>
+  <div class="panels3 reveal">
+    <figure><img src="assets/lookcoin/figma/05-web-05-archive.webp" alt="" data-zoom="assets/lookcoin/figma/05-web-05-archive.webp"><figcaption><b>Archive</b>Every second you looked is logged: on ads, on people, on empty space.</figcaption></figure>
+    <figure><img src="assets/lookcoin/figma/05-web-06-whose-eyes.webp" alt="" data-zoom="assets/lookcoin/figma/05-web-06-whose-eyes.webp"><figcaption><b>Whose eyes are these?</b>The same second pays 1–5 LC. Your identity sets the rate.</figcaption></figure>
+    <figure><img src="assets/lookcoin/figma/05-web-07-market.webp" alt="" data-zoom="assets/lookcoin/figma/05-web-07-market.webp"><figcaption><b>Attention market</b>Spend what you earned. A pair of sneakers costs 600 LC.</figcaption></figure>
+  </div>
+  
 </section>
 
-<section class="c-sec" id="app">
+<!-- 05 GLASSES & APP -->
+<section class="c-sec" id="interface">
   <div class="c-head reveal"><div class="c-num">05</div><div>
-    <h2 class="c-h">The app keeps the books.</h2>
-    <p class="c-lede">The glasses show only what you need in the moment. The app holds the record: earnings, every verified transaction and what you allow the glasses to see.</p>
+    <h2 class="c-h">The personal interface.</h2>
+    <p class="c-lede">The glasses handle live actions; the app keeps the records and controls. Look through the glasses yourself — your mouse is your gaze.</p>
   </div></div>
-  <div class="stage">
-    <div class="stage-head"><div><span class="mono">Prototype B · Companion app</span><h3>Device, earnings, records &amp; permissions</h3></div>
-      <div class="how"><span><i></i>Tap the tab bar</span></div></div>
-    <div class="proto" data-proto="app"></div>
+  <div class="stage try reveal" id="try-glasses">
+    <div class="proto wide" data-proto="hud"></div>
+    <button type="button" class="try-cover" aria-label="Start the glasses prototype"><span class="play-cta"><span class="ring"></span><span class="tri">▶</span></span><span class="play-label"><b>Click to try the glasses</b><small>Move = gaze · rest on a target to select · hold your gaze to confirm</small></span><span class="play-tag">Interactive</span></button>
   </div>
+
+  <p class="mono reveal" style="margin:9vh 0 2vh">What you will see · seven glasses views</p>
+  <ol class="lenses reveal">
+    <li><img src="assets/lookcoin/figma/04-hud-01-home.webp" alt="" data-zoom="assets/lookcoin/figma/04-hud-01-home.webp"><b>01 · Home</b><p>Spendable LC and nearby offers at a glance.</p></li>
+    <li><img src="assets/lookcoin/figma/04-hud-02-ad-map.webp" alt="" data-zoom="assets/lookcoin/figma/04-hud-02-ad-map.webp"><b>02 · Ad map</b><p>Compare rewards before choosing an ad.</p></li>
+    <li><img src="assets/lookcoin/figma/04-hud-03-offer.webp" alt="" data-zoom="assets/lookcoin/figma/04-hud-03-offer.webp"><b>03 · Offer</b><p>Hold your gaze 3 s to accept the rate.</p></li>
+    <li><img src="assets/lookcoin/figma/04-hud-04-verification.webp" alt="" data-zoom="assets/lookcoin/figma/04-hud-04-verification.webp"><b>04 · Verification</b><p>Only seconds spent looking count.</p></li>
+    <li><img src="assets/lookcoin/figma/04-hud-05-reward.webp" alt="" data-zoom="assets/lookcoin/figma/04-hud-05-reward.webp"><b>05 · Reward</b><p>15 s complete: +32 LC settles.</p></li>
+    <li><img src="assets/lookcoin/figma/04-hud-06-checkout.webp" alt="" data-zoom="assets/lookcoin/figma/04-hud-06-checkout.webp"><b>06 · Checkout</b><p>Recognise a product, pay with LC or USD.</p></li>
+    <li><img src="assets/lookcoin/figma/04-hud-07-wallet.webp" alt="" data-zoom="assets/lookcoin/figma/04-hud-07-wallet.webp"><b>07 · Wallet</b><p>Balance and recent changes.</p></li>
+    <li class="pay"><img src="assets/lookcoin/figma/04-hud-payment-complete.webp" alt="Payment complete −180 LC"><b>Payment status</b><p>A compact confirmation after checkout.</p></li>
+  </ol>
+  <div class="rate reveal">
+    <div><span class="mono">Accepted rate</span><b>128 LC/min</b></div><i>×</i>
+    <div><span class="mono">Verified time</span><b>15 sec</b></div><i>=</i>
+    <div class="acc"><span class="mono">Settled reward</span><b>+32 LC</b></div>
+  </div>
+
+  <p class="mono reveal" style="margin:9vh 0 2vh">The app keeps the books</p>
+  <ol class="phones reveal">
+    <li><img src="assets/lookcoin/figma/04-app-01-overview.webp" alt="Dashboard" data-zoom="assets/lookcoin/figma/04-app-01-overview.webp"><h4>Dashboard</h4><p>Balance, connected glasses, HUD settings and calibration.</p></li>
+    <li><img src="assets/lookcoin/figma/04-app-02-analytics.webp" alt="Earnings analytics" data-zoom="assets/lookcoin/figma/04-app-02-analytics.webp"><h4>Earnings analytics</h4><p>Verified minutes, value per minute, who paid.</p></li>
+    <li><img src="assets/lookcoin/figma/04-app-03-transaction.webp" alt="Transaction details" data-zoom="assets/lookcoin/figma/04-app-03-transaction.webp"><h4>Transaction details</h4><p>15 s = 0.25 VAU × locked rate, with an audit trail.</p></li>
+    <li><img src="assets/lookcoin/figma/04-app-04-permissions.webp" alt="Permissions" data-zoom="assets/lookcoin/figma/04-app-04-permissions.webp"><h4>Permissions</h4><p>Choose what to share; pause or review consent.</p></li>
+  </ol>
 </section>
 
-<section class="c-sec" id="city">
+<!-- 06 DAILY LIFE -->
+<section class="c-sec" id="daily">
   <div class="c-head reveal"><div class="c-num">06</div><div>
-    <h2 class="c-h">Walk the city. Every glance has a price.</h2>
-    <p class="c-lede">A browser simulation of the fictional economy. Scan the map for the district that pays most, enter a street, hold your gaze on an ad for 15 seconds, then spend what you earned.</p>
-  </div></div>
-  <div class="c-body">
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">Commercial · ~25%</span><h4>Mall façades &amp; media walls</h4><p>8 paid ads · up to 240 LC a walk. Visual load 86%.</p></div>
-      <div class="card"><span class="mono">Residential · ~50%</span><h4>Bus shelters &amp; shop fronts</h4><p>5 paid ads · up to 150 LC a walk. Visual load 41%.</p></div>
-      <div class="card"><span class="mono">Villa · ~25%</span><h4>A gate and a corner</h4><p>3 paid ads · up to 90 LC a walk. Visual load 18%.</p></div>
-    </div>
-  </div>
-  <div class="embed reveal">
-    <div class="bar"><span>LookCoin · interactive prototype · desktop browser, your mouse is your gaze</span><a href="lookcoin-city/" target="_blank" rel="noopener">Open full screen ↗</a></div>
-    <a class="cover-play" href="lookcoin-city/" data-src="lookcoin-city/"><img src="assets/lookcoin/images/lens.jpg" alt=""><span>▶ Play the city</span></a>
-  </div>
-</section>
-
-<section class="c-sec" id="world">
-  <div class="c-head reveal"><div class="c-num">07</div><div>
     <h2 class="c-h">What is one minute of your gaze worth?</h2>
     <p class="c-lede">Spot LAR today, in LC per verified minute. The same minute of looking costs a brand 16× more in New York than in Lagos: your eyes are priced by where you stand.</p>
   </div></div>
-  <div class="c-body">
-    <div class="bars reveal">
+  <div class="world reveal">
+    <figure><img src="assets/lookcoin/figma/06-world-rate-map.webp" alt="World map of spot LAR" data-zoom="assets/lookcoin/figma/06-world-rate-map.webp"></figure>
+    <div class="bars">
       <div class="bar"><span>New York</span><i style="--v:100"></i><b>14.8</b></div>
       <div class="bar"><span>Tokyo</span><i style="--v:91.9"></i><b>13.6</b></div>
       <div class="bar"><span>London</span><i style="--v:81.8"></i><b>12.1</b></div>
       <div class="bar"><span>Singapore</span><i style="--v:75.7"></i><b>11.2</b></div>
-      <div class="bar"><span>Beijing — you are here</span><i style="--v:50"></i><b>7.4</b></div>
+      <div class="bar here"><span>Beijing · you are here</span><i style="--v:50"></i><b>7.4</b></div>
       <div class="bar"><span>São Paulo</span><i style="--v:26.4"></i><b>3.9</b></div>
       <div class="bar"><span>Mumbai</span><i style="--v:17.6"></i><b>2.6</b></div>
       <div class="bar"><span>Lagos</span><i style="--v:6.1"></i><b>0.9</b></div>
     </div>
-    <p class="reveal" style="color:#c5c5be;max-width:46em;margin-top:4vh">The world zooms from the globe to a city, a neighbourhood, a flagship store and a pair of glasses: people take longer routes to earn LC, arrive early to meetings to watch ads, compare their base rates as status, and turn their heads together when the screen changes. Inside the LookCoin tower, brokers, traders and eye-tracking engineers keep the market running.</p>
-    <div class="grid-figs reveal" style="--n:2;--ar:16/9">
-      <figure><img loading="lazy" src="assets/lookcoin/boards/board-07.webp" alt="World-building scenes"><figcaption class="caption">From world to street — a day inside the economy</figcaption></figure>
-      <figure><img loading="lazy" src="assets/lookcoin/images/comic.jpg" alt="Comic: Ms. Lin's story"><figcaption class="caption">Comic — Ms. Lin rents out her face, and her glances move on</figcaption></figure>
-    </div>
+  </div>
+
+  <h3 class="c-sub-h reveal">A day inside the economy</h3>
+  <div class="trip reveal">
+    <figure class="t-l"><img src="assets/lookcoin/figma/06-daily-left-street.webp" alt="The street" data-zoom="assets/lookcoin/figma/06-daily-left-street.webp"><figcaption>The street</figcaption></figure>
+    <figure class="t-c"><img src="assets/lookcoin/figma/06-daily-center-flagship.webp" alt="The flagship store and plaza" data-zoom="assets/lookcoin/figma/06-daily-center-flagship.webp"><figcaption>The flagship store</figcaption></figure>
+    <figure class="t-r"><img src="assets/lookcoin/figma/06-daily-right-headquarters.webp" alt="The LookCoin tower" data-zoom="assets/lookcoin/figma/06-daily-right-headquarters.webp"><figcaption>The LookCoin tower</figcaption></figure>
+  </div>
+  <div class="scenes reveal">
+    <div><span class="mono">On the street</span><ol>
+      <li><b>01</b><h4>At the red light</h4><p>The light is red. Some watch paid ads; others keep talking.</p></li>
+      <li><b>02</b><h4>The longer route</h4><p>Take a longer route to earn LC from ads.</p></li>
+      <li><b>03</b><h4>A profitable meeting point</h4><p>Arrive early. Earn LC while waiting for a friend.</p></li></ol></div>
+    <div><span class="mono">At the flagship store</span><ol>
+      <li><b>04</b><h4>In-store service</h4><p>Staff adjust LC glasses as a customer checks the fit in a mirror.</p></li>
+      <li><b>05</b><h4>Following the higher rate</h4><p>Two friends compare screen rates and walk towards the higher-paying ad.</p></li>
+      <li><b>06</b><h4>Base rate as status</h4><p>Friends compare their base rates. A higher number becomes a mark of status.</p></li>
+      <li><b>07</b><h4>Heads turn together</h4><p>When the ad changes, people across the plaza turn together.</p></li></ol></div>
+    <div><span class="mono">Inside the tower</span><ol>
+      <li><b>08</b><h4>Private brokerage · F10–F14</h4><p>A broker tailors a client’s viewing time and brands.</p></li>
+      <li><b>09</b><h4>Trading &amp; settlement · F8–F9</h4><p>Traders handle spot, futures and verified LC settlement.</p></li>
+      <li><b>10</b><h4>Eye-tracking &amp; hardware · F3–F7</h4><p>Testing LC glasses, gaze tracking and ad delivery.</p></li>
+      <li><b>11</b><h4>Public service hall · F1–F2</h4><p>Staff help visitors with LC accounts and enquiries.</p></li></ol></div>
   </div>
 </section>
 
-<section class="c-sec" id="reflection">
-  <div class="c-head reveal"><div class="c-num">08</div><div>
-    <h2 class="c-h">Would you want to live in this world?</h2>
-    <p class="c-lede">LookCoin is a dystopia I don’t want to live in. I didn’t invent it — I only pushed today’s attention economy one step further.</p>
+<!-- 07 STORY -->
+<section class="c-sec" id="story">
+  <div class="c-head reveal"><div class="c-num">07</div><div>
+    <h2 class="c-h">In the ninth year of LookCoin, nothing on Earth could be looked at for free.</h2>
+    <p class="c-lede">Ms. Lin had never had a single follower. Then her Gaze Score put her in the top 0.1% of the city — and brands came to rent her face.</p>
   </div></div>
-  <div class="c-body">
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">Hardware</span><h4>Already on sale</h4><p>Smart glasses already see what you see, and headsets like Vision Pro track exactly where your eyes land. Over 7 million Meta smart glasses were sold in 2025.</p></div>
-      <div class="card"><span class="mono">Billboards</span><h4>Already watching back</h4><p>Outdoor screens with cameras now count viewers and how long they look.</p></div>
-      <div class="card"><span class="mono">Payment</span><h4>Already paying</h4><p>In China, apps that pay you to watch ads are mainstream — Douyin Lite and Kuaishou Lite have hundreds of millions of monthly users.</p></div>
-    </div>
-    <blockquote class="quote reveal">When every glance has a price, are your eyes free?<cite>Closing line of the playable city</cite></blockquote>
-  </div>
-</section>
+  <figure class="comic reveal"><img src="assets/lookcoin/figma/07-comic.webp" alt="Comic: Ms. Lin’s story" data-zoom="assets/lookcoin/figma/07-comic.webp"><figcaption class="caption">Click to read the comic at full size.</figcaption></figure>
+  <ol class="beats reveal">
+    <li><span class="mono">Day 1</span><p>Brand reps rent her hair, lips and wrists. A logo on her sleeve “pays for itself in 47 days.”</p></li>
+    <li><span class="mono">Day 12</span><p>After surgery paid for with future glances, every stranger turns to look. The loan is paid off.</p></li>
+    <li><span class="mono">Years later</span><p>Faces age, and glances move on. Debt doesn’t. “Lease it to us — for life — and we’ll raise your rate by fifteen percent.”</p></li>
+    <li><span class="mono">The end</span><p>“Mama! When I look at you, I get paid!” The first time in years anyone truly looked at her face — and it was worth one cent.</p></li>
+  </ol>
 
-<section class="c-sec" id="boards">
-  <div class="c-head reveal"><div class="c-num">09</div><div>
-    <h2 class="c-h">Original boards</h2>
-    <p class="c-lede">Click a board to open it; click again to zoom and pan.</p>
-  </div></div>
-  <div class="boards" data-proj="lookcoin" data-n="8" data-labels="1 VAU banknote|Reality · a child’s day|Attention already has a market|Company · service system|Personal interface|Interactive prototype|The world|Comic · reflection"></div>
+  <div class="refl reveal">
+    <div class="refl-head">
+      <h3>Would you like to live in this world?</h3>
+      <p>LookCoin is a dystopia I don’t want to live in. I didn’t invent it — I only pushed today’s attention economy one step further.</p>
+    </div>
+    <div class="refl-grid">
+      <div><span class="mono">Reality · 2026</span>
+        <div class="devs"><figure><img src="assets/lookcoin/figma/07-device-meta-rayban.webp" alt=""><figcaption>Meta Ray-Ban Display</figcaption></figure><figure><img src="assets/lookcoin/figma/07-device-vision-pro.webp" alt=""><figcaption>Apple Vision Pro</figcaption></figure><figure><img src="assets/lookcoin/figma/07-device-rokid.webp" alt=""><figcaption>Rokid Color · Oct 2026</figcaption></figure><figure><img src="assets/lookcoin/figma/07-device-meta-vr.webp" alt=""><figcaption>Meta VR glasses · Sep 2026</figcaption></figure></div>
+        <ul><li>Smart glasses already see what you see. Headsets like Apple Vision Pro track exactly where your eyes land.</li><li>Over 7 million Meta smart glasses were sold in 2025 alone — triple the year before.</li><li>Oct 2026: Rokid Color, the first full-colour binocular AI glasses: 55 g, from ¥4,999. Rokid Glasses 2 keeps an “all-day recall” of what you saw.</li></ul>
+      </div>
+      <div><span class="mono">Already happening</span>
+        <div class="devs two"><figure><img src="assets/lookcoin/figma/07-billboard-cameras.webp" alt=""><figcaption>Billboard cameras · Jul 2026</figcaption></figure><figure><img src="assets/lookcoin/figma/07-douyin-lite.webp" alt=""><figcaption>Douyin Lite · 305 M users</figcaption></figure></div>
+        <ul><li>Billboards already watch back: in Jul 2026, cameras on World Cup billboards counted 2,540 viewers and timed their gaze, 2.95 s on average.</li><li>In China, apps that pay you to watch ads are mainstream: Douyin Lite and Kuaishou Lite have 305 M and 237 M monthly users.</li><li>Gaze can reveal what you want, your age, your health, your fatigue — and you can’t fake where you look.</li></ul>
+      </div>
+    </div>
+    <p class="refl-hw">The hardware LookCoin needs is already on sale, or months away.</p>
+  </div>
+  <blockquote class="quote big reveal">How far are we from this future?</blockquote>
+  <p class="caption reveal" style="margin-top:6vh">Note · Some scene images and illustrations in this project were created with AI image tools and then edited.</p>
 </section>
 </div>
 
@@ -230,6 +567,9 @@ window.PROTOS = {
 };
 </script>
 <script src="js/proto.js"></script>
+<script>
+document.querySelectorAll('.try').forEach(t => { const c = t.querySelector('.try-cover'); c && c.addEventListener('click', () => t.classList.add('started')); });
+</script>
 <script src="js/case.js"></script>
 </body>
 </html>

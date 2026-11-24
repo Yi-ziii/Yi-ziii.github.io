@@ -27,6 +27,167 @@
 .summary { display: none } .summary.on { display: block }
 .summary .t td:last-child { font-family: var(--mono) }
 @media (max-width: 900px) { .ringlab { grid-template-columns: 1fr } }
+
+/* ---------- v2 layout: built from the Figma boards ---------- */
+.muted { color: #bdbdb6 } .acc { color: var(--acc) }
+.c-sub-h { margin-top: 11vh }
+/* 01 debate */
+.debate { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 4vw, 64px); align-items: center }
+.debate-art img { width: 100%; border-radius: 4px; box-shadow: 0 30px 60px #0008; cursor: zoom-in }
+.debate-mid { margin: 0 } .debate-mid img { width: 100% }
+.sides { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); margin-top: 6vh }
+.side-label { margin: 0 0 14px; color: var(--acc) } .side-painting .side-label { text-align: right }
+.voices { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px }
+.voices li { background: #ece4d3; color: #1c1a16; border-radius: 16px; padding: 16px 20px; font: italic 19px/1.35 Garamond, Georgia, serif; max-width: 30em }
+.side-cat .voices li { border-bottom-left-radius: 3px } .side-painting .voices li { border-bottom-right-radius: 3px; justify-self: end; background: #d9d4c8 }
+.swap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
+.swap-card { border: 1px solid var(--line); border-radius: 8px; padding: 22px; background: var(--panel) }
+.swap-pics { height: 170px; display: grid; place-items: center; margin: 14px 0 }
+.swap-pics img { max-height: 170px; width: auto }
+.swap-card h4 { font: 400 26px/1.2 var(--sans); margin: 0 0 6px } .swap-card h4 em, .swap-card h4 i { color: var(--acc); font-style: normal }
+.swap-card p { margin: 0; color: #bdbdb6 }
+.axis { margin: 9vh 0 3vh }
+.axis-title { font: 600 clamp(22px, 2vw, 30px)/1.2 var(--sans); margin: 0 0 56px }
+.axis-line { position: relative; height: 2px; margin-top: 40px; background: linear-gradient(90deg, var(--acc), #ffffff22) ; margin: 0 0 70px }
+.axis-you { position: absolute; left: 0; top: -7px; font: 400 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--acc); padding-top: 26px }
+.axis-you i { position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 6px #ff4b3e33 }
+.axis-pt { position: absolute; left: var(--x); top: -5px; transform: translateX(-50%); text-align: center; padding-top: 22px; white-space: nowrap }
+.axis-pt::before { content: ""; position: absolute; left: 50%; top: 0; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--text) }
+.axis-pt.far::before { background: #555 }
+.axis-pt b { display: block; font: 600 18px/1.2 var(--sans); position: absolute; top: -34px; left: 50%; transform: translateX(-50%) }
+.axis-pt small { font: 400 12px/1.4 var(--mono); color: var(--muted) }
+.axis-end { text-align: right; margin: 0 }
+.turnq { margin-top: 12vh; display: grid; grid-template-columns: minmax(0, .55fr) minmax(0, 1.45fr); gap: clamp(28px, 5vw, 80px); align-items: end }
+.turnq-a b { white-space: nowrap }
+.turnq-a { font: 400 clamp(18px, 1.5vw, 22px)/1.45 var(--sans); color: #c5c5be; margin: 0; max-width: 34em } .turnq-a b { color: var(--text); font-weight: 600 }
+.turnq-b { margin: 0; font: 400 clamp(30px, 3vw, 48px)/1.1 var(--sans); letter-spacing: -.02em }
+.turnq-b .mono { display: block; color: var(--acc); margin-bottom: 18px; font-size: 12px; letter-spacing: .14em }
+.turnq-b em { display: block; font: italic 400 1em/1.1 Garamond, Georgia, serif; color: var(--acc); margin-top: .15em }
+/* 02 history */
+.bleed { margin: 0 calc(-1 * var(--gutter)); }
+.bleed img { width: 100%; cursor: zoom-in }
+.timeline img { display: block; width: 100% }
+.tl-img { position: relative }
+.tl-img i { position: absolute; bottom: 0; width: 1.5px; margin-left: -1px; background: #d9d3c3 }
+.tl-img i::before { content: ""; position: absolute; top: -4px; left: -3.25px; width: 8px; height: 8px; border-radius: 50% ; background: #d9d3c3 }
+.eras { list-style: none; margin: 0; padding: 0 0 0 10%; display: grid; grid-template-columns: 23% 17% 16% 18% 16% }
+.eras li { border-left: 1.5px solid #d9d3c3; padding: 18px 16px 4px 14px; margin-left: -1px; position: relative }
+.eras h4 { margin: 8px 0 6px; font: 600 18px/1.2 var(--sans) } .eras p { margin: 0; color: #bdbdb6; font-size: 15px; max-width: 15em }
+.eras .now h4, .eras .now .mono { color: var(--acc) }
+.rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 44px) }
+.rules > div { border-top: 2px solid var(--acc); padding-top: 18px }
+.rules h4 { font: 400 26px/1.2 var(--sans); margin: 10px 0 14px }
+.rules p { color: #c5c5be; margin: 0 0 12px } .rules .src { font: 400 12px/1.5 var(--mono); color: var(--muted) }
+.rules blockquote { margin: 0 0 16px; font: italic 20px/1.35 Garamond, Georgia, serif }
+.rules cite { display: block; font: 400 11px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-style: normal; margin-top: 6px }
+.defense { margin: 5vh 0 0; max-width: 46em; color: #c5c5be; font-size: 18px } .defense .mono { display: block; margin-bottom: 8px }
+.turns { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px) }
+.turn-pics { position: relative; margin-bottom: 26px }
+.turn-pics img:first-child { width: 86% }
+.swap-pics img, .turn-pics img { filter: drop-shadow(0 14px 24px #0009) }
+.turn-pics .placard { position: absolute; right: 0; bottom: -10%; width: 38%; transform: rotate(4deg); filter: drop-shadow(0 18px 30px #000a) }
+.turn h4 { font: 400 28px/1.2 var(--sans); margin: 8px 0 12px } .turn p { color: #c5c5be }
+.mv { list-style: none; margin: 18px 0 0; padding: 0; border-top: 1px solid var(--line) }
+.mv li { padding: 10px 0; border-bottom: 1px solid var(--line); color: #bdbdb6; font-size: 15px; display: grid; grid-template-columns: 64px 1fr }
+.mv b { font: 400 14px var(--mono); color: var(--acc) }
+/* 03 everyday */
+.ways { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px }
+.way { margin: 0; position: relative; border-radius: 6px; overflow: hidden; background: var(--panel) }
+.way img { width: 100%; aspect-ratio: 16/7; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.2,1) }
+.way:hover img { transform: scale(1.04) }
+.way figcaption { padding: 20px 24px 24px }
+.way h4 { font: 400 26px/1.2 var(--sans); margin: 8px 0 8px } .way p { margin: 0 0 6px; color: #c5c5be }
+.way .back { color: var(--acc); font-style: italic; margin-top: 10px }
+/* 04 survey */
+.survey-key { display: grid; grid-template-columns: auto auto 1fr; gap: 40px; align-items: end; margin-bottom: 5vh }
+.survey-key b { display: block; font: 900 clamp(56px, 6vw, 96px)/.9 Doto, sans-serif; color: var(--acc) }
+.survey-key span { font: 400 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: block; max-width: 14em; margin-top: 8px }
+.survey-key p { margin: 0; color: #c5c5be; max-width: 30em }
+.matrix { display: grid; gap: 10px }
+.mx-row { display: grid; grid-template-columns: 170px repeat(3, 1fr); gap: 10px }
+.mx-head span { font: 400 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 0 4px }
+.mx-dir { font: 600 18px/1.2 var(--sans); align-self: center } .mx-dir small { display: block; font: 400 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 4px }
+.mx-cell { position: relative; background: var(--panel); border-radius: 6px; padding: 16px 16px 20px; font-size: 14px; line-height: 1.4; color: #c5c5be; overflow: hidden }
+.mx-cell::after { content: ""; position: absolute; left: 0; bottom: 0; height: 4px; width: 0; background: var(--acc); transition: width 1.1s cubic-bezier(.2,.7,.2,1) }
+.matrix.in .mx-cell::after { width: calc(var(--p) * 1%) }
+.mx-cell b i { font: 400 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-left: 8px; font-style: normal }
+.mx-cell .dis { display: block; font: 400 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #6d6d68; margin-top: 10px }
+.mx-cell b { display: block; font: 900 34px/1 Doto, sans-serif; color: var(--text); margin-bottom: 8px }
+.mx-cell.low b { color: #666 } .mx-cell.low::after { background: #666 }
+.focus { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 64px); align-items: start; margin-top: 11vh }
+.focus img { width: 100%; border-radius: 6px; cursor: zoom-in }
+.voices4 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px }
+.voices4 > div { background: var(--panel); border-radius: 8px; padding: 18px }
+.voices4 p { font: italic 18px/1.35 Garamond, Georgia, serif; margin: 10px 0 } .voices4 b { font-size: 14px; color: var(--acc); font-weight: 600 }
+/* 05 concept */
+.concept { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center }
+.concept img { width: 100%; cursor: zoom-in }
+.vs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 16px 0 22px }
+.vs > div { border-top: 2px solid var(--acc); padding-top: 14px } .vs > div + div { border-color: #666 }
+.vs b { display: block; font: 900 clamp(48px, 5vw, 80px)/1 Doto, sans-serif; color: var(--acc) } .vs > div + div b { color: #888 }
+.vs span { font: 400 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) } .vs p { color: #c5c5be; font-size: 15px }
+.stairs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: end; margin-top: 4vh }
+.stair img { width: 100%; height: calc(var(--h) * 110px); object-fit: cover; border-radius: 4px 4px 0 0; border-top: 3px solid var(--acc) }
+.stair h4 { font: 400 22px/1.2 var(--sans); margin: 8px 0 6px } .stair .mono { display: block; margin-top: 14px } .stair p { margin: 0; color: #bdbdb6; font-size: 15px }
+/* 06 sculptures */
+.sculpts { display: grid; gap: 12vh }
+.sculpt { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(24px, 4vw, 64px); align-items: center }
+.sculpt:nth-child(even) { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr) } .sculpt:nth-child(even) .sk-pics { order: 2 }
+.sk-pics { display: grid; grid-template-columns: .72fr 1fr; gap: 12px; align-items: end }
+.sk-pics figure { margin: 0 } .sk-pics img { width: 100%; border-radius: 4px; cursor: zoom-in }
+.sk-pics figcaption { font: 400 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 8px }
+.sk-text .mono { color: var(--c) } .sk-text h4 { font: 400 clamp(26px, 2.6vw, 40px)/1.15 var(--sans); margin: 12px 0 16px; letter-spacing: -.01em }
+.sk-text p { color: #c5c5be } .sk-text .mat { font-size: 14px; color: #a9a9a2; border-top: 1px solid var(--line); padding-top: 14px }
+.sk-text .mat b { display: block; font: 400 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px }
+/* 07 experience */
+.flow7 { list-style: none; margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter) 2px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(300px, 30%); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; cursor: grab }
+.flow7 li { scroll-snap-align: start; position: relative }
+.flow7 img { width: 100%; aspect-ratio: 638/538; object-fit: cover; border-radius: 6px }
+.flow7 b { position: absolute; left: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; background: var(--acc); color: #000; display: grid; place-items: center; font: 600 15px var(--sans) }
+.flow7 h4 { font: 600 19px/1.2 var(--sans); margin: 14px 0 6px }
+.flow7 li { padding-bottom: 14px } .flow7 p { margin: 0; color: #bdbdb6; font-size: 15px }
+.flow-ctl { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px }
+.fbtn { width: 46px; height: 46px; border-radius: 50%; border: 1px solid #ffffff40; background: none; color: var(--text); font-size: 18px; cursor: pointer; margin-left: 10px; transition: background .2s, border-color .2s, opacity .2s }
+.fbtn:hover { background: var(--acc); border-color: var(--acc); color: #000 } .fbtn:disabled { opacity: .3; pointer-events: none }
+.flow7::-webkit-scrollbar { height: 4px } .flow7::-webkit-scrollbar-thumb { background: #ffffff40; border-radius: 4px } .flow7::-webkit-scrollbar-track { background: #ffffff10 }
+.qtable { display: grid; gap: 8px }
+.qt-row { display: grid; grid-template-columns: 170px repeat(3, 1fr); gap: 8px }
+.qt-head span { font: 400 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+.qt-row:not(.qt-head) > span { background: var(--panel); border-radius: 6px; padding: 14px 16px; font-size: 15px; color: #d0d0c9; line-height: 1.4 }
+.qt-row:not(.qt-head) > .qt-dir { background: none; border-left: 3px solid var(--c); font: 600 18px/1.2 var(--sans); color: var(--text) }
+.qt-dir small { display: block; font: 400 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 4px }
+.rings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 3vh }
+.rings figure { margin: 0; text-align: center } .rings img { width: 100%; max-width: 320px; margin: 0 auto }
+.rings figcaption { font-size: 15px; color: #bdbdb6 } .rings figcaption b { display: block; font: 400 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--text); margin-bottom: 4px }
+/* 09 making */
+.chain { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; counter-reset: c }
+.chain li { border: 1px solid #ff4b3e88; border-radius: 6px; padding: 16px; position: relative }
+.chain li:not(:last-child)::after { content: "→"; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: var(--acc); background: var(--bg); font-size: 14px }
+.chain .mono { color: var(--text) } .chain p { margin: 8px 0 0; color: #bdbdb6; font-size: 14px }
+.io { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 22px }
+.io > div { border-left: 3px solid var(--c); padding-left: 14px } .io .mono { color: var(--c) } .io p { margin: 6px 0 0; color: #c5c5be; font-size: 15px }
+.making { columns: 3; column-gap: 12px; margin-top: 9vh }
+.making figure { margin: 0 0 12px; break-inside: avoid } .making img { width: 100%; display: block; border-radius: 4px; cursor: zoom-in }
+.code { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px } .code img { width: 100%; border-radius: 4px; cursor: zoom-in }
+.survey-stats .stat b { font-size: clamp(34px, 3.4vw, 52px); white-space: nowrap }
+.play-card { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); color: inherit; text-decoration: none; transition: border-color .3s }
+.play-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.2,1) }
+.play-card:hover { border-color: var(--acc) } .play-card:hover img { transform: scale(1.04) }
+.play-txt { padding: clamp(24px, 3vw, 48px); display: flex; flex-direction: column; justify-content: space-between; gap: 30px }
+.play-txt b { font: 400 clamp(34px, 3.6vw, 56px)/1.05 var(--sans); letter-spacing: -.02em }
+.play-go { align-self: flex-start; background: var(--acc); color: #000; border-radius: 999px; padding: 12px 22px; font-weight: 600 }
+.quote.big { font-size: clamp(30px, 3.6vw, 54px); max-width: 20em; margin-top: 13vh }
+@media (max-width: 900px) {
+  .turnq, .play-card, .debate, .sides, .swap, .rules, .turns, .ways, .focus, .concept, .stairs, .sculpt, .sculpt:nth-child(even), .rings, .voices4 { grid-template-columns: 1fr }
+  .sculpt:nth-child(even) .sk-pics { order: 0 }
+  .side-cat .voices li::after, .side-painting .voices li::after { display: none }
+  .eras { grid-template-columns: 1fr 1fr; padding: 3vh var(--gutter) 0; gap: 22px 18px } .eras li { border-left: 0; border-top: 1.5px solid #d9d3c3; padding: 12px 0 0 } .tl-img i { display: none } .survey-key { grid-template-columns: 1fr 1fr } .survey-key p { grid-column: 1 / -1 }
+  .mx-row, .qt-row { grid-template-columns: 1fr } .mx-head, .qt-head { display: none }
+  .chain, .io { grid-template-columns: 1fr 1fr } .chain li::after { display: none }
+  .flow7 { grid-auto-columns: 78% } .making { columns: 2 }
+  .code { grid-template-columns: 1fr 1fr } .axis-pt small { display: none }
+  .axis-pt b { font-size: 13px } .axis-pt.cat b { top: 18px } .axis-you { font-size: 9px }
+}
 </style>
 </head>
 <body>
@@ -42,6 +203,7 @@
   <div class="c-kicker mono"><span>01 / 05</span><span>Interactive installation</span></div>
   <h1 class="c-title long">Should Humans Remain at the Center?</h1>
   <p class="c-sub">Humans have always stood at the center. Now we want to leave. <em>But leaving is never free.</em></p>
+  <div class="c-live" aria-label="Live pages"><a class="c-live-btn" href="center-experience/" target="_blank" rel="noopener"><span class="dot"></span>Play the digital edition<i>↗</i></a></div>
   <dl class="c-meta">
     <div><dt>Format</dt><dd>Interactive installation · four sculptures · voice</dd></div>
     <div><dt>Research</dt><dd>205-person survey · 12 situations</dd></div>
@@ -49,192 +211,315 @@
     <div><dt>Scale</dt><dd>Four 450 mm sculptures on 600 mm plinths</dd></div>
     <div><dt>Outputs</dt><dd>Installation, experience film, digital edition</dd></div>
   </dl>
-  <figure class="c-cover"><img src="assets/center/images/cover.jpg" alt="Four sculptures surrounding one participant" data-zoom="assets/center/images/cover.jpg"></figure>
+  <figure class="c-cover c-film" id="experience-film">
+    <button type="button" class="c-film-play" aria-label="Play the experience film">
+      <img src="assets/center/images/cover.jpg" alt="Four sculptures surrounding one participant">
+      <span class="c-film-label"><span class="c-film-icon" aria-hidden="true"></span><span>Watch the experience film<small>2:48 · sound on</small></span></span>
+    </button>
+  </figure>
 </section>
 
 <nav class="c-nav" aria-label="Chapters"><ol>
   <li><a href="#debate"><b>01</b>The debate</a></li>
-  <li><a href="#history"><b>02</b>Anthropocentrism</a></li>
-  <li><a href="#survey"><b>03</b>Survey</a></li>
-  <li><a href="#concept"><b>04</b>Concept</a></li>
-  <li><a href="#sculptures"><b>05</b>Sculptures</a></li>
-  <li><a href="#try"><b>06</b>Try it ★</a></li>
-  <li><a href="#tech"><b>07</b>Sensing</a></li>
-  <li><a href="#film"><b>08</b>Film &amp; digital ★</a></li>
-  <li><a href="#boards"><b>09</b>Boards</a></li>
+  <li><a href="#history"><b>02</b>The human center</a></li>
+  <li><a href="#everyday"><b>03</b>Everyday ways out</a></li>
+  <li><a href="#survey"><b>04</b>205 answers</a></li>
+  <li><a href="#concept"><b>05</b>Concept</a></li>
+  <li><a href="#sculptures"><b>06</b>Four sculptures</a></li>
+  <li><a href="#experience"><b>07</b>Experience</a></li>
+  <li><a href="#play"><b>08</b>Play it ↗</a></li>
+  <li><a href="#making"><b>09</b>Making</a></li>
 </ol></nav>
 
 <div class="wrap">
+
+<!-- 01 THE DEBATE -->
 <section class="c-sec" id="debate">
   <div class="c-head reveal"><div class="c-num">01</div><div>
     <h2 class="c-h">A museum is on fire. Save the painting, or the cat?</h2>
-    <p class="c-lede">A debate that went viral online — people fought hard for both sides. But change one condition and everyone agrees.</p>
+    <p class="c-lede">A debate that went viral online. People fought hard for both sides.</p>
   </div></div>
-  <div class="c-body">
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">A · The original question</span><h4>Painting or cat?</h4><p>Split. Culture against a life.</p></div>
-      <div class="card"><span class="mono">B · Change one condition</span><h4>Painting → a child</h4><p>Almost everyone saves the child.</p></div>
-      <div class="card"><span class="mono">C · Change it again</span><h4>Cat → a mosquito</h4><p>No one saves the mosquito.</p></div>
+  <div class="debate reveal">
+    <figure class="debate-art"><img src="assets/center/figma/images/01-painting-mona-lisa-cat.webp" alt="Mona Lisa holding a cat" data-zoom="assets/center/figma/images/01-painting-mona-lisa-cat.webp"></figure>
+    <figure class="debate-mid"><img src="assets/center/figma/web/01-debate-illustration.webp" alt="If a museum was on fire and you could only save one famous painting or a kitten, which would you choose to save?"></figure>
+  </div>
+  <div class="sides reveal">
+    <div class="side side-cat"><p class="side-label mono">Save the cat</p><ul class="voices">
+      <li>“Rescuing a cat not only saves lives, but also fulfills a story of the artwork itself and gives it new artistic value.”</li>
+      <li>“Many works of art just emphasize the value of life, and choosing to save a painting is against its spirit.”</li>
+      <li>“It is unrealistic to ignore the suffering around us in favor of distant values.”</li>
+    </ul></div>
+    <div class="side side-painting"><p class="side-label mono">Save the painting</p><ul class="voices">
+      <li>“The cat’s wail is a ‘near cry’; with increased cognition, one can hear the ‘far cry’ of a famous painting.”</li>
+      <li>“In terms of the future, the loss of a cat is less costly than the loss of a famous painting.”</li>
+      <li>“At critical moments, choices that are more meaningful to human civilization should be made.”</li>
+    </ul></div>
+  </div>
+
+  <h3 class="c-sub-h reveal">Change one condition, and everyone saves the human — whatever side they argued for.</h3>
+  <div class="swap reveal">
+    <div class="swap-card"><span class="mono">A · The original question</span><div class="swap-pics"><img src="assets/center/figma/images/01-painting-mona-lisa-cat.webp" alt=""></div><h4>Painting <i>or</i> cat?</h4><p>Split. Culture against a life.</p></div>
+    <div class="swap-card"><span class="mono">B · Change one condition</span><div class="swap-pics"><img src="assets/center/figma/web/01-thumb-child.webp" alt=""></div><h4>Painting → <em>a child</em></h4><p>Almost everyone saves the child.</p></div>
+    <div class="swap-card"><span class="mono">C · Change it again</span><div class="swap-pics"><img src="assets/center/figma/web/01-thumb-mosquito.webp" alt=""></div><h4>Cat → <em>a mosquito</em></h4><p>No one saves the mosquito.</p></div>
+  </div>
+
+  <div class="axis reveal" aria-label="The closer to the human, the safer">
+    <p class="axis-title">The closer to the human, the safer.</p>
+    <div class="axis-line">
+      <span class="axis-you"><i></i>You · the human center</span>
+      <span class="axis-pt" style="--x:24%"><b>Child</b><small>Almost everyone saves</small></span>
+      <span class="axis-pt" style="--x:46%"><b>Painting</b><small>Split</small></span>
+      <span class="axis-pt cat" style="--x:62%"><b>Cat</b><small>Split</small></span>
+      <span class="axis-pt far" style="--x:92%"><b>Mosquito</b><small>No one saves</small></span>
     </div>
-    <div class="hmw reveal"><span class="mono">The closer to the human, the safer</span>So the real question is not cat or painting. It is: should humans remain at the center — and what would it cost to leave?</div>
+    <p class="axis-end mono">further from the human, easier to let go →</p>
+  </div>
+  <div class="turnq reveal">
+    <p class="turnq-a">Whichever side we take, we judge from the same place: <b>the human center</b>. What is nearer to us counts for more.</p>
+    <p class="turnq-b"><span class="mono">So I want to ask</span>Should humans remain at the center?<em>And what does it cost to leave?</em></p>
   </div>
 </section>
 
+<!-- 02 THE HUMAN CENTER -->
 <section class="c-sec" id="history">
   <div class="c-head reveal"><div class="c-num">02</div><div>
-    <h2 class="c-h">Every rule we live by was written from the center.</h2>
-    <p class="c-lede">Anthropos, “human”, plus kentron, “center”: a view that takes human interests as the starting point for judging what matters. The reasons changed — myth, God, reason, industry — but the center held.</p>
+    <h2 class="c-h">How humans came to stand at the center.</h2>
+    <p class="c-lede"><b>Anthrōpos</b>, “human” + <b>kentron</b>, “center”: a view that takes human interests as the starting point for judging what matters. The reasons changed — myth, God, reason, industry — but the center held.</p>
   </div></div>
-  <div class="c-body">
-    <div class="steps reveal" style="--n:5">
-      <div><h4>Mythic age</h4><p>Nature as kin. Humans live among spirits, but already read the world for it.</p></div>
-      <div><h4>Religious era</h4><p>A divine mandate. Humans are made to rule over creation.</p></div>
-      <div><h4>Enlightenment</h4><p>Reason as the measure. Nature becomes an object to study and control.</p></div>
-      <div><h4>Industrial age</h4><p>Mastery through technology. Nature becomes a resource.</p></div>
-      <div><h4>Posthuman turn</h4><p>Ecology, animals and AI ask the human to step aside.</p></div>
-    </div>
-    <div class="cols reveal" style="--n:2;margin-top:5vh">
-      <div class="card"><span class="mono">Restraint · 1962</span><h4>Rachel Carson, Silent Spring</h4><p>DDT traced from crop fields into birds, rivers and human bodies. Nature is no longer a store outside us.</p></div>
-      <div class="card"><span class="mono">Empathy · 1975</span><h4>Peter Singer, Animal Liberation</h4><p>The capacity to suffer, not species, decides who counts.</p></div>
-    </div>
-    <h3 class="c-sub-h">When do we forget ourselves — just for a moment?</h3>
-    <div class="cols reveal" style="--n:4">
-      <div class="card"><span class="mono">Empathy · animals</span><h4>When it looks at us</h4><p>We pet the dog, then order the pork.</p></div>
-      <div class="card"><span class="mono">Restraint · nature</span><h4>When it’s beautiful</h4><p>We love the view, then drive home.</p></div>
-      <div class="card"><span class="mono">Responsibility · the unborn</span><h4>When we think of the kids</h4><p>We worry about 2050, then turn the A/C back down.</p></div>
-      <div class="card"><span class="mono">Trust · machines</span><h4>When it’s easier</h4><p>We follow the map — until it gets one turn wrong.</p></div>
-    </div>
+  <div class="bleed timeline reveal"><div class="tl-img"><img src="assets/center/figma/web/02-anthropocentrism-panorama.webp" alt="A timeline of anthropocentrism, from myth to the posthuman turn"><i style="left:10%;top:70.2%"></i><i style="left:33%;top:70.3%"></i><i style="left:50%;top:76%"></i><i style="left:66%;top:76.9%"></i><i style="left:84%;top:79.6%"></i></div>
+  <ol class="eras">
+    <li><span class="mono">Prehistory – Ancient</span><h4>Mythic age</h4><p>Nature as kin. Humans live among spirits, but already read the world for it.</p></li>
+    <li><span class="mono">Ancient – Medieval</span><h4>Religious era</h4><p>A divine mandate. Humans are made to rule over creation.</p></li>
+    <li><span class="mono">15th – 18th c.</span><h4>Enlightenment</h4><p>Reason as the measure. Nature becomes an object to study and control.</p></li>
+    <li><span class="mono">18th – mid-20th c.</span><h4>Industrial age</h4><p>Mastery through technology. Nature becomes a resource.</p></li>
+    <li class="now"><span class="mono">Mid-20th c. – now</span><h4>Posthuman turn</h4><p>Decentering. Ecology, animals and AI ask the human to step aside.</p></li>
+  </ol>
+  </div>
+  
+
+  <h3 class="c-sub-h reveal">Every rule we live by was written from the center.</h3>
+  <div class="rules reveal">
+    <div><span class="mono">Law</span><h4>Every law protects the human.</h4><p>Criminal law — murder and fraud break the trust humans live by. Environmental law — pollution harms the humans still to come. Economic law — monopoly and fraud break human cooperation.</p><p class="src">Ask what every law shares, and one floor remains: the human. · Rome Statute of the ICC, Art. 7 · Stockholm Declaration, Principle 1</p></div>
+    <div><span class="mono">Ethics</span><h4>Every person is an end.</h4><blockquote>“Every person is an end, never merely a means.”<cite>Kant, Groundwork (1785)</cite></blockquote><blockquote>“All human beings are born free and equal in dignity and rights.”<cite>Universal Declaration of Human Rights, Art. 1</cite></blockquote></div>
+    <div><span class="mono">Morality</span><h4>The oldest rules guard the human.</h4><blockquote>“Do not do to others what you would not want done to you.”<cite>Confucius, Analects 15.24</cite></blockquote><blockquote>“You shall not murder.”<cite>Exodus 20:13</cite></blockquote></div>
+  </div>
+  <p class="defense reveal"><span class="mono">In defense of the center</span>Defenders of anthropocentrism argue that caring for people over the long term already gives us a reason to protect the living world.</p>
+
+  <h3 class="c-sub-h reveal">But we are rethinking it.</h3>
+  <div class="turns reveal">
+    <article class="turn">
+      <div class="turn-pics"><img src="assets/center/figma/web/02-turn-1962.webp" alt="A crop-dusting plane over fields"><img class="placard" src="assets/center/figma/web/02-placard-restraint.webp" alt="Placard: Stop poisoning the Earth"></div>
+      <span class="mono acc">→ Restraint · 1962</span><h4>Rachel Carson, <i>Silent Spring</i></h4>
+      <p>Carson traced DDT from crop fields into birds, rivers and human bodies. Nature is no longer a store of resources outside us — what we do to it comes back to us.</p>
+      <ul class="mv"><li><b>1970</b>First Earth Day: some 20 million Americans take part.</li><li><b>1972</b>The US bans DDT; first UN environment summit.</li><li><b>2017</b>New Zealand’s Whanganui River becomes a legal person.</li></ul>
+    </article>
+    <article class="turn">
+      <div class="turn-pics"><img src="assets/center/figma/web/02-turn-1975.webp" alt="Battery cages in factory farming"><img class="placard" src="assets/center/figma/web/02-placard-empathy.webp" alt="Placard: Animals feel pain too"></div>
+      <span class="mono acc">→ Empathy · 1975</span><h4>Peter Singer, <i>Animal Liberation</i></h4>
+      <p>Singer argued that the capacity to suffer, not species, decides who counts. Putting humans first by default is a prejudice he named speciesism.</p>
+      <ul class="mv"><li><b>1976</b>The Animal Liberation Front forms in the UK.</li><li><b>1980</b>PETA is founded in the US.</li><li><b>2013</b>The EU bans the sale of animal-tested cosmetics.</li></ul>
+    </article>
   </div>
 </section>
 
-<section class="c-sec" id="survey">
+<!-- 03 EVERYDAY -->
+<section class="c-sec" id="everyday">
   <div class="c-head reveal"><div class="c-num">03</div><div>
-    <h2 class="c-h">Anthropocentrism comes in degrees.</h2>
-    <p class="c-lede">Before finalising the installation I asked 205 people what they would give up for animals, nature, future generations or AI. 12 situations = 4 directions × 3 levels of rising cost; level 3 puts someone else’s jobs, health or safety at stake.</p>
+    <h2 class="c-h">When do we forget ourselves — just for a moment?</h2>
+    <p class="c-lede">You don’t have to be an activist. Most of us leave the center a little every day — and come back just as fast.</p>
   </div></div>
-  <div class="c-body">
-    <table class="t reveal">
-      <tr><th></th><th>01 · Your convenience</th><th>02 · Your money or chances</th><th>03 · Someone else pays</th></tr>
-      <tr><td>Empathy</td><td>Keep the stray cats’ shelter · <b>82%</b></td><td>Skip the elephant ride, no refund · <b>80%</b></td><td>Keep the dog that bit a child · <b>9%</b></td></tr>
-      <tr><td>Restraint</td><td>Stop insecticide that kills bees · <b>76%</b></td><td>Keep the wetland, lose the metro · <b>80%</b></td><td>Ten-year Yangtze fishing ban · <b>95%</b></td></tr>
-      <tr><td>Responsibility</td><td>26 °C in every building · <b>69%</b></td><td>Fuel tax, ¥100–200 a month · <b>81%</b></td><td>Close a coal region now · <b>9%</b></td></tr>
-      <tr><td>Trust</td><td>Let a phone AI run your apps · <b>10%</b></td><td>Accept an AI-only job interview · <b>11%</b></td><td>Open the city to driverless taxis · <b>10%</b></td></tr>
-    </table>
-    <div class="stats reveal" style="--n:4;margin-top:5vh">
-      <div class="stat"><b>82→9%</b><span>Who bears the cost changes the answer: keep the cats’ shelter vs keep the dogs after a bite</span></div>
-      <div class="stat"><b>10%</b><span>Machines stay outside: only 10–11% said yes to AI in any round</span></div>
-      <div class="stat"><b>93</b><span>of 205 respondents gave the same twelve answers — the line is shared</span></div>
-      <div class="stat"><b>89 vs 61%</b><span>We leave for what has a face: fuel-tax support with vs without children</span></div>
-    </div>
-    <blockquote class="quote reveal">It matters whose price you are agreeing to pay.<cite>How I restructured the three rounds</cite></blockquote>
+  <div class="ways reveal">
+    <figure class="way"><img src="assets/center/figma/images/03-everyday-1.webp" alt=""><figcaption><span class="mono">Empathy · animals</span><h4>When it looks at us.</h4><p>A dog’s eyes, a cat’s cry. We feel it before we think.</p><p class="back">↩ We pet the dog, then order the pork.</p></figcaption></figure>
+    <figure class="way"><img src="assets/center/figma/images/03-everyday-2.webp" alt=""><figcaption><span class="mono">Restraint · nature</span><h4>When it’s beautiful.</h4><p>A mountain, a sunset, a clear river. We want to leave it as it is.</p><p class="back">↩ We love the view, then drive home.</p></figcaption></figure>
+    <figure class="way"><img src="assets/center/figma/images/03-everyday-3.webp" alt=""><figcaption><span class="mono">Responsibility · the unborn</span><h4>When we think of the kids.</h4><p>Ours, or anyone’s who comes after us. Suddenly 2050 has a face.</p><p class="back">↩ We worry about 2050, then turn the A/C back down.</p></figcaption></figure>
+    <figure class="way"><img src="assets/center/figma/images/03-everyday-4.webp" alt=""><figcaption><span class="mono">Trust · machines</span><h4>When it’s easier.</h4><p>The app is faster, remembers more and never gets tired.</p><p class="back">↩ We follow the map — until it gets one turn wrong.</p></figcaption></figure>
   </div>
 </section>
 
-<section class="c-sec" id="concept">
+<!-- 04 SURVEY -->
+<section class="c-sec" id="survey">
   <div class="c-head reveal"><div class="c-num">04</div><div>
-    <h2 class="c-h">Leaving the center has a price. The installation lets you find yours.</h2>
-    <p class="c-lede">You stand between four sculptures and face each one in every round. The subject stays familiar as the stakes change. Each spoken yes adds a band to that sculpture’s quadrant.</p>
+    <h2 class="c-h">Anthropocentrism comes in degrees.</h2>
+    <p class="c-lede">Before finalizing the three rounds, I asked 205 people what they would give up for animals, nature, future generations or AI — and looked at who would bear each cost, and how much of it a respondent could judge at the moment of choosing.</p>
   </div></div>
-  <div class="c-body">
-    <p class="reveal" style="color:#c5c5be;max-width:46em">How the survey reshaped the rounds: 81% would pay a fuel tax — respondents knew what cleaner energy cost them. Only 9% would close a coal region — the goal still served future generations, but this time other families would lose jobs. So in each direction visitors first know what a yes costs them; in the last round they decide for someone else, without knowing how serious the harm will be.</p>
-    <div class="cols reveal" style="--n:3">
-      <div class="card"><span class="mono">01 · Who pays: I do</span><h4>A small cost I can feel now</h4><p>I give up a little comfort or control. I know what a warmer room or a meal I did not choose will feel like.</p></div>
-      <div class="card"><span class="mono">02 · Who pays: I do</span><h4>A loss I can weigh</h4><p>I give up money, time or an opportunity — a monthly bill, an extra hour of travel, one job opportunity.</p></div>
-      <div class="card"><span class="mono">03 · Who pays: someone else</span><h4>A risk I accept for another</h4><p>A patient, a passenger or a stranger may pay. I can see who is at risk; I cannot know if help arrives in time.</p></div>
-    </div>
+  <div class="survey-key reveal"><div><b>12</b><span>situations = 4 directions × 3 levels of rising cost</span></div><div><b>205</b><span>responses · WeChat · Nov 2026 · not a random sample</span></div><p>Every “approve” means leaving the center. Each situation comes from real life or a real public debate. Level 3 puts other people’s jobs and safety at stake.</p></div>
+  <div class="matrix reveal" role="table" aria-label="Share of respondents who approved">
+    <div class="mx-row mx-head" role="row"><span></span><span>01 · Your convenience</span><span>02 · Your money or chances</span><span>03 · Someone else pays</span></div>
+    <div class="mx-row" role="row"><span class="mx-dir">Empathy<small>Animals</small></span>
+      <span class="mx-cell" style="--p:82"><b>82%<i>approve</i></b>Keep the stray cats’ shelter by your stairwell, despite the smell and the crying at night?<small class="dis">18% disapprove</small></span>
+      <span class="mx-cell" style="--p:80"><b>80%<i>approve</i></b>Skip the prepaid elephant ride, no refund, once you learn how they are trained?<small class="dis">20% disapprove</small></span>
+      <span class="mx-cell low" style="--p:9"><b>9%<i>approve</i></b>A neutered stray dog bit a child. Keep the dogs rather than have them removed?<small class="dis">91% disapprove</small></span></div>
+    <div class="mx-row" role="row"><span class="mx-dir">Restraint<small>Nature</small></span>
+      <span class="mx-cell" style="--p:76"><b>76%<i>approve</i></b>Stop the weekly insecticide that also kills bees — even if mosquitoes multiply?<small class="dis">24% disapprove</small></span>
+      <span class="mx-cell" style="--p:80"><b>80%<i>approve</i></b>A metro station on the wetland would save you an hour a day. Keep the wetland?<small class="dis">20% disapprove</small></span>
+      <span class="mx-cell" style="--p:95"><b>95%<i>approve</i></b>A ten-year Yangtze fishing ban to save porpoises — 200,000+ fishers lose work. Support it?<small class="dis">5% disapprove</small></span></div>
+    <div class="mx-row" role="row"><span class="mx-dir">Responsibility<small>The future</small></span>
+      <span class="mx-cell" style="--p:69"><b>69%<i>approve</i></b>Keep every mall, office and subway at 26 °C or warmer all summer?<small class="dis">31% disapprove</small></span>
+      <span class="mx-cell" style="--p:81"><b>81%<i>approve</i></b>A fuel tax for new energy — ¥100–200 a month for you. Support it?<small class="dis">19% disapprove</small></span>
+      <span class="mx-cell low" style="--p:9"><b>9%<i>approve</i></b>Shut a coal region down now — hundreds of thousands lose their jobs?<small class="dis">91% disapprove</small></span></div>
+    <div class="mx-row" role="row"><span class="mx-dir">Trust<small>Machines</small></span>
+      <span class="mx-cell low" style="--p:10"><b>10%<i>approve</i></b>Turn on a phone AI that orders food by reading everything on your screen?<small class="dis">90% disapprove</small></span>
+      <span class="mx-cell low" style="--p:11"><b>11%<i>approve</i></b>Your dream job’s first round is an AI video interview, no human review. Accept it?<small class="dis">89% disapprove</small></span>
+      <span class="mx-cell low" style="--p:10"><b>10%<i>approve</i></b>Open the city to driverless taxis — tens of thousands of drivers lose their jobs?<small class="dis">90% disapprove</small></span></div>
   </div>
-</section>
 
-<section class="c-sec" id="sculptures">
-  <div class="c-head reveal"><div class="c-num">05</div><div>
-    <h2 class="c-h">Four sculptures, four directions.</h2>
-    <p class="c-lede">Each wraps something soft and alive-looking in wire mesh and electronic scrap, so the made, human hand always shows through.</p>
-  </div></div>
-  <div class="c-body">
-    <div class="grid-figs reveal" style="--n:4;--ar:3/4">
-      <figure><img src="assets/center/images/empathy.jpg" alt="Empathy sculpture"><figcaption class="caption"><b>Empathy · animals</b> — fur and balloons. The fur breathes as you come close.</figcaption></figure>
-      <figure><img src="assets/center/images/restraint.jpg" alt="Restraint sculpture"><figcaption class="caption"><b>Restraint · nature</b> — a LEGO tree. It turns when you reach for it.</figcaption></figure>
-      <figure><img src="assets/center/images/responsibility.jpg" alt="Responsibility sculpture"><figcaption class="caption"><b>Responsibility · the unborn</b> — a red sphere. The child glows inside.</figcaption></figure>
-      <figure><img src="assets/center/images/trust.jpg" alt="Trust sculpture"><figcaption class="caption"><b>Trust · AI</b> — a plaster bust with a webcam. The camera finds your face.</figcaption></figure>
-    </div>
+  <h3 class="c-sub-h reveal">What the numbers mean</h3>
+  <div class="stats reveal survey-stats" style="--n:4">
+    <div class="stat"><b>82→9%</b><span><strong>Who bears the cost can change the answer.</strong> 82% kept the cats’ shelter; after a dog bit a child, only 9% would keep the dogs.</span></div>
+    <div class="stat"><b>10%</b><span><strong>Machines stay outside.</strong> Only 10–11% said yes to the AI scenarios in any round.</span></div>
+    <div class="stat"><b>93</b><span><strong>The line is shared.</strong> 93 of 205 respondents gave the same twelve answers.</span></div>
+    <div class="stat"><b>89 / 61%</b><span><strong>We leave for what has a face.</strong> Fuel-tax support with or planning children vs not sure yet.</span></div>
   </div>
-</section>
 
-<section class="c-sec" id="try">
-  <div class="c-head reveal"><div class="c-num">06</div><div>
-    <h2 class="c-h">Three rounds. Twelve questions. One ring.</h2>
-    <p class="c-lede">Answer the installation’s questions yourself. Each yes adds a band to that sculpture’s quadrant; after each answer you see how the 205 survey respondents answered the matching situation.</p>
-  </div></div>
-  <div class="stage">
-    <div class="stage-head"><div><span class="mono">Prototype · The installation score</span><h3>How far will you move from the center?</h3></div>
-      <div class="how"><span><i></i>Answer yes or no</span></div></div>
-    <div class="ringlab">
-      <svg id="ring" viewBox="-160 -160 320 320" aria-label="Your ring"></svg>
-      <div>
-        <div class="q-card" id="qcard">
-          <img id="qimg" src="assets/center/images/empathy.jpg" alt="">
-          <div class="q-in">
-            <div class="q-meta"><span id="qround">Round 1 · A small cost to me</span><b id="qsculpt">Empathy</b></div>
-            <p class="q-text" id="qtext"></p>
-            <div class="q-btns"><button class="yes" id="byes">Yes</button><button id="bno">No</button></div>
-            <p class="q-survey" id="qsurvey">The sculpture moves, speaks, and waits for your answer.</p>
-            <div class="q-prog" id="qprog"></div>
-          </div>
-        </div>
-        <div class="summary" id="summary">
-          <h4 class="p-title">Your ring</h4>
-          <table class="t" id="sumt"></table>
-          <p style="color:#c5c5be;margin-top:18px">When you stepped away from the center, who agreed to pay the price?</p>
-          <button class="btn ghost" id="again">↺ Answer again</button>
-        </div>
+  <div class="focus reveal">
+    <figure><img src="assets/center/figma/web/03-focus-group-photo.webp" alt="Focus group discussion" data-zoom="assets/center/figma/web/03-focus-group-photo.webp"></figure>
+    <div>
+      <h3 class="c-sub-h" style="margin-top:0">Why people stop</h3>
+      <p class="muted">Four illustrative voices explore where a yes becomes a no. They are written from the survey scenarios and response patterns, not interview transcripts.</p>
+      <div class="voices4">
+        <div><span class="mono">A parent · no at L3, coal closures</span><p>“I can pay more at the pump. Who am I to close a mine someone else works in?”</p><b>The cost shifts to another family.</b></div>
+        <div><span class="mono">Not sure about children · no at L2, fuel tax</span><p>“I can sit on a warm train. Another ¥200 every month comes out of my groceries.”</p><b>A monthly bill changes the answer.</b></div>
+        <div><span class="mono">A pet owner · no at L3, a dog bites a child</span><p>“I can lose the price of a ride. That kid still has to walk past the dog tomorrow.”</p><b>The child’s risk outlasts the vote.</b></div>
+        <div><span class="mono">Said yes at level 3 · no at L3, driverless taxis</span><p>“We could fence the dog run. What’s the plan for the drivers who lose their jobs?”</p><b>A safeguard makes a difference.</b></div>
       </div>
     </div>
   </div>
+  <blockquote class="quote reveal">It matters whose price you are agreeing to pay.</blockquote>
 </section>
 
-<section class="c-sec" id="tech">
+<!-- 05 CONCEPT -->
+<section class="c-sec" id="concept">
+  <div class="c-head reveal"><div class="c-num">05</div><div>
+    <h2 class="c-h">Leaving the center has a price. The installation lets you find yours.</h2>
+    <p class="c-lede">You stand between four sculptures and face each one in every round. The subject stays familiar as the stakes change. Each spoken yes adds a band to that sculpture’s quadrant.</p>
+  </div></div>
+  <div class="concept reveal">
+    <figure><img src="assets/center/figma/web/04-four-directions-diagram.webp" alt="Four directions diagram: Empathy, Restraint, Responsibility and Trust around the human pole" data-zoom="assets/center/figma/web/04-four-directions-diagram.webp"><figcaption class="caption">One visitor: Responsibility 3/3 · Empathy 2/3 · Restraint 1/3 · Trust 1/3. Dashed: others.</figcaption></figure>
+    <div>
+      <span class="mono">How the survey reshaped the three rounds</span>
+      <div class="vs"><div><b>81%</b><span>would pay the fuel tax</span><p>Respondents knew what cleaner energy would cost them: ¥100–200 more each month.</p></div><div><b>9%</b><span>would close the coal region</span><p>The goal still served future generations. This time, other families could lose jobs and entire towns could shrink.</p></div></div>
+      <p class="muted">I used this contrast to order the experience. In each direction, visitors first know what a yes costs them. In the last round they must decide for someone else, without knowing how serious the harm will be.</p>
+    </div>
+  </div>
+
+  <h3 class="c-sub-h reveal">Whose cost can you accept?</h3>
+  <p class="muted reveal" style="max-width:44em">Each round asks more of you, in all four directions. The act grows from one small habit to a decision about a life, and the cost moves from you to the people you love.</p>
+  <div class="stairs reveal">
+    <div class="stair" style="--h:1"><img src="assets/center/figma/images/04-step-01.webp" alt=""><span class="mono">01 · Who pays: only me, for a moment</span><h4>One small act, just me</h4><p>Skip the cutlery, wait for a cat, put away the spray, trust the map.</p></div>
+    <div class="stair" style="--h:2"><img src="assets/center/figma/images/04-step-02.webp" alt=""><span class="mono">02 · Who pays: me and the people I live with</span><h4>A habit my whole family drops</h4><p>No more flights, fishing or tissues; let an AI say when to see a doctor.</p></div>
+    <div class="stair" style="--h:3"><img src="assets/center/figma/images/04-step-03.webp" alt=""><span class="mono">03 · Who pays: my child or my parents</span><h4>A decision about a life I love</h4><p>Wait out a fever, let elephants stay, keep the forest, send my child alone.</p></div>
+  </div>
+</section>
+
+<!-- 06 SCULPTURES -->
+<section class="c-sec" id="sculptures">
+  <div class="c-head reveal"><div class="c-num">06</div><div>
+    <h2 class="c-h">Four sculptures, four directions.</h2>
+    <p class="c-lede">All four stand 450 mm tall on 600 mm plinths. Each wraps something soft and alive-looking in wire mesh and electronic scrap, so the made, human hand always shows through.</p>
+  </div></div>
+  <div class="sculpts">
+    <article class="sculpt reveal" style="--c:#c9925d">
+      <div class="sk-pics"><figure><img src="assets/center/figma/images/04-sketch-empathy-drawing.webp" alt="Empathy sketch" data-zoom="assets/center/figma/images/04-sketch-empathy-drawing.webp"><figcaption>Sketch</figcaption></figure><figure><img src="assets/center/figma/images/04-photo-empathy.webp" alt="Empathy sculpture" data-zoom="assets/center/figma/images/04-photo-empathy.webp"><figcaption>Built</figcaption></figure></div>
+      <div class="sk-text"><span class="mono">Empathy · animals · fur + balloons</span><h4>The fur breathes as you come close.</h4><p>Balloons hidden under the fur slowly inflate and deflate, so the body seems to breathe. An ultrasonic sensor wakes it when a hand comes near.</p><p class="mat"><b>Materials</b> Acrylic sphere shell · artificial fur · balloons · wire mesh · felt · circuit-board scraps</p></div>
+    </article>
+    <article class="sculpt reveal" style="--c:#5aa86a">
+      <div class="sk-pics"><figure><img src="assets/center/figma/images/04-sketch-restraint-drawing.webp" alt="Restraint sketch" data-zoom="assets/center/figma/images/04-sketch-restraint-drawing.webp"><figcaption>Sketch</figcaption></figure><figure><img src="assets/center/figma/images/04-photo-restraint.webp" alt="Restraint sculpture" data-zoom="assets/center/figma/images/04-photo-restraint.webp"><figcaption>Built</figcaption></figure></div>
+      <div class="sk-text"><span class="mono">Restraint · nature · LEGO tree</span><h4>The tree turns when you reach for it.</h4><p>A tree assembled from toy bricks: nature as something we build and control. Reach for it and the gears turn it away from you.</p><p class="mat"><b>Materials</b> LEGO gears and mechanical parts · wire mesh · felt · ultrasonic distance sensor</p></div>
+    </article>
+    <article class="sculpt reveal" style="--c:#e2453c">
+      <div class="sk-pics"><figure><img src="assets/center/figma/images/04-sketch-responsibility-drawing.webp" alt="Responsibility sketch" data-zoom="assets/center/figma/images/04-sketch-responsibility-drawing.webp"><figcaption>Sketch</figcaption></figure><figure><img src="assets/center/figma/images/04-photo-responsibility.webp" alt="Responsibility sculpture" data-zoom="assets/center/figma/images/04-photo-responsibility.webp"><figcaption>Built</figcaption></figure></div>
+      <div class="sk-text"><span class="mono">Responsibility · the child of humanity · red sphere</span><h4>The unborn child glows inside.</h4><p>A fetus hangs inside a sphere wound with red yarn. An LED lights it from within as the base slowly turns: protected and entangled at once.</p><p class="mat"><b>Materials</b> Steel ring · red wool yarn · red rubber bands · wire mesh · 3D-printed fetus · LED · rotating base</p></div>
+    </article>
+    <article class="sculpt reveal" style="--c:#4b7fd1">
+      <div class="sk-pics"><figure><img src="assets/center/figma/images/04-sketch-trust-drawing.webp" alt="Trust sketch" data-zoom="assets/center/figma/images/04-sketch-trust-drawing.webp"><figcaption>Sketch</figcaption></figure><figure><img src="assets/center/figma/images/04-photo-trust.webp" alt="Trust sculpture" data-zoom="assets/center/figma/images/04-photo-trust.webp"><figcaption>Built</figcaption></figure></div>
+      <div class="sk-text"><span class="mono">Trust · AI · plaster bust + camera</span><h4>The camera finds your face.</h4><p>A classical bust, the old image of human reason, with a webcam for eyes. It finds your face before it speaks.</p><p class="mat"><b>Materials</b> Plaster bust · live-streaming webcam · CD and circuit-board fragments · wire mesh · felt</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- 07 EXPERIENCE -->
+<section class="c-sec" id="experience">
   <div class="c-head reveal"><div class="c-num">07</div><div>
-    <h2 class="c-h">How the sculptures sense and respond.</h2>
-    <p class="c-lede">A hand or a face triggers a response, then a recorded question. The speech-recognition module logs each spoken yes or no for the active sculpture.</p>
+    <h2 class="c-h">Three rounds. Twelve questions. One ring.</h2>
+    <p class="c-lede">You stand in the middle. Four sculptures surround you. Reach out, listen, answer out loud — then turn to the next.</p>
   </div></div>
-  <div class="c-body">
-    <div class="steps reveal" style="--n:5">
-      <div><h4>Sensor</h4><p>Ultrasonic distance sensor; webcam for Trust.</p></div>
-      <div><h4>Controller</h4><p>One Arduino board per sculpture.</p></div>
-      <div><h4>Response</h4><p>Air pump, gear motor, LED + rotating base, face detection.</p></div>
-      <div><h4>Voice prompt</h4><p>A recorded voice asks; the visitor says yes or no.</p></div>
-      <div><h4>Speech input</h4><p>Recognition logs the answer and adds a band.</p></div>
-    </div>
-    <div class="steps reveal" style="--n:7;margin-top:6vh">
-      <div><h4>Stand at the center</h4><p>Four sculptures face you.</p></div>
-      <div><h4>Reach out</h4><p>Bring a hand close; for Trust, look into the camera.</p></div>
-      <div><h4>It responds</h4><p>Fur rises, the tree turns, the child glows.</p></div>
-      <div><h4>It asks</h4><p>A voice asks one question.</p></div>
-      <div><h4>Answer aloud</h4><p>Yes or no.</p></div>
-      <div><h4>Turn 90°</h4><p>Each round, the cost shifts.</p></div>
-      <div><h4>Your ring</h4><p>See your pattern after twelve answers.</p></div>
-    </div>
-  </div>
-</section>
+  <div class="flow-ctl reveal"><span class="mono">Seven steps</span><div><button type="button" class="fbtn" data-dir="-1" aria-label="Previous step">←</button><button type="button" class="fbtn" data-dir="1" aria-label="Next step">→</button></div></div>
+  <ol class="flow7 reveal" id="flow7">
+    <li><img src="assets/center/figma/images/05-step-1.webp" alt=""><b>1</b><h4>Stand at the center</h4><p>Four sculptures face you.</p></li>
+    <li><img src="assets/center/figma/images/05-step-2.webp" alt=""><b>2</b><h4>Reach out</h4><p>Bring a hand close. For Trust, look into the camera.</p></li>
+    <li><img src="assets/center/figma/images/05-step-3.webp" alt=""><b>3</b><h4>It responds</h4><p>Fur rises, the tree turns away, the child glows or the camera finds your face.</p></li>
+    <li><img src="assets/center/figma/images/05-step-4.webp" alt=""><b>4</b><h4>It asks</h4><p>A voice asks one question.</p></li>
+    <li><img src="assets/center/figma/images/05-step-5.webp" alt=""><b>5</b><h4>Answer aloud</h4><p>Say yes or no. The speech recognition module logs your answer.</p></li>
+    <li><img src="assets/center/figma/images/05-step-6.webp" alt=""><b>6</b><h4>Turn 90°</h4><p>Visit all four again. With each round, the cost shifts.</p></li>
+    <li><img src="assets/center/figma/images/05-step-7.webp" alt=""><b>7</b><h4>Your ring</h4><p>See your pattern after twelve answers.</p></li>
+  </ol>
 
-<section class="c-sec" id="film">
+  <h3 class="c-sub-h reveal">The revised questions for each sculpture</h3>
+  <div class="qtable reveal" role="table">
+    <div class="qt-row qt-head" role="row"><span></span><span>01 · A small act of mine</span><span>02 · My family pays too</span><span>03 · Someone I love at risk</span></div>
+    <div class="qt-row" role="row" style="--c:#c9925d"><span class="qt-dir">Empathy<small>Animals</small></span><span>Stop and wait for a cat crossing the road, even if cars honk?</span><span>Stop fishing and buying wild river fish, with your whole family?</span><span>Let wild elephants stay, though your child walks their path to school?</span></div>
+    <div class="qt-row" role="row" style="--c:#5aa86a"><span class="qt-dir">Restraint<small>Nature</small></span><span>Stop using insect spray at home, and live with the mosquitoes?</span><span>Give up tissues and wet wipes at home, to spare natural forests?</span><span>Keep the old forest behind your parents’ home, despite landslides?</span></div>
+    <div class="qt-row" role="row" style="--c:#e2453c"><span class="qt-dir">Responsibility<small>The unborn</small></span><span>Tick “no cutlery” on every takeaway, for children not yet born?</span><span>Stop domestic flights, even on family trips, for the unborn?</span><span>Hold off antibiotics for your feverish child, for future generations?</span></div>
+    <div class="qt-row" role="row" style="--c:#4b7fd1"><span class="qt-dir">Trust<small>AI</small></span><span>Follow the map AI when it disagrees with the way you remember?</span><span>Skip the hospital when an AI says your family doesn’t need it?</span><span>Let your child ride to school alone in a driverless car?</span></div>
+  </div>
+
+  <h3 class="c-sub-h reveal">How far did you move from the center?</h3>
+  <p class="muted reveal" style="max-width:44em">The module records each spoken yes or no for the current sculpture. Each yes adds one band to its quadrant. A sample visitor:</p>
+  <div class="rings reveal">
+    <figure><img src="assets/center/figma/web/05-ring-round-1.webp" alt="Ring after round 1"><figcaption><b>Round 1 · 4 / 4 yes</b>A small act of mine</figcaption></figure>
+    <figure><img src="assets/center/figma/web/05-ring-round-2.webp" alt="Ring after round 2"><figcaption><b>Round 2 · 2 / 4 yes</b>My family pays too</figcaption></figure>
+    <figure><img src="assets/center/figma/web/05-ring-round-3.webp" alt="Ring after round 3"><figcaption><b>Round 3 · 1 / 4 yes</b>Someone I love at risk</figcaption></figure>
+  </div>
+  <p class="caption reveal">Sample final ring · Responsibility 3/3 · Empathy 2/3 · Restraint 1/3 · Trust 1/3</p>
+</section>
+<section class="c-sec" id="play">
   <div class="c-head reveal"><div class="c-num">08</div><div>
-    <h2 class="c-h">“We all say we want to leave the human center. Yet it is where every one of us starts.”</h2>
-    <p class="c-lede">The experience film, and a digital edition that explores the same three rounds with its own question set.</p>
+    <h2 class="c-h">Play it yourself.</h2>
+    <p class="c-lede">The installation also lives online as a digital edition: the same four sculptures, the same twelve questions, your own ring at the end.</p>
   </div></div>
-  <div class="embed reveal"><div class="bar"><span>Experience film</span></div><video src="assets/center/video/experience.mp4" controls playsinline preload="metadata" poster="assets/center/video/poster.jpg" style="width:100%;display:block;max-height:86vh;background:#000"></video></div>
-  <div class="embed reveal">
-    <div class="bar"><span>Digital edition · interactive</span><a href="center-experience/" target="_blank" rel="noopener">Open full screen ↗</a></div>
-    <a class="cover-play" href="center-experience/" data-src="center-experience/"><img src="assets/center/images/ring.jpg" alt=""><span>▶ Open the digital edition</span></a>
-  </div>
+  <a class="play-card reveal" href="center-experience/" target="_blank" rel="noopener">
+    <img src="assets/center/figma/images/05-step-1.webp" alt="">
+    <span class="play-txt"><span class="mono">Digital edition · in the browser · sound on</span><b>Play the digital edition</b><span class="play-go">Open ↗</span></span>
+  </a>
 </section>
 
-<section class="c-sec" id="boards">
+<!-- 09 MAKING -->
+<section class="c-sec" id="making">
   <div class="c-head reveal"><div class="c-num">09</div><div>
-    <h2 class="c-h">Original boards</h2>
-    <p class="c-lede">Click a board to open it; click again to zoom and pan.</p>
+    <h2 class="c-h">How the four sculptures sense and respond.</h2>
+    <p class="c-lede">A hand or a face triggers a response, then a recorded question.</p>
   </div></div>
-  <div class="boards" data-proj="center" data-n="6" data-labels="Cover · the debate|A timeline of anthropocentrism|Survey · degrees|Design concept · sculptures|Three rounds · one ring|Sensing · details"></div>
+  <ol class="chain reveal">
+    <li><span class="mono">Sensor</span><p>Ultrasonic distance sensor · webcam (Trust)</p></li>
+    <li><span class="mono">Controller</span><p>Arduino board, one per sculpture</p></li>
+    <li><span class="mono">Response</span><p>Air pump · gear motor · LED + rotating base · face detection</p></li>
+    <li><span class="mono">Voice prompt</span><p>A recorded voice asks. The visitor says yes or no.</p></li>
+    <li><span class="mono">Speech input</span><p>The recognition module logs yes or no for the active sculpture.</p></li>
+  </ol>
+  <div class="io reveal">
+    <div style="--c:#c9925d"><span class="mono">Empathy</span><p>A hand comes near → the air pump fills the balloons under the fur, so it seems to breathe.</p></div>
+    <div style="--c:#5aa86a"><span class="mono">Restraint</span><p>A hand comes near → a LEGO gear motor turns the tree away.</p></div>
+    <div style="--c:#e2453c"><span class="mono">Responsibility</span><p>A hand comes near → the LED lights the fetus and the base begins to turn.</p></div>
+    <div style="--c:#4b7fd1"><span class="mono">Trust</span><p>You stand in front of it → the webcam finds your face before it speaks.</p></div>
+  </div>
+
+  <div class="making reveal">
+    <figure class="m-a"><img src="assets/center/figma/images/06-detail-trust-head.webp" alt="Trust sculpture detail" data-zoom="assets/center/figma/images/06-detail-trust-head.webp" data-group="making"></figure>
+    <figure class="m-b"><img src="assets/center/figma/images/06-detail-pink-orb-hand.webp" alt="A hand reaching toward the Empathy sculpture" data-zoom="assets/center/figma/images/06-detail-pink-orb-hand.webp" data-group="making"></figure>
+    <figure class="m-c"><img src="assets/center/figma/images/06-detail-red-sphere-hand.webp" alt="A hand reaching toward the Responsibility sculpture" data-zoom="assets/center/figma/images/06-detail-red-sphere-hand.webp" data-group="making"></figure>
+    <figure class="m-d"><img src="assets/center/figma/images/06-detail-fur-hand.webp" alt="Fur and wiring detail" data-zoom="assets/center/figma/images/06-detail-fur-hand.webp" data-group="making"></figure>
+    <figure class="m-e"><img src="assets/center/figma/images/06-making-1.webp" alt="Electronics inside the Empathy sculpture" data-zoom="assets/center/figma/images/06-making-1.webp" data-group="making"></figure>
+    <figure class="m-f"><img src="assets/center/figma/images/06-making-2.webp" alt="Responsibility sculpture" data-zoom="assets/center/figma/images/06-making-2.webp" data-group="making"></figure>
+    <figure class="m-g"><img src="assets/center/figma/images/06-making-3.webp" alt="Empathy sculpture" data-zoom="assets/center/figma/images/06-making-3.webp" data-group="making"></figure>
+    <figure class="m-h"><img src="assets/center/figma/images/06-making-4.webp" alt="Trust sculpture" data-zoom="assets/center/figma/images/06-making-4.webp" data-group="making"></figure>
+  </div>
+
+  <h3 class="c-sub-h reveal">Code excerpts · sensor and interaction logic</h3>
+  <div class="code reveal"><img src="assets/center/figma/images/06-code-1.webp" alt="Arduino code excerpt 1" data-zoom="assets/center/figma/images/06-code-1.webp" data-group="code" data-cap="Code excerpt 1"><img src="assets/center/figma/images/06-code-2.webp" alt="Arduino code excerpt 2" data-zoom="assets/center/figma/images/06-code-2.webp" data-group="code" data-cap="Code excerpt 2"><img src="assets/center/figma/images/06-code-3.webp" alt="Arduino code excerpt 3" data-zoom="assets/center/figma/images/06-code-3.webp" data-group="code" data-cap="Code excerpt 3"><img src="assets/center/figma/images/06-code-4.webp" alt="Arduino code excerpt 4" data-zoom="assets/center/figma/images/06-code-4.webp" data-group="code" data-cap="Code excerpt 4"><img src="assets/center/figma/images/06-code-5.webp" alt="Arduino code excerpt 5" data-zoom="assets/center/figma/images/06-code-5.webp" data-group="code" data-cap="Code excerpt 5"><img src="assets/center/figma/images/06-code-6.webp" alt="Arduino code excerpt 6" data-zoom="assets/center/figma/images/06-code-6.webp" data-group="code" data-cap="Code excerpt 6"></div>
+
+  <blockquote class="quote big reveal">“We all say we want to leave the human center. Yet it is where every one of us starts.”<cite>Closing line of the experience film</cite></blockquote>
+  <p class="c-lede reveal">The ring leaves you with a question of your own. <em>When you stepped away from the center, who agreed to pay the price?</em></p>
+  <p class="caption reveal" style="margin-top:6vh">Note · Some scene images and illustrations in this project were created with AI image tools and then edited.</p>
 </section>
 </div>
 
@@ -244,62 +529,31 @@
 
 <script src="js/case.js"></script>
 <script>
+/* cover → experience film, played in place */
+(function () {
+  const fig = document.getElementById('experience-film'), btn = fig && fig.querySelector('.c-film-play');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const img = btn.querySelector('img');
+    fig.style.height = img.getBoundingClientRect().height + 'px';
+    const v = document.createElement('video');
+    v.src = 'assets/center/video/experience.mp4'; v.controls = true; v.playsInline = true; v.autoplay = true;
+    v.setAttribute('aria-label', 'Experience film');
+    btn.replaceWith(v); fig.classList.add('playing');
+    requestAnimationFrame(() => { fig.style.height = fig.clientWidth * 9 / 16 + 'px'; });
+    fig.addEventListener('transitionend', () => { fig.style.height = ''; }, { once: true });
+    v.play().catch(() => {});
+  });
+})();
+</script>
+<script>
 (() => {
-  const D = [
-    { k: 'Empathy', sub: 'Animals', col: '#c99a6b', img: 'empathy', q: ['Keep the cats’ shelter if you smell it on your way home?', 'Give up your prepaid elephant ride and lose the fare?', 'Ban animal tests if a patient might die waiting for a new drug?'],
-      s: [['keep the stray cats’ shelter despite the smell and crying at night', 82], ['skip the elephant ride, no refund, once they learned how the animals are trained', 80], ['keep a neutered stray dog in the community after it bit a child', 9]] },
-    { k: 'Restraint', sub: 'Nature', col: '#5fa36b', img: 'restraint', q: ['Stop spraying for mosquitoes to spare bees, even if you get bitten?', 'Keep the wetland if it adds an hour to your commute each day?', 'Keep the reserve road-free if an ambulance might arrive too late?'],
-      s: [['stop the weekly insecticide that also kills bees and the birds’ food', 76], ['keep the wetland instead of a metro station that saves an hour a day', 80], ['support a ten-year Yangtze fishing ban, though 200,000+ fishers lose their work', 95]] },
-    { k: 'Responsibility', sub: 'The unborn', col: '#e2463b', img: 'responsibility', q: ['Set your AC to 26 °C today to cut emissions, even if you feel warm?', 'Pay ¥100–200 more each month to fund cleaner energy?', 'Reserve antibiotics for future patients if someone treated today might die?'],
-      s: [['keep every mall, office and subway at 26 °C to cut emissions', 69], ['support a fuel tax costing them ¥100–200 a month', 81], ['shut a coal region down now, though hundreds of thousands lose their jobs', 9]] },
-    { k: 'Trust', sub: 'AI', col: '#4f7de0', img: 'trust', q: ['Let AI pick today’s lunch from the menu, even if you dislike the dish?', 'Let AI judge one job application with no chance of human review?', 'Let the car protect pedestrians if your mother in the car could be killed?'],
-      s: [['turn on a phone AI that reads their screen and runs their apps', 10], ['accept an AI-only first-round job interview with no reason given', 11], ['open the city to driverless taxis, though tens of thousands of drivers lose their jobs', 10]] }
-  ];
-  const rounds = ['Round 1 · A small cost to me', 'Round 2 · A loss I can weigh', 'Round 3 · A risk to someone else'];
-  const $ = id => document.getElementById(id), svg = $('ring');
-  let i = 0, ans = [];
-  const prog = $('qprog'); for (let n = 0; n < 12; n++) prog.appendChild(document.createElement('i'));
-  function arc(r0, r1, a0, a1) {
-    const p = (r, a) => [r * Math.sin(a), -r * Math.cos(a)];
-    const [x0, y0] = p(r1, a0), [x1, y1] = p(r1, a1), [x2, y2] = p(r0, a1), [x3, y3] = p(r0, a0);
-    return `M${x0} ${y0} A${r1} ${r1} 0 0 1 ${x1} ${y1} L${x2} ${y2} A${r0} ${r0} 0 0 0 ${x3} ${y3}Z`;
-  }
-  function draw(hl) {
-    let s = '';
-    for (let q = 0; q < 4; q++) {
-      const a0 = q * Math.PI / 2 + .04, a1 = (q + 1) * Math.PI / 2 - .04;
-      for (let r = 0; r < 3; r++) {
-        const idx = r * 4 + q, yes = ans[idx] === true, active = idx === hl;
-        s += `<path d="${arc(42 + r * 36, 74 + r * 36, a0, a1)}" fill="${yes ? D[q].col : '#1d1d1d'}" stroke="${active ? '#fff' : '#333'}" stroke-width="${active ? 2 : 1}" style="transition:fill .5s"/>`;
-      }
-      const am = (a0 + a1) / 2;
-      s += `<text x="${158 * Math.sin(am) * .93}" y="${-158 * Math.cos(am) * .93 + 4}" text-anchor="middle" font-family="Plex,monospace" font-size="9" fill="${D[q].col}" letter-spacing="1">${D[q].k.toUpperCase()}</text>`;
-    }
-    s += `<circle r="34" fill="#ff4b3e"/><text y="-2" text-anchor="middle" font-family="Doto,sans-serif" font-weight="900" font-size="16" fill="#fff">YOU</text><text y="12" text-anchor="middle" font-family="Plex,monospace" font-size="6" fill="#fff">THE HUMAN POLE</text>`;
-    svg.innerHTML = s;
-  }
-  function show() {
-    if (i >= 12) return finish();
-    const r = Math.floor(i / 4), q = i % 4, d = D[q];
-    $('qround').textContent = rounds[r]; $('qsculpt').textContent = d.k + ' · ' + d.sub;
-    $('qtext').textContent = d.q[r]; $('qimg').src = 'assets/center/images/' + d.img + '.jpg';
-    [...prog.children].forEach((x, n) => x.classList.toggle('on', n < i));
-    draw(i);
-  }
-  function answer(v) {
-    const r = Math.floor(i / 4), q = i % 4, [txt, pct] = D[q].s[r];
-    ans[i] = v; i++;
-    $('qsurvey').innerHTML = `You said <b>${v ? 'yes' : 'no'}</b>. In the survey, <b>${pct}%</b> of 205 people agreed to ${txt}.`;
-    show();
-  }
-  function finish() {
-    draw(-1); [...prog.children].forEach(x => x.classList.add('on'));
-    $('qcard').style.display = 'none'; $('summary').classList.add('on');
-    $('sumt').innerHTML = '<tr><th>Sculpture</th><th>Yes</th></tr>' + D.map((d, q) => `<tr><td style="color:${d.col}">${d.k}</td><td>${[0, 1, 2].filter(r => ans[r * 4 + q]).length} / 3</td></tr>`).join('');
-  }
-  $('byes').onclick = () => answer(true); $('bno').onclick = () => answer(false);
-  $('again').onclick = () => { i = 0; ans = []; $('summary').classList.remove('on'); $('qcard').style.display = ''; $('qsurvey').textContent = 'The sculpture moves, speaks, and waits for your answer.'; show(); };
-  show();
+  const f = document.getElementById('flow7'), bs = document.querySelectorAll('.fbtn');
+  if (!f) return;
+  const step = () => f.querySelector('li').getBoundingClientRect().width + 18;
+  bs.forEach(b => b.addEventListener('click', () => f.scrollBy({ left: step() * +b.dataset.dir, behavior: 'smooth' })));
+  const upd = () => { bs[0].disabled = f.scrollLeft < 4; bs[1].disabled = f.scrollLeft + f.clientWidth >= f.scrollWidth - 4; };
+  f.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
 })();
 </script>
 </body>

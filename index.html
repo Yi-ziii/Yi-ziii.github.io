@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="home.css">
 <script defer src="home.js"></script>
 </head>
-<body>
+<body class="bgfull">
 
 <header class="top">
   <a class="name" href="#top" aria-label="Yihan Zeng, back to top">
@@ -18,7 +18,6 @@
   </a>
   <nav class="menu" aria-label="Site">
     <a href="#top" class="on">Work</a>
-    <a href="#live">Live</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -28,12 +27,8 @@
   <section class="split" aria-label="Selected work">
     <!-- LEFT: project names -->
     <div class="left">
-      <div class="intro">
-        <p class="eyebrow">Selected work · 01—05</p>
-        <p class="lede">Installations, speculative interfaces and product systems — each one asks <em>who gets to decide.</em></p>
-      </div>
       <ol id="works" class="works"></ol>
-      <p class="hint" aria-hidden="true"><span class="key">↑</span><span class="key">↓</span> scroll, hover or use arrow keys</p>
+      <p class="hint" aria-hidden="true">Click a name to preview · click again to open · <span class="key">↑</span><span class="key">↓</span> keys also work</p>
     </div>
 
     <!-- RIGHT: sticky preview + details -->
@@ -47,46 +42,32 @@
     </aside>
   </section>
 
-  <!-- LIVE PAGES — standalone web pieces, each with its own address -->
-  <section class="live" id="live" aria-labelledby="live-h">
-    <p class="eyebrow">Live pages</p>
-    <h2 id="live-h" class="dot-h">PLAY ONLINE</h2>
-    <p class="live-lede">Four projects also exist as standalone web pieces. Each opens on its own page — best on a desktop browser.</p>
-    <ul class="live-list">
-      <li><a href="center-experience/" target="_blank" rel="noopener"><span class="lv-no">01</span><span class="lv-title">Should Humans Remain at the Center?<small>Digital edition of the installation · voice &amp; video</small></span><span class="lv-url">yi-ziii.github.io/center-experience ↗</span></a></li>
-      <li><a href="lookcoin-city/" target="_blank" rel="noopener"><span class="lv-no">02</span><span class="lv-title">LookCoin<small>City simulation · your mouse is your gaze</small></span><span class="lv-url">yi-ziii.github.io/lookcoin-city ↗</span></a></li>
-      <li><a href="harmony-osteria/" target="_blank" rel="noopener"><span class="lv-no">03</span><span class="lv-title">Harmony Osteria<small>Restaurant website prototype</small></span><span class="lv-url">yi-ziii.github.io/harmony-osteria ↗</span></a></li>
-      <li><a href="medimate-game/" target="_blank" rel="noopener"><span class="lv-no">04</span><span class="lv-title">MediMate · Inside Defense<small>Playable antibiotic-resistance game</small></span><span class="lv-url">yi-ziii.github.io/medimate-game ↗</span></a></li>
-    </ul>
-  </section>
-
   <!-- ABOUT -->
   <section class="about" id="about" aria-labelledby="about-h">
     <p class="eyebrow">About</p>
     <h2 id="about-h" class="dot-h">ABOUT</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p class="big">I’m Yihan Zeng, an industrial design student working across physical installations, speculative interfaces and product systems.</p>
-        <p>I study at Beijing University of Chemical Technology and am currently on exchange at the University of Genoa (DAD), Italy. I’m interested in what a designed object asks people to do — and who gets to make the decision.</p>
+        <p class="big">I’m Yihan Zeng, an industrial design student working across interactive installations, speculative interfaces and product systems.</p>
+        <p>I study Industrial Design at Beijing University of Chemical Technology in a dual-degree program with the University of Genoa, Italy. I’m interested in what a designed object asks people to do — and who gets to make the decision.</p>
       </div>
       <dl class="about-facts">
-        <div><dt>Education</dt><dd>Industrial Design, Beijing University of Chemical Technology<br>Exchange, Università di Genova — DAD, 2026</dd></div>
-        <div><dt>Experience</dt><dd>Design intern, 斤工设计 (Midea spin-off), 2026<br>Teaching assistant to visiting professors, BUCT</dd></div>
-        <div><dt>Focus</dt><dd>Interaction design · Speculative design · Product systems · Human–AI relationships</dd></div>
+        <div><dt>Education</dt><dd>Beijing University of Chemical Technology · 2023–2027<br>Dual degree with the University of Genoa, Italy<br><small>B.Eng. Industrial Design (BUCT) · B.Eng. Product and Communication Design (UniGe)</small></dd></div>
+        <div><dt>Tools</dt><dd>Figma · Rhino · KeyShot · Photoshop · Illustrator · InDesign · HTML/CSS</dd></div>
+        <div><dt>Languages</dt><dd>Chinese (native) · English (fluent, TOEFL 104)</dd></div>
       </dl>
+    </div>
+    <div class="cv">
+      <p class="eyebrow">Experience</p>
+      <ol class="cv-list"><li><span class="cv-d">07/2026</span><div><h4>SDGs-ART</h4><span class="cv-r">Internship &amp; Training Program · Remote</span><p>Team project linking sustainable development, interaction design and regional culture. Certificate awarded to the top 40% of participants.</p></div></li><li><span class="cv-d">07–08/2025</span><div><h4>Suning.com</h4><span class="cv-r">Event Planning · Beijing</span><p>Store service planning; organized the ‘Suning Cup’ Honor of Kings esports tournament.</p></div></li><li><span class="cv-d">07–08/2024</span><div><h4>IBM</h4><span class="cv-r">Interactive Design · Beijing</span><p>Redesign of the IBM Watson website navigation: competitive analysis and wireframes.</p></div></li><li><span class="cv-d">01–02/2024</span><div><h4>Chengqian Innovation Architecture</h4><span class="cv-r">Interior Design · Beijing</span><p>Interior of a building in the “503 Old Story Factory” urban renewal project: CAD, material boards, renderings.</p></div></li></ol>
     </div>
   </section>
 
-  <!-- CONTACT — TODO: replace the placeholder addresses below with your own -->
   <section class="contact" id="contact" aria-labelledby="contact-h">
     <p class="eyebrow">Contact</p>
     <h2 id="contact-h" class="dot-h">SAY HELLO</h2>
     <ul class="contact-list">
-      <li><span>Email</span><a href="mailto:your.name@example.com">your.name@example.com</a></li>
-      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">linkedin.com/in/your-handle</a></li>
-      <li><span>Instagram</span><a href="https://www.instagram.com/your-handle" target="_blank" rel="noopener">@your-handle</a></li>
-      <li><span>CV</span><a href="cv.pdf" download>Download PDF</a></li>
-      <li><span>Based in</span><b>Genoa, Italy · Beijing, China</b></li>
+      <li><span>Email</span><a href="mailto:zengyihan709@gmail.com">zengyihan709@gmail.com</a></li>
     </ul>
   </section>
 </main>

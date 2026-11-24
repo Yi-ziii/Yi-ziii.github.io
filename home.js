@@ -3,53 +3,44 @@
    Edit project text here; everything on the page is generated from this list. */
 const PROJECTS = [
   {
-    slug: 'center', title: 'Should Humans Remain at the Center?', ratio: 2.163,
-    category: 'Interactive installation', medium: 'Sculpture, sensors & voice',
-    question: 'Who gets to stand at the center?',
-    summary: 'A participant stands between four handmade sculptures representing animals, nature, future generations and AI. Reaching toward one triggers a response — it moves, speaks and waits for a yes or no.',
-    facts: ['205 survey responses', '4 sculptures', '3 rounds of questions'],
-    steps: ['A small cost to me', 'A loss I can weigh', 'A risk to someone else'],
+    slug: 'center', title: 'Should Humans Remain at the Center?', ratio: 1.603,
+    category: 'Interactive installation',
+    summary: 'An interactive installation that starts from a debate that went viral online: in a burning museum, would you save a famous painting or a cat? Four handmade sculptures, standing for animals, nature, the unborn and AI, ask visitors questions out loud, and each spoken yes or no shows how far they will move away from the human center.',
+    meta: [['Format', 'Individual project'], ['Date', '2025.06 – 2025.10']],
     live: 'center-experience/'
   },
   {
-    slug: 'lookcoin', title: 'LookCoin', ratio: 1.718,
-    category: 'Speculative design', medium: 'Worldbuilding & browser interaction',
-    question: 'What is a minute of looking worth?',
-    summary: 'In a fictional 2035 city, smart glasses verify attention to street advertisements. One verified minute is one VAU, and the payout in LookCoin varies with the place and the viewer.',
-    facts: ['Fictional city, 2035', 'Browser simulation', '360° street panoramas'],
-    steps: ['Find a paid view', 'Hold your gaze', 'Let the city settle up'],
+    slug: 'lookcoin', title: 'LookCoin', ratio: 1.685,
+    category: 'Speculative design',
+    summary: 'A near future in which smart glasses verify where we look, and human attention is measured, priced and paid for in its own currency. Through a fictional company, its glasses and app, and a city where looking pays, the project pushes today’s attention economy one step further and makes visible what we already trade every time we look.',
+    meta: [['Format', 'Individual project'], ['Date', '2026.07 – 2026.10']],
     live: 'lookcoin-city/'
   },
   {
-    slug: 'harmony', title: 'Harmony Osteria', ratio: 1.5,
-    category: 'Spatial & service design', medium: 'Space, tableware & adaptive glass',
-    question: 'Can dinner make an ecosystem legible?',
-    summary: 'A restaurant near Genoa brings wildlife observations into the dining room through the menu, the plate and a wall of glass, turning changes in animal activity into signals at the table.',
-    facts: ['Genoa, Italy', 'Camera-trap data', 'Menu · plate · glass'],
-    steps: ['Read the day’s menu', 'Read the plate', 'Read the glass'],
+    slug: 'harmony', title: 'Harmony Osteria', ratio: 1.444,
+    category: 'Spatial & service design',
+    summary: 'A restaurant in the hills behind Genoa whose menu follows real wildlife data, so every meal becomes a signal of ecological change. An e-ink menu, the plates and a glass wall let diners read how the wild is doing today.',
+    meta: [['Format', 'Individual project'], ['Date', '2026.10 – 2026.11']],
     live: 'harmony-osteria/'
   },
   {
-    slug: 'medimate', title: 'MediMate', ratio: 0.973,
-    category: 'Health interaction & game design', medium: 'Mobile app & educational game',
-    question: 'What happens before someone reaches for leftover medicine?',
-    summary: 'A medication history app and the playable game Inside Defense explore the moment someone decides to reuse antibiotics. I analysed the questionnaire, designed the app flows and programmed the game.',
-    facts: ['5-person team', '161 questionnaire responses', 'Playable game'],
-    steps: ['Locate the decision', 'Bring history into view', 'Play the trade-off'],
+    slug: 'medimate', title: 'MediMate', ratio: 1.039, fit: 'side',
+    category: 'Health interaction & game design',
+    summary: 'A medication-history app and a playable game about antibiotic misuse, made for the Art for 2030 program of the UNESCO Youth Education Research Centre. It is aimed at people who reuse antibiotics to recover fast, and makes resistance visible and personal so they pause and check before taking another dose.',
+    meta: [['Format', 'Group project · 5 members'], ['Date', '2026.07'], ['My role', 'Game programming, low-fidelity app flows, survey analysis']],
     live: 'medimate-game/'
   },
   {
-    slug: 'mlog', title: 'MLOG', ratio: 1.339,
-    category: 'Product & system design', medium: 'Wearable hardware & work software',
-    question: 'Who gets to start the record?',
-    summary: 'An employee-controlled badge turns a workplace record into a deliberate action. The wearer starts the log, reviews it, and chooses what a manager can see.',
-    facts: ['142 survey responses', 'Badge + app + dashboard', 'One-handed paper mockups'],
-    steps: ['Start on the badge', 'Review before sharing', 'Respond to a confirmed record'],
+    slug: 'mlog', title: 'MLOG', ratio: 1.5,
+    category: 'Product & system design',
+    summary: 'A wearable badge system that replaces passive workplace surveillance with work logs that employees start themselves. A badge, an employee app and a manager dashboard make work visible, while managers only see the records an employee has reviewed and confirmed.',
+    meta: [['Format', 'Individual project'], ['Date', '2025.11 – 2026.04']],
     live: ''
   }
 ];
 
 const $ = (s, r = document) => r.querySelector(s);
+const desktop = matchMedia('(min-width: 901px)');
 const pad = n => String(n).padStart(2, '0');
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
@@ -68,7 +59,7 @@ PROJECTS.forEach((p, i) => {
     `</a>` +
     // mobile-only detail (hidden on desktop)
     `<div class="m-detail">` +
-      `<a href="${p.slug}.html" class="m-pic" style="--r:${p.ratio}"><img src="assets/${p.slug}/images/cover.jpg" alt="" loading="lazy"></a>` +
+      `<a href="${p.slug}.html" class="m-pic" style="--r:${p.ratio}"><img src="assets/${p.slug}/images/home.jpg" alt="" loading="lazy"></a>` +
       `<p>${esc(p.summary)}</p>` +
       `<a class="cta" href="${p.slug}.html">View project <i>→</i></a>` +
     `</div>`;
@@ -78,9 +69,9 @@ PROJECTS.forEach((p, i) => {
   const layer = document.createElement('div');
   layer.className = 'layer';
   layer.innerHTML =
-    `<div class="pic" style="--r:${p.ratio}">` +
-      `<img class="screen" src="assets/${p.slug}/images/screen.png" alt="">` +
-      `<div class="lens"><img src="assets/${p.slug}/images/cover.jpg" alt=""></div>` +
+    `<div class="pic${p.fit ? ' fit-' + p.fit : ''}" style="--r:${p.ratio}">` +
+      `<img class="screen" src="assets/${p.slug}/images/${document.body.classList.contains('bgfull') && desktop.matches ? 'home-dots-bg' : 'home-dots'}.png" alt="">` +
+      `<div class="lens"><img src="assets/${p.slug}/images/home.jpg" alt=""></div>` +
     `</div>`;
   stage.appendChild(layer);
 
@@ -90,13 +81,9 @@ PROJECTS.forEach((p, i) => {
   card.setAttribute('aria-hidden', 'true');
   card.innerHTML =
     `<div class="card-top"><span class="count"><b>${pad(i + 1)}</b> / ${pad(PROJECTS.length)}</span><span>${esc(p.category)}</span></div>` +
-    `<h2>${esc(p.question)}</h2>` +
     `<p class="summary">${esc(p.summary)}</p>` +
-    `<dl class="facts"><div><dt>Medium</dt><dd>${esc(p.medium)}</dd></div>` +
-      `<div><dt>Key facts</dt><dd>${p.facts.map(esc).join('<br>')}</dd></div>` +
-      `<div><dt>Sequence</dt><dd>${p.steps.map((s, k) => `<span class="step"><i>${k + 1}</i>${esc(s)}</span>`).join('')}</dd></div></dl>` +
+    `<dl class="facts${p.meta.length > 2 ? ' three' : ''}">${p.meta.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>` +
     `<div class="actions"><a class="cta" href="${p.slug}.html">View project <i>→</i></a>` +
-      (p.live ? `<a class="ghost" href="${p.live}" target="_blank" rel="noopener">Open live page ↗</a>` : '') +
     `</div>`;
   info.appendChild(card);
 });
@@ -104,7 +91,6 @@ PROJECTS.forEach((p, i) => {
 const links = [...document.querySelectorAll('.work')];
 const layers = [...stage.children];
 const cards = [...info.children];
-const desktop = matchMedia('(min-width: 901px)');
 let active = -1;
 
 /* ---------- selection ---------- */
@@ -125,27 +111,13 @@ function select(i) {
   active = i;
 }
 
-let queued = false;
-function atMidline() {
-  queued = false;
-  if (!desktop.matches) return;
-  const mid = innerHeight / 2;
-  if (scrollY < 4) { select(0); return; }
-  let best = 0, dist = Infinity;
-  links.forEach((a, i) => {
-    const b = a.getBoundingClientRect();
-    const d = Math.max(0, b.top - mid, mid - b.bottom);
-    if (d < dist) { dist = d; best = i; }
-  });
-  select(best);
-}
-const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(atMidline); } };
-addEventListener('scroll', onScroll, { passive: true });
-addEventListener('resize', onScroll);
-
+// on phones the list is a plain stack; on desktop a project is chosen by clicking its name
 links.forEach((a, i) => {
-  a.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && desktop.matches) select(i); });
-  a.addEventListener('focus', () => select(i));
+  a.addEventListener('click', e => {
+    if (!desktop.matches) return;               // phones: the link opens the project directly
+    if (i !== active) { e.preventDefault(); select(i); }   // first click selects, second click opens
+  });
+  a.addEventListener('focus', () => { if (a.matches(':focus-visible')) select(i); });
 });
 
 /* keyboard: ↑ ↓ to move between projects, Enter opens */
@@ -161,7 +133,8 @@ addEventListener('keydown', e => {
 
 /* ---------- lens: reveal the colour photo under the cursor ---------- */
 let frame = 0, px = 0, py = 0;
-stage.addEventListener('pointermove', e => {
+const lensTarget = document.body.classList.contains('bgfull') && desktop.matches ? document : stage;
+lensTarget.addEventListener('pointermove', e => {
   if (e.pointerType !== 'mouse') return;
   px = e.clientX; py = e.clientY;
   if (!frame) frame = requestAnimationFrame(() => {
@@ -174,15 +147,14 @@ stage.addEventListener('pointermove', e => {
     stage.classList.add('tracking');
   });
 }, { passive: true });
-stage.addEventListener('pointerleave', () => stage.classList.remove('tracking'));
-$('#stage-link').addEventListener('click', () => { location.href = PROJECTS[active].slug + '.html'; });
+(lensTarget === document ? document.documentElement : stage).addEventListener('pointerleave', () => stage.classList.remove('tracking'));
+$('#stage-link').addEventListener('click', () => { if (!document.body.classList.contains('bgfull')) location.href = PROJECTS[active].slug + '.html'; });
 
 /* ---------- arrive with ?project=slug (from “All projects” on case pages) ---------- */
 addEventListener('pageshow', () => {
   const slug = new URLSearchParams(location.search).get('project');
   const i = PROJECTS.findIndex(p => p.slug === slug);
   if (i > -1) { links[i].scrollIntoView({ block: 'center' }); select(i); }
-  else atMidline();
   if (active < 0) select(0);
 });
 select(0);

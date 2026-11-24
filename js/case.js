@@ -12,13 +12,13 @@
 
   function build() {
     const title = document.title.split('·')[0].trim();
-    const sec = document.createElement('section'); sec.className = 'pdfview'; sec.setAttribute('aria-label', 'Portfolio pages');
+    const sec = document.createElement('section'); sec.className = 'pdfview'; sec.setAttribute('aria-label', 'Portfolio boards');
     let lis = '';
     for (let i = 1; i <= n; i++) {
       const k = String(i).padStart(2, '0'), b = `assets/${slug}/pdf/page-${k}`;
-      lis += `<li><img src="${b}-sm.webp" srcset="${b}-sm.webp 1250w, ${b}.webp 2500w" sizes="(min-width: 1800px) 1800px, 100vw" loading="${i < 3 ? 'eager' : 'lazy'}" alt="Portfolio page ${i} of ${n}" data-zoom="${b}.webp" data-group="pdf-${slug}" data-cap="${title.trim()} · page ${i}/${n}"><span class="pg">${k} / ${String(n).padStart(2, '0')}</span></li>`;
+      lis += `<li><img src="${b}-sm.jpg" srcset="${b}-sm.jpg 1250w, ${b}.jpg 2500w" sizes="(min-width: 1800px) 1800px, 100vw" loading="${i < 3 ? 'eager' : 'lazy'}" alt="Portfolio page ${i} of ${n}" data-zoom="${b}.jpg" data-group="pdf-${slug}" data-cap="${title.trim()} · page ${i}/${n}"><span class="pg">${k} / ${String(n).padStart(2, '0')}</span></li>`;
     }
-    sec.innerHTML = `<div class="pdf-head"><h1>${title.trim()}</h1><div class="pdf-actions"><span class="mono"><b>${n}</b> pages · click a page to zoom</span><a class="pdf-dl" href="assets/${slug}/pdf/${slug}.pdf" download>Download PDF ↓</a></div></div><ol class="pdf-pages">${lis}</ol>`;
+    sec.innerHTML = `<div class="pdf-head"><h1>${title.trim()}</h1><div class="pdf-actions"><span class="mono"><b>${n}</b> boards · click to zoom</span><a class="pdf-dl" href="assets/${slug}/pdf/${slug}.pdf" download>Download PDF ↓</a></div></div><ol class="pdf-pages">${lis}</ol>`;
     document.querySelector('main').after(sec);
   }
 
@@ -33,7 +33,7 @@
 
   addEventListener('DOMContentLoaded', () => {
     const sw = document.createElement('div'); sw.className = 'viewsw'; sw.setAttribute('role', 'group'); sw.setAttribute('aria-label', 'View as');
-    sw.innerHTML = '<button type="button" data-mode="web">Web</button><button type="button" data-mode="pdf">PDF</button>';
+    sw.innerHTML = '<button type="button" data-mode="web">Interactive</button><button type="button" data-mode="pdf">Boards</button>';
     const head = document.querySelector('.top'); head.insertBefore(sw, head.querySelector('.menu'));
     sw.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setMode(b.dataset.mode, true); });
     let m = new URLSearchParams(location.search).get('view');

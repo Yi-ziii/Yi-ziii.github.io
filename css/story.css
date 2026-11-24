@@ -1,0 +1,69 @@
+/* shared components for the rebuilt Interactive pages (Harmony, MediMate, MLOG) */
+.muted { color: #bdbdb6 } .acc { color: var(--acc) }
+.c-sub-h { margin-top: 11vh }
+mark { background: var(--acc); color: #111; padding: 0 .25em; border-radius: 2px }
+figure { margin: 0 }
+img[data-zoom] { cursor: zoom-in }
+.caption { font: 400 12px/1.5 var(--mono); color: var(--muted); margin-top: 10px }
+.im { width: 100%; display: block; border-radius: 6px }
+.sheet { background: none; border-radius: 0; overflow: visible } .sheet.pad { padding: clamp(12px, 1.6vw, 24px) } .sheet img { width: 100%; display: block }
+.bleed { margin: 0 calc(-1 * var(--gutter)) } .bleed img { width: 100%; display: block }
+.g { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: var(--gap, 18px); align-items: start }
+.g.mid { align-items: center } .g.end { align-items: end }
+.split { display: grid; grid-template-columns: minmax(0, var(--a, 1fr)) minmax(0, var(--b, 1fr)); gap: clamp(24px, 4vw, 64px); align-items: center }
+.txt h4 { font: 400 clamp(22px, 2vw, 30px)/1.2 var(--sans); margin: 10px 0 10px } .txt p { color: #c5c5be; margin: 0 0 12px; max-width: 38em }
+.tile h4 { font: 400 20px/1.25 var(--sans); margin: 12px 0 6px } .tile p { margin: 0; color: #bdbdb6; font-size: 15px } .tile .mono { color: var(--acc) }
+.tile img { width: 100%; display: block; border-radius: 6px }
+.bignum { border-top: 2px solid var(--acc); padding-top: 12px } .bignum b { display: block; font: 900 clamp(44px, 4.6vw, 76px)/1 Doto, sans-serif; color: var(--acc) } .bignum span { color: #c5c5be; display: block; margin-top: 8px }
+.nums { list-style: none; margin: 0; padding: 0; counter-reset: n }
+.nums li { border-top: 1px solid var(--line); padding: 14px 0 14px 46px; position: relative }
+.nums li > b:first-child { position: absolute; left: 0; top: 14px; background: var(--acc); color: #111; font: 600 12px var(--mono); padding: 2px 7px }
+.nums h4 { font: 600 17px/1.3 var(--sans); margin: 0 0 4px } .nums p { margin: 0; color: #bdbdb6; font-size: 15px }
+.pill { display: inline-block; border: 1px solid #ffffff40; border-radius: 999px; padding: 6px 14px; font: 400 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #ddd; margin: 0 8px 8px 0 }
+.big-q { font: 400 clamp(30px, 3.6vw, 56px)/1.12 var(--sans); letter-spacing: -.02em; max-width: 20em; margin: 12vh 0 0 } .big-q em { font: italic 400 1em Garamond, Georgia, serif; color: var(--acc) }
+.hmw2 { margin-top: 9vh; border: 1px solid var(--acc); border-radius: 8px; padding: clamp(24px, 3vw, 44px) } .hmw2 .mono { color: var(--acc) } .hmw2 p { font: 400 clamp(24px, 2.6vw, 40px)/1.2 var(--sans); margin: 12px 0 0 }
+.quotes { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); gap: 16px }
+.quotes figure { background: var(--panel); border-radius: 8px; padding: 18px; display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: start }
+.quotes img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover }
+.quotes blockquote { margin: 0; font: italic 18px/1.4 Garamond, Georgia, serif } .quotes figcaption { grid-column: 2; font: 400 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
+.strip { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory } .strip > * { flex: 0 0 auto; scroll-snap-align: start } .strip img { height: 100%; display: block }
+.phones2 { display: grid; grid-template-columns: repeat(var(--n, 6), minmax(0, 1fr)); gap: 14px } .phones2 figure img { width: 100%; display: block; border-radius: 14px; box-shadow: 0 16px 34px #0009 } .phones2 figcaption { font: 400 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 8px }
+/* big interactive entries (same language as LookCoin) */
+.play-big, .try-cover { --cta: 132px }
+.play-big { position: relative; display: block; border-radius: 10px; overflow: hidden; margin: 2vh 0 8vh; border: 2px solid var(--acc); animation: glow 2.4s ease-in-out infinite; color: #fff; text-decoration: none }
+.play-big img { width: 100%; display: block; filter: brightness(.6); transition: transform 1.2s cubic-bezier(.2,.7,.2,1), filter .4s }
+.play-big:hover img { transform: scale(1.03); filter: brightness(.45) }
+.play-cta { position: absolute; left: 50%; top: 44%; width: var(--cta); height: var(--cta); transform: translate(-50%, -50%); display: grid; place-items: center; transition: transform .3s }
+.play-cta .ring { position: absolute; inset: 0; border-radius: 50%; background: var(--acc); animation: pulse 1.8s ease-out infinite }
+.play-cta .tri { position: relative; font-size: calc(var(--cta) * .36); color: #111; margin-left: .18em; line-height: 1 }
+.play-big:hover .play-cta, .try-cover:hover .play-cta { transform: translate(-50%, -50%) scale(1.08) }
+.play-label { position: absolute; left: 0; right: 0; top: calc(44% + var(--cta) / 2 + 18px); text-align: center; padding: 0 20px }
+.play-label b { display: block; font: 600 clamp(30px, 3.4vw, 54px)/1.05 var(--sans); letter-spacing: -.02em; text-shadow: 0 4px 24px #000 } .play-label small { display: block; margin-top: 10px; font: 400 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #eee; text-shadow: 0 2px 10px #000 }
+.play-tag { position: absolute; left: 18px; top: 18px; background: var(--acc); color: #111; font: 600 13px var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 7px 12px; border-radius: 3px; z-index: 2 }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--acc) 70%, transparent) } 100% { box-shadow: 0 0 0 34px transparent } }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 transparent } 50% { box-shadow: 0 0 40px 2px color-mix(in srgb, var(--acc) 35%, transparent) } }
+.try { position: relative; margin-top: 2vh; border: 2px solid var(--acc); border-radius: 10px; animation: glow 2.4s ease-in-out infinite }
+.try-cover { position: absolute; inset: 0; z-index: 20; border: 0; border-radius: 8px; cursor: pointer; color: #fff; background: radial-gradient(ellipse at 50% 40%, #000a, #000d 75%); backdrop-filter: blur(3px); font: inherit; transition: opacity .4s }
+.try-cover .play-cta { top: 32% } .try-cover .play-label { top: calc(32% + var(--cta) / 2 + 18px) }
+.try.started { animation: none; border-color: #ffffff22 } .try.started .try-cover { opacity: 0; pointer-events: none }
+@media (max-width: 900px) {
+  .g, .split, .quotes { grid-template-columns: 1fr } .g.keep2 { grid-template-columns: 1fr 1fr }
+  .phones2 { grid-template-columns: repeat(3, 1fr) }
+  .play-big, .try-cover { --cta: 84px } .play-label b { font-size: 26px } .play-big img { aspect-ratio: 4/3; object-fit: cover }
+}
+@media (max-width: 900px) {
+  .g[style*="--n:6"], .g[style*="--n:4"], .g[style*="--n:5"] { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .phones2 { grid-template-columns: repeat(4, 1fr) }
+}
+
+/* prominent live entry in the hero */
+.c-live.big { margin: 28px 0 8px }
+.c-live.big .c-live-btn { font-size: clamp(18px, 1.6vw, 24px); padding: 18px 30px 18px 22px; gap: 16px; background: var(--acc); color: #111; border-color: var(--acc); animation: glow 2.4s ease-in-out infinite; font-weight: 600 }
+.c-live.big .c-live-btn .dot { width: 14px; height: 14px; background: #111; box-shadow: 0 0 0 0 #1118; animation: pulse 1.8s ease-out infinite }
+.c-live.big .c-live-btn i { font-style: normal; font-size: 1.1em }
+.c-live.big small { display: block; margin-top: 10px; font: 400 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
+/* illustrations with light backgrounds: fade the edges into the black page (MLOG) */
+img[src*="04-wearable-recorder"], img[src*="04-employee-app"], img[src*="04-manager-workspace"],
+img[src*="/08-journey-"] {
+  -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 58%, transparent 100%); mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 58%, transparent 100%); border-radius: 0 }
+img[src*="05-badge-rationale"], img[src*="07-product-render-01"] { border-radius: 8px }
