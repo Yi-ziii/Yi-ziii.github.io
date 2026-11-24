@@ -11,7 +11,7 @@
   const n = PAGES[slug]; if (!n) return;
 
   function build() {
-    const title = (document.querySelector('.c-title') || {}).textContent || document.title.split('·')[0];
+    const title = document.title.split('·')[0].trim();
     const sec = document.createElement('section'); sec.className = 'pdfview'; sec.setAttribute('aria-label', 'Portfolio pages');
     let lis = '';
     for (let i = 1; i <= n; i++) {
