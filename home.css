@@ -104,6 +104,19 @@ em { font: italic 1.08em Garamond, Georgia, serif; color: var(--text) }
 .progress i { flex: 1; height: 1px; background: #2a2a2a; position: relative }
 .progress i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--prog, .2) * 100%); background: var(--signal); transition: width .5s cubic-bezier(.2,.7,.2,1) }
 
+/* ---------- live pages ---------- */
+.live { padding: 16vh var(--gutter) 10vh; border-top: 1px solid var(--line) }
+.live-lede { color: #c9c9c2; max-width: 36em; margin: 0 0 5vh }
+.live-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line) }
+.live-list a { display: grid; grid-template-columns: 3.5em 1fr auto; align-items: baseline; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--line); color: var(--text); text-decoration: none; transition: padding-left .25s, color .25s }
+.live-list a:hover, .live-list a:focus-visible { padding-left: 14px; color: var(--signal) }
+.lv-no { font: 400 11px/1 var(--mono); letter-spacing: .14em; color: var(--signal) }
+.lv-title { font-size: clamp(19px, 1.7vw, 26px); line-height: 1.25 }
+.lv-title small { display: block; margin-top: 6px; font-size: 14px; color: #8f8f88 }
+.lv-url { font: 400 12px/1.4 var(--mono); letter-spacing: .04em; color: #8f8f88; white-space: nowrap }
+.live-list a:hover .lv-url { color: var(--signal) }
+@media (max-width: 900px) { .live-list a { grid-template-columns: 2.6em 1fr } .lv-url { grid-column: 2; white-space: normal } }
+
 /* ---------- about / contact ---------- */
 .about, .contact { padding: 16vh var(--gutter) 10vh; border-top: 1px solid var(--line) }
 .dot-h { font: 900 clamp(56px, 11vw, 190px)/.9 Doto, "Arial Black", sans-serif; margin: 18px 0 6vh; color: #fff; letter-spacing: .01em }

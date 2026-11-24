@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Should Humans Remain at the Center?</title>
+<style>
+/* 离线版：不加载任何外部字体或脚本，所有素材在 assets/ */
+:root {
+  --bg: #0b0a09;
+  --panel: rgba(14, 13, 12, 0.78);
+  --line: rgba(255, 255, 255, 0.14);
+  --fg: #ede7dd;
+  --muted: #a39b90;
+  --spot: #f2c78e;
+  --resp: #cf4038;
+  --emp: #d29a68;
+  --res: #74aa74;
+  --trust: #6a88d2;
+  --sans: "PingFang SC", "Helvetica Neue", "Microsoft YaHei", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font-family: var(--sans); overflow: hidden; }
+
+/* 舞台：两段视频交替播放，前一段停在最后一帧，下一段准备好再切换 */
+#stage { position: fixed; inset: 0; background: #000; }
+#stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s; }
+#stage video.on { opacity: 1; }
+#poster { position: absolute; inset: 0; background: #000 url(assets/poster.jpg) center/cover; transition: opacity .6s; }
+#poster.off { opacity: 0; }
+#tint { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .6s;
+  background: radial-gradient(ellipse 55% 60% at 50% 45%, var(--c, #fff) 0%, transparent 70%); mix-blend-mode: screen; }
+#tint.glow { opacity: .28; animation: breathe 2.4s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity: .12; } }
+#vignette { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.2) 38%, transparent 60%), linear-gradient(to bottom, rgba(0,0,0,.6), transparent 22%); }
+
+/* 顶部信息 */
+.top { position: fixed; top: 0; left: 0; right: 0; padding: 18px 24px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; pointer-events: none; }
+.top > * { pointer-events: auto; }
+.kicker { font: 500 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.roundLabel { font: 500 13px/1.4 var(--mono); letter-spacing: .12em; color: var(--spot); margin-top: 4px; }
+.dots { display: flex; gap: 5px; margin-top: 10px; }
+.dot { width: 18px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.18); }
+.dot.done { background: var(--muted); }
+.dot.now { background: var(--spot); }
+.tools { display: flex; gap: 8px; }
+
+/* 小圆环 */
+#mini { position: fixed; right: 20px; bottom: 20px; width: 210px; height: 210px; pointer-events: none; opacity: .95; }
+
+/* 底部对话区 */
+.dock { position: fixed; left: 0; right: 0; bottom: 0; padding: 0 24px 28px; display: flex; justify-content: center; }
+.card { width: min(860px, 100% - 240px); background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px 26px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 14px; }
+@media (max-width: 900px) { .card { width: 100%; } #mini { width: 140px; height: 140px; top: 70px; bottom: auto; right: 12px; } }
+.who { font: 600 14px/1 var(--mono); letter-spacing: .22em; }
+.who small { font: 400 12px var(--sans); letter-spacing: .04em; color: var(--muted); margin-left: 10px; }
+.q { font-size: clamp(18px, 2.1vw, 24px); line-height: 1.55; margin: 0; font-weight: 400; text-wrap: pretty; }
+.q.en { font-size: 15px; color: var(--muted); line-height: 1.5; }
+.lede { margin: 0; font-size: 16px; line-height: 1.7; }
+.lede.muted { color: var(--muted); font-size: 14px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.hint { font: 12px/1.4 var(--mono); color: var(--muted); letter-spacing: .04em; }
+.said { font-size: 20px; color: var(--spot); min-height: 1.4em; margin: 0; font-style: italic; }
+
+button { font: 500 15px/1 var(--sans); color: var(--fg); background: transparent; border: 1px solid var(--line);
+  border-radius: 999px; padding: 13px 24px; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+button:hover { border-color: var(--muted); }
+button:focus-visible { outline: 2px solid var(--spot); outline-offset: 3px; }
+button.primary { background: var(--spot); border-color: var(--spot); color: #1b140b; }
+button.primary:hover { background: #f7d6aa; }
+button.small { padding: 7px 12px; font-size: 12px; color: var(--muted); }
+button.small.on { color: var(--fg); border-color: var(--muted); }
+button[disabled] { opacity: .35; cursor: default; }
+.answer { min-width: 130px; font-size: 17px; }
+
+/* 伸手：按住触发，模拟超声波感应 */
+.reach { position: relative; overflow: hidden; min-width: 240px; }
+.reach .fill { position: absolute; inset: 0; background: var(--c, var(--spot)); opacity: .35; transform-origin: left; transform: scaleX(0); }
+.reach.holding .fill { transition: transform .9s linear; transform: scaleX(1); }
+.reach span { position: relative; }
+
+/* 手：鼠标在画面上变成一只手；感应器：画面里标出的识别位置 */
+body.reaching, body.reaching * { cursor: none !important; }
+#hand { position: fixed; left: 0; top: 0; width: 64px; height: 64px; margin: -10px 0 0 -26px; pointer-events: none;
+  z-index: 20; opacity: 0; transition: opacity .2s; filter: drop-shadow(0 4px 10px rgba(0,0,0,.6)); }
+body.reaching #hand { opacity: 1; }
+#target { position: fixed; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 10; }
+#target .ring { position: absolute; left: -34px; top: -34px; width: 68px; height: 68px; border-radius: 50%;
+  border: 2px solid var(--c, var(--spot)); box-shadow: 0 0 18px var(--c, var(--spot)); opacity: .9;
+  animation: ping 1.6s ease-out infinite; }
+#target .core { position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%; background: var(--c, var(--spot)); }
+#target svg { position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; transform: rotate(-90deg); }
+#target .label { position: absolute; left: 44px; top: -12px; white-space: nowrap; font: 600 12px/1.3 var(--mono);
+  letter-spacing: .08em; color: var(--fg); background: rgba(0,0,0,.6); padding: 4px 8px; border-radius: 4px; }
+#target .dist { display: block; font-weight: 400; color: var(--muted); letter-spacing: .02em; }
+#target.near .ring { animation-duration: .7s; border-width: 3px; }
+@keyframes ping { 0% { transform: scale(.6); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+.reachHint { font-size: 16px; line-height: 1.6; margin: 0; }
+
+/* 结果 */
+#result .scores { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px 16px; }
+@media (max-width: 700px) { #result .scores { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+.score { border-top: 2px solid var(--c); padding-top: 8px; }
+.score b { display: block; font: 600 12px var(--mono); letter-spacing: .14em; color: var(--c); }
+.score span { font-size: 22px; font-variant-numeric: tabular-nums; }
+.bigring { width: min(400px, 80vw); align-self: center; }
+#result { max-height: calc(100vh - 90px); overflow-y: auto; }
+.rounds { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+.rounds div { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 6px; }
+.rounds b { display: block; font-size: 18px; color: var(--fg); font-weight: 500; }
+
+svg text { font-family: var(--mono); }
+.cell { stroke: rgba(255,255,255,.18); stroke-width: 1.4; fill: rgba(255,255,255,.03); transition: fill .5s; }
+.cell.current { stroke: var(--spot); stroke-width: 2.4; animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 50% { stroke-opacity: .3; } }
+.cross { stroke: var(--muted); stroke-width: 2; stroke-linecap: round; }
+@media (prefers-reduced-motion: reduce) { #tint.glow, .cell.current { animation: none; } }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="poster"></div>
+  <video id="vA" playsinline muted preload="auto"></video>
+  <video id="vB" playsinline muted preload="auto"></video>
+  <div id="tint"></div>
+  <div id="vignette"></div>
+</div>
+
+<div class="top">
+  <div>
+    <div class="kicker" data-zh="Should Humans Remain at the Center? · 体验版" data-en="Should Humans Remain at the Center? · Online experience"></div>
+    <div class="roundLabel" id="roundLabel"></div>
+    <div class="dots" id="dots" hidden></div>
+  </div>
+  <div class="tools">
+    <button class="small" id="langBtn" title="切换语言 / Language">中 / EN</button>
+    <button class="small on" id="voiceBtn" title="朗读问题">🔊</button>
+  </div>
+</div>
+
+<svg id="mini" viewBox="-70 -70 640 640" hidden></svg>
+
+<div id="target" hidden>
+  <div class="ring"></div>
+  <svg viewBox="0 0 80 80"><circle id="dwell" cx="40" cy="40" r="36" fill="none" stroke-width="4" stroke-linecap="round"
+    stroke-dasharray="226" stroke-dashoffset="226"></circle></svg>
+  <div class="core"></div>
+  <div class="label"><span id="targetName"></span><span class="dist" id="targetDist"></span></div>
+</div>
+
+<!-- 手：张开的手掌，指尖朝上 -->
+<svg id="hand" viewBox="0 0 64 64" aria-hidden="true">
+  <path d="M26 60c-7 0-12-5-14-11l-6-14c-1-3 0-5 2-6s4 0 5 2l4 8V12c0-2.2 1.6-4 3.6-4s3.6 1.8 3.6 4v17V7c0-2.2 1.6-4 3.6-4s3.6 1.8 3.6 4v22V10c0-2.2 1.6-4 3.6-4s3.6 1.8 3.6 4v20-14c0-2.2 1.6-4 3.6-4s3.6 1.8 3.6 4v25c0 11-7 19-17 19z"
+    fill="#ede7dd" stroke="#1b140b" stroke-width="2" stroke-linejoin="round"/>
+</svg>
+
+<div class="dock">
+  <!-- 开始 -->
+  <section class="card" id="intro">
+    <p class="lede" data-zh="你站在中心。四座雕塑围着你：责任、共情、克制、信任。你会转身面对它们三轮，每一轮它们要你付出的都更多。" data-en="You stand at the center. Four sculptures surround you: Responsibility, Empathy, Restraint and Trust. You will turn to face them three times. Each round asks more of you."></p>
+    <p class="lede muted" data-zh="鼠标就是你的手：把它移到雕塑柱子上的感应器前（面对信任时，移到摄像头前），停一会儿。雕塑感应到你，会回应你，然后提出一个问题。回答「愿意」或「不愿意」，每说一次「愿意」，你就离中心远一圈。" data-en="Your mouse is your hand: move it to the sensor on a sculpture’s pillar (for Trust, to the camera) and hold still. The sculpture senses you, responds, then asks you a question. Answer yes or no. Every yes moves you one ring away from the center."></p>
+    <div class="actions">
+      <button class="primary" id="startBtn" data-zh="走进中心" data-en="Step into the center"></button>
+      <span class="hint" data-zh="12 个问题 · 约 4 分钟 · 鼠标就是你的手 · Y / N 回答" data-en="12 questions · about 4 min · your mouse is your hand · Y / N to answer"></span>
+    </div>
+  </section>
+
+  <!-- 过场说明 -->
+  <section class="card" id="narration" hidden>
+    <p class="lede" id="narrText"></p>
+    <div class="actions"><button id="skipBtn" class="small" data-zh="跳过" data-en="Skip"></button></div>
+  </section>
+
+  <!-- 提问 -->
+  <section class="card" id="ask" hidden>
+    <div class="who" id="who"></div>
+    <div id="reachRow">
+      <p class="reachHint" id="reachText"></p>
+      <span class="hint" data-zh="鼠标就是你的手 · 移到画面里亮起的圆圈上，停一会儿" data-en="Your mouse is your hand · move it onto the glowing circle and hold still"></span>
+    </div>
+    <div id="qBlock" hidden>
+      <p class="q" id="q"></p>
+      <p class="q en" id="qAlt"></p>
+    </div>
+    <p class="said" id="said"></p>
+    <div class="actions" id="answerRow" hidden>
+      <button class="answer" id="yesBtn" data-zh="愿意" data-en="Yes"></button>
+      <button class="answer" id="noBtn" data-zh="不愿意" data-en="No"></button>
+      <button class="small" id="replayBtn" data-zh="再听一遍" data-en="Hear again"></button>
+    </div>
+  </section>
+
+  <!-- 结果 -->
+  <section class="card" id="result" hidden>
+    <div class="who" style="color:var(--spot)" data-zh="你的圆环" data-en="Your ring"></div>
+    <svg class="bigring" id="big" viewBox="-150 -40 800 580"></svg>
+    <p class="q" id="verdict"></p>
+    <div class="scores" id="scores"></div>
+    <div class="rounds" id="rounds"></div>
+    <p class="lede muted" data-zh="几乎每个人都愿意离开中心一点。你会走多远？" data-en="Almost everyone will leave the center a little. How far would you go?"></p>
+    <div class="actions"><button class="primary" id="againBtn" data-zh="再体验一次" data-en="Try again"></button></div>
+  </section>
+</div>
+
+<script>
+(() => {
+  // ---------- 内容：体验问题 v5（02_剧本与问题/体验问题v5.md） ----------
+  // 顺序与装置一致：责任 → 共情 → 克制 → 信任；对应建模动画 turn1–turn4
+  const DIRS = [
+    { zh: "责任", en: "RESPONSIBILITY", sub: { zh: "人类之子", en: "the unborn" }, color: "#cf4038", angle: 45,
+      reach: { zh: "把手伸到红色圆环那根柱子的感应器前。", en: "Bring your hand to the sensor on the red ring’s pillar." }, at: { x: 0.453, y: 0.425 }, sensor: { zh: "超声波感应器", en: "Ultrasonic sensor" }, react: { zh: "球里的胎儿亮了起来。", en: "The unborn child glows inside." } },
+    { zh: "共情", en: "EMPATHY", sub: { zh: "动物", en: "animals" }, color: "#d29a68", angle: 135,
+      reach: { zh: "把手伸到毛皮那根柱子的感应器前。", en: "Bring your hand to the sensor on the fur’s pillar." }, at: { x: 0.453, y: 0.425 }, sensor: { zh: "超声波感应器", en: "Ultrasonic sensor" }, react: { zh: "毛皮下的气球开始呼吸。", en: "The fur begins to breathe." } },
+    { zh: "克制", en: "RESTRAINT", sub: { zh: "自然", en: "nature" }, color: "#74aa74", angle: 225,
+      reach: { zh: "把手伸到乐高树那根柱子的感应器前。", en: "Bring your hand to the sensor on the LEGO tree’s pillar." }, at: { x: 0.453, y: 0.425 }, sensor: { zh: "超声波感应器", en: "Ultrasonic sensor" }, react: { zh: "树转了过去，背对着你。", en: "The tree turns away from you." } },
+    { zh: "信任", en: "TRUST", sub: { zh: "AI", en: "AI" }, color: "#6a88d2", angle: 315,
+      reach: { zh: "把手移到大卫脸上的摄像头前——在现场，你要看着它。", en: "Move your hand to the camera on David’s face — in the room, you would look into it." }, at: { x: 0.433, y: 0.268 }, sensor: { zh: "摄像头", en: "Camera" }, react: { zh: "摄像头找到了你的脸。", en: "The camera finds your face." } },
+  ];
+  const ROUNDS = [
+    { zh: "Round 1 · 一个小动作，只有你付出", en: "Round 1 · A small act of mine", ring: { zh: "01 小动作", en: "01 small act" } },
+    { zh: "Round 2 · 改掉一个习惯，你和家人一起付出", en: "Round 2 · My family pays too", ring: { zh: "02 家人一起", en: "02 family" } },
+    { zh: "Round 3 · 一个关乎生死的决定", en: "Round 3 · Someone I love at risk", ring: { zh: "03 生死", en: "03 a life" } },
+  ];
+  const Q = [
+    [
+      { zh: "为了少给以后出生的孩子留下塑料，从今往后，尽量选「不需要餐具」，用家里的筷子。你愿意吗？",
+        en: "So that less plastic is left for children not yet born: from now on, every time you order takeaway, you'll tick \"no cutlery\" and use your own. Will you?" },
+      { zh: "从今往后，开车或骑车时遇到猫、狗、鸟在过马路，你停下来等它过去，哪怕后面有车按喇叭。你愿意吗？",
+        en: "From now on, when a cat, dog or bird is crossing the road in front of you, you'll stop and wait for it—even if the cars behind you honk. Will you?" },
+      { zh: "杀虫剂会顺着窗台流进楼下的草地和泥土。从今往后，你家里不再喷杀虫剂，改用蚊帐和清理积水。你愿意吗？",
+        en: "Insect spray drifts into the grass and soil below your window. From now on, no more spray at home—just nets and emptying standing water. Will you?" },
+      { zh: "从今往后，当你记得的路和导航推荐的路线不一样时，你听导航的。你愿意吗？",
+        en: "From now on, when the way you remember and the route the map AI suggests disagree, you'll follow the AI. Will you?" },
+    ],
+    [
+      { zh: "为了以后出生的孩子少经历极端高温，从今往后，国内出行你不再坐飞机，全家旅行也改坐火车，路上要多花大半天。你愿意吗？",
+        en: "So that children not yet born face less extreme heat: from now on, no more domestic flights—even family trips go by train, adding most of a day. Will you?" },
+      { zh: "长江禁渔以后，江豚和中华鲟在慢慢变多。禁渔区以外，钓鱼、买野生河鲜都是合法的，很多人周末也会去钓。从今往后，你和家人不再钓鱼，也不再买野生河鲜。你愿意吗？",
+        en: "Since fishing was banned on the Yangtze, its porpoises and sturgeon are slowly returning. Outside the ban, fishing and buying wild river fish are legal, and many people fish at weekends. From now on, you and your family won't do either. Will you?" },
+      { zh: "很多纸巾的木浆，来自砍伐的天然林。从今往后，你家不再用一次性纸巾和湿巾，改用手帕和毛巾，家里人也一样。你愿意吗？",
+        en: "Much of the pulp in tissues comes from cutting natural forests. From now on, your home uses no tissues or wet wipes—only handkerchiefs and towels, for everyone in the family. Will you?" },
+      { zh: "从今往后，家人身体不舒服，先让 AI 看症状和化验单，它说不用去医院，你们就不去。你愿意吗？",
+        en: "From now on, when someone in your family feels ill, an AI reads their symptoms and tests first. If it says no hospital, you don't go. Will you?" },
+    ],
+    [
+      { zh: "你的孩子高烧三天。医生说，为了让抗生素对下一代还有效，先不用，再观察两天。这两天里病情有可能恶化。你同意吗？",
+        en: "Your child has had a high fever for three days. To keep antibiotics working for the next generation, the doctor wants to wait two more days. It could get worse. Do you agree?" },
+      { zh: "你家在云南的山村，附近常有野生亚洲象出没，去年邻村有人被象踩死。亚洲象是保护动物，村里只修了防护网、装了预警喇叭，不会赶走它们。你的孩子每天上学，要走象群经过的那条路。你愿意让象群继续留在这里吗？",
+        en: "Your family lives in a mountain village where wild elephants roam. Last year, one killed a man in the next village. They are protected: there are fences and alarms, but no one drives them away. Your child walks their path to school every day. Will you let them stay?" },
+      { zh: "你父母住在山脚下，雨季山上可能滑坡。镇上可以砍掉屋后那片老林，修一道水泥挡墙，专家说挡墙更保险；也可以不砍，林子留着，滑坡的风险也还在。你愿意留下这片林子吗？",
+        en: "Your parents live at the foot of a mountain that may slide in the rainy season. The town could clear the old forest behind their house and build a concrete wall—experts say the wall is safer. Or the forest stays, and so does the risk. Will you keep the forest?" },
+      { zh: "从今往后，你的孩子每天一个人坐无人驾驶车上学。车里没有司机，也没有安全员，数据显示它和人类司机一样安全。你愿意吗？",
+        en: "From now on, your child rides to school alone in a driverless car—no driver, no safety staff. The data say it is as safe as a human driver. Will you let them?" },
+    ],
+  ];
+  const NARR = {
+    opening: { zh: "你从上方慢慢落进展厅的中心。四座雕塑站在四个方向。", en: "You descend into the center of the room. Four sculptures stand around you." },
+    reach: { zh: "每到一座雕塑面前，把手伸过去。它感应到你，就会回应，然后问你一个问题。", en: "At each sculpture, reach out. When it senses you, it responds and asks you one question." },
+    ending: { zh: "十二个回答之后，你回到上方，看见自己留下的圆环。", en: "After twelve answers, you rise again and see the ring you have left." },
+  };
+
+  // ---------- 状态 ----------
+  const $ = id => document.getElementById(id);
+  let lang = "en";
+  let voiceOn = true;
+  let answers = [], index = -1, phase = "intro";
+  const t = o => o[lang];
+
+  function applyLang() {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+    document.querySelectorAll("[data-zh]").forEach(el => { el.textContent = el.dataset[lang]; });
+    if (phase === "ask") renderAsk(false);
+    if (phase === "result") renderResult();
+    if (phase === "narr") $("narrText").textContent = t(NARR[narrKey]);
+    updateTop();
+  }
+
+  // ---------- 视频：两个 video 交替，前一段停在最后一帧 ----------
+  const vids = [$("vA"), $("vB")];
+  let front = 0, playToken = 0;
+  // 播放速度：渲染片段原速太快，网页里统一放慢。数字越小越慢。
+  const SPEED = { opening: 0.6, reach: 0.65, turn: 0.7, turnSlow: 0.6, ending: 0.6 };
+  function play(src, rate) {
+    const token = ++playToken;
+    return new Promise(resolve => {
+      const next = vids[1 - front], cur = vids[front];
+      next.onended = null;
+      next.src = "assets/" + src;
+      next.currentTime = 0;
+      const start = () => {
+        if (token !== playToken) return resolve(false);
+        next.playbackRate = rate || 1;
+        next.play().catch(() => {});
+        next.classList.add("on"); cur.classList.remove("on");
+        $("poster").classList.add("off");
+        front = 1 - front;
+      };
+      next.oncanplay = () => { next.oncanplay = null; start(); };
+      next.onended = () => {
+        // 渲染片段的最后一帧是一张坏帧，停在它前面一点
+        if (next.duration) next.currentTime = Math.max(0, next.duration - 0.06);
+        if (token === playToken) resolve(true);
+      };
+      next.onerror = () => resolve(false);
+      next.load();
+    });
+  }
+  function skipVideo() {
+    const v = vids[front];
+    if (v.duration && !v.ended) { v.currentTime = Math.max(0, v.duration - 0.05); }
+  }
+
+  // ---------- 朗读：预先录好的配音（assets/audio，中文 Han Premium，英文 Ava Enhanced） ----------
+  const voice = new Audio();
+  voice.preload = "auto";
+  let voiceDone = null;
+  function stopVoice() {
+    voice.pause();
+    if (voiceDone) { const f = voiceDone; voiceDone = null; f(); }
+  }
+  function speak(key) {
+    stopVoice();
+    if (!voiceOn) return Promise.resolve();
+    return new Promise(res => {
+      voiceDone = res;
+      voice.src = "assets/audio/" + key + "_" + lang + ".m4a";
+      voice.onended = voice.onerror = () => { if (voiceDone === res) { voiceDone = null; res(); } };
+      voice.play().catch(() => { if (voiceDone === res) { voiceDone = null; res(); } });
+    });
+  }
+
+
+  // ---------- 圆环 ----------
+  const NS = "http://www.w3.org/2000/svg";
+  const C = 250, RADII = [44, 106, 168, 230];
+  const pt = (r, deg) => [C + r * Math.cos(deg * Math.PI / 180), C - r * Math.sin(deg * Math.PI / 180)];
+  function sector(r0, r1, a0, a1) {
+    const [x0, y0] = pt(r1, a0), [x1, y1] = pt(r1, a1), [x2, y2] = pt(r0, a1), [x3, y3] = pt(r0, a0);
+    return `M${x0},${y0} A${r1},${r1} 0 0 0 ${x1},${y1} L${x2},${y2} A${r0},${r0} 0 0 1 ${x3},${y3} Z`;
+  }
+  function drawRing(svg, current, labels) {
+    svg.innerHTML = "";
+    const el = (tag, a, p = svg) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+    for (let r = 0; r < 3; r++) DIRS.forEach((d, i) => {
+      const k = r * 4 + i, a = answers[k];
+      const c = el("path", { d: sector(RADII[r] + 3, RADII[r + 1], d.angle - 43, d.angle + 43), class: "cell" + (k === current ? " current" : "") });
+      if (a === "y") c.style.fill = d.color;
+      if (a === "n") {
+        const [cx, cy] = pt((RADII[r] + RADII[r + 1]) / 2, d.angle);
+        el("line", { x1: cx - 7, y1: cy - 7, x2: cx + 7, y2: cy + 7, class: "cross" });
+        el("line", { x1: cx - 7, y1: cy + 7, x2: cx + 7, y2: cy - 7, class: "cross" });
+      }
+    });
+    if (labels) {
+      DIRS.forEach(d => {
+        const [x, y] = pt(266, d.angle);
+        const tx = el("text", { x, y, fill: d.color, "font-size": 15, "font-weight": 600, "letter-spacing": "2",
+          "text-anchor": Math.cos(d.angle * Math.PI / 180) > 0 ? "start" : "end", "dominant-baseline": "middle" });
+        tx.textContent = t(d);
+      });
+    }
+    // 中心的人：指向当前面对的雕塑
+    const face = current >= 0 ? DIRS[current % 4].angle : null;
+    if (face !== null) {
+      const [x1, y1] = pt(30, face), [x2, y2] = pt(62, face);
+      el("line", { x1, y1, x2, y2, stroke: "#f2c78e", "stroke-width": 4, "stroke-linecap": "round" });
+    }
+    el("circle", { cx: C, cy: C, r: 26, fill: "#ede7dd" });
+    const you = el("text", { x: C, y: C + 1, "text-anchor": "middle", "dominant-baseline": "middle", fill: "#0b0a09", "font-size": 11, "font-weight": 700 });
+    you.textContent = lang === "zh" ? "你" : "YOU";
+  }
+
+  // ---------- 顶部 ----------
+  const dots = $("dots");
+  for (let i = 0; i < 12; i++) { const s = document.createElement("span"); s.className = "dot"; dots.appendChild(s); }
+  function updateTop() {
+    const inQ = phase === "ask";
+    dots.hidden = !inQ; $("mini").hidden = !(inQ || phase === "narr" && index >= 0);
+    $("roundLabel").textContent = inQ ? t(ROUNDS[Math.floor(index / 4)]) : "";
+    [...dots.children].forEach((s, k) => s.className = "dot" + (k < index ? " done" : k === index ? " now" : ""));
+    if (!$("mini").hidden) drawRing($("mini"), inQ ? index : -1, false);
+  }
+  function show(id) { ["intro", "narration", "ask", "result"].forEach(s => $(s).hidden = s !== id); }
+
+  // ---------- 流程 ----------
+  let narrKey = "opening";
+  async function narrate(key, clip) {
+    phase = "narr"; narrKey = key; show("narration");
+    $("narrText").textContent = t(NARR[key]); updateTop();
+    const spoken = speak("narr_" + key);
+    await play(clip, SPEED[key]);
+    await Promise.race([spoken, new Promise(r => setTimeout(r, 400))]);
+  }
+
+  async function run() {
+    answers = []; index = -1;
+    await narrate("opening", "opening.mp4");
+    await narrate("reach", "reach.mp4");
+    for (let i = 0; i < 12; i++) await question(i);
+    await narrate("ending", "ending.mp4");
+    phase = "result"; show("result"); updateTop(); renderResult();
+  }
+
+  let answerResolve = null, reached = false;
+  async function question(i) {
+    index = i; reached = false;
+    const r = Math.floor(i / 4), d = i % 4;
+    phase = "ask"; show("ask"); renderAsk(true); updateTop();
+    $("tint").classList.remove("glow");
+    // 转身面对下一座雕塑；第三轮用慢速版本
+    // 转身一律用 2.5 秒的慢速片段，再放慢播放；第三轮更慢
+    await play(`turn${d + 1}_slow.mp4`, r === 2 ? SPEED.turnSlow : SPEED.turn);
+    startReach();
+    return new Promise(res => { answerResolve = res; });
+  }
+
+  function renderAsk(reset) {
+    const r = Math.floor(index / 4), d = index % 4, dir = DIRS[d];
+    $("who").innerHTML = "";
+    $("who").style.color = dir.color;
+    $("who").append(t(dir));
+    const s = document.createElement("small"); s.textContent = t(dir.sub); $("who").append(s);
+    $("reachText").textContent = t(dir.reach);
+    $("q").textContent = t(Q[r][d]);
+    $("qAlt").textContent = Q[r][d][lang === "zh" ? "en" : "zh"];
+    placeTarget();
+    if (reset) {
+      $("qBlock").hidden = true; $("answerRow").hidden = true; $("said").textContent = "";
+      $("reachRow").hidden = false;
+      $("yesBtn").disabled = $("noBtn").disabled = false;
+    }
+  }
+
+  // 伸手：鼠标就是手。手移到画面里的感应器上，停 0.9 秒，相当于现场手在超声波感应器前停留
+  const VW = 1920, VH = 1080, DWELL = 900;
+  const hand = $("hand"), target = $("target"), dwellArc = $("dwell");
+  let reaching = false, dwellStart = 0, dwellRaf = 0, mouse = { x: -999, y: -999 };
+
+  function targetXY() {
+    const d = DIRS[index % 4].at, W = innerWidth, H = innerHeight;
+    const s = Math.max(W / VW, H / VH);            // object-fit: cover
+    return { x: (W - VW * s) / 2 + d.x * VW * s, y: (H - VH * s) / 2 + d.y * VH * s, r: Math.max(34, 0.03 * VW * s) };
+  }
+  function placeTarget() {
+    if (!reaching) return;
+    const p = targetXY(), dir = DIRS[index % 4];
+    target.style.left = p.x + "px"; target.style.top = p.y + "px";
+    target.style.setProperty("--c", dir.color);
+    dwellArc.setAttribute("stroke", dir.color);
+    $("targetName").textContent = t(dir.sensor);
+  }
+  function startReach() {
+    reaching = true; dwellStart = 0;
+    document.body.classList.add("reaching");
+    target.hidden = false; placeTarget();
+    $("reachRow").hidden = false;
+    $("targetDist").textContent = lang === "zh" ? "把手移过来" : "bring your hand here";
+    if (mouse.x > -999) onMove(mouse);
+  }
+  function stopReach() {
+    reaching = false; dwellStart = 0; clearTimeout(dwellRaf);
+    document.body.classList.remove("reaching");
+    target.hidden = true; target.classList.remove("near");
+    dwellArc.setAttribute("stroke-dashoffset", "226");
+  }
+  function onMove(e) {
+    mouse = { x: e.clientX !== undefined ? e.clientX : e.x, y: e.clientY !== undefined ? e.clientY : e.y };
+    hand.style.transform = `translate(${mouse.x}px, ${mouse.y}px)`;
+    if (!reaching || phase !== "ask" || reached) return;
+    const p = targetXY();
+    const dist = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+    // 把屏幕距离换算成「感应器读数」：圆圈边缘约 10 cm，越远读数越大
+    const cm = Math.max(3, Math.round(dist / p.r * 10));
+    target.classList.toggle("near", dist < p.r * 3);
+    $("targetDist").textContent = dist < p.r * 6 ? (lang === "zh" ? `距离 ${cm} cm` : `${cm} cm away`)
+                                                 : (lang === "zh" ? "把手移过来" : "bring your hand here");
+    if (dist <= p.r) { if (!dwellStart) { dwellStart = performance.now(); tickDwell(); } }
+    else if (dwellStart) { dwellStart = 0; clearTimeout(dwellRaf); dwellArc.setAttribute("stroke-dashoffset", "226"); }
+  }
+  function tickDwell() {
+    if (!dwellStart) return;
+    const k = Math.min(1, (performance.now() - dwellStart) / DWELL);
+    dwellArc.setAttribute("stroke-dashoffset", String(226 * (1 - k)));
+    if (k >= 1) { triggered(); return; }
+    dwellRaf = setTimeout(tickDwell, 16);
+  }
+  addEventListener("pointermove", onMove);
+  addEventListener("pointerdown", onMove);
+  addEventListener("resize", placeTarget);
+
+  // 键盘备用：按住空格同样计时（给不方便用鼠标的人）
+  function holdStart() {
+    if (!reaching || reached || dwellStart) return;
+    dwellStart = performance.now(); tickDwell();
+  }
+  function holdEnd() {
+    if (!reaching || reached) return;
+    const p = targetXY();
+    if (Math.hypot(mouse.x - p.x, mouse.y - p.y) > p.r) { dwellStart = 0; clearTimeout(dwellRaf); dwellArc.setAttribute("stroke-dashoffset", "226"); }
+  }
+
+  async function triggered() {
+    if (reached) return;
+    reached = true; stopReach();
+    const r = Math.floor(index / 4), d = index % 4, dir = DIRS[d];
+    $("reachRow").hidden = true;
+    $("tint").style.setProperty("--c", dir.color); $("tint").classList.add("glow");
+    $("said").textContent = t(dir.react);
+    await new Promise(res => setTimeout(res, 1300));
+    $("said").textContent = "";
+    $("qBlock").hidden = false; $("answerRow").hidden = false;
+    $("yesBtn").focus({ preventScroll: true });
+    speak("q" + r + d);
+  }
+
+  function answer(a) {
+    if (phase !== "ask" || !answerResolve || $("answerRow").hidden || $("yesBtn").disabled) return;
+    $("yesBtn").disabled = $("noBtn").disabled = true;
+    stopVoice();
+    answers[index] = a;
+    const word = a === "y" ? (lang === "zh" ? "“愿意。”" : "“Yes.”") : (lang === "zh" ? "“不愿意。”" : "“No.”");
+    $("said").textContent = word;
+    drawRing($("mini"), -1, false);
+    const res = answerResolve; answerResolve = null;
+    setTimeout(() => { $("tint").classList.remove("glow"); res(); }, 1000);
+  }
+  $("yesBtn").onclick = () => answer("y");
+  $("noBtn").onclick = () => answer("n");
+  $("replayBtn").onclick = () => { const r = Math.floor(index / 4), d = index % 4; speak("q" + r + d); };
+
+  function renderResult() {
+    drawRing($("big"), -1, true);
+    const per = DIRS.map((d, i) => [0, 1, 2].filter(r => answers[r * 4 + i] === "y").length);
+    const perRound = [0, 1, 2].map(r => [0, 1, 2, 3].filter(i => answers[r * 4 + i] === "y").length);
+    const total = per.reduce((a, b) => a + b, 0);
+    const max = Math.max(...per), far = DIRS.filter((d, i) => per[i] === max).map(d => t(d));
+    $("verdict").textContent = total === 0
+      ? (lang === "zh" ? "三轮下来，你一直站在中心。" : "You stayed at the center through all three rounds.")
+      : total === 12 ? (lang === "zh" ? "你在每个方向都走到了最外圈。" : "You left the center in every direction, all the way out.")
+      : (lang === "zh" ? `你离开中心 ${total} / 12 步，走得最远的方向是：${far.join("、")}。`
+                       : `You moved ${total} of 12 rings from the center, furthest toward ${far.join(" and ").toLowerCase()}.`);
+    $("scores").innerHTML = "";
+    DIRS.forEach((d, i) => {
+      const s = document.createElement("div"); s.className = "score"; s.style.setProperty("--c", d.color);
+      const b = document.createElement("b"); b.textContent = t(d);
+      const v = document.createElement("span"); v.textContent = per[i] + " / 3";
+      s.append(b, v); $("scores").appendChild(s);
+    });
+    $("rounds").innerHTML = "";
+    ROUNDS.forEach((ro, r) => {
+      const c = document.createElement("div");
+      const b = document.createElement("b"); b.textContent = perRound[r] + " / 4";
+      c.append(b, t(ro.ring) + (lang === "zh" ? " · 说了愿意" : " · yes"));
+      $("rounds").appendChild(c);
+    });
+  }
+
+  // ---------- 控件 ----------
+  $("startBtn").onclick = () => run();
+  $("againBtn").onclick = () => run();
+  $("skipBtn").onclick = () => { stopVoice(); skipVideo(); };
+  $("langBtn").onclick = () => { lang = lang === "zh" ? "en" : "zh"; applyLang(); };
+  $("voiceBtn").onclick = () => {
+    voiceOn = !voiceOn;
+    $("voiceBtn").classList.toggle("on", voiceOn);
+    $("voiceBtn").textContent = voiceOn ? "🔊" : "🔇";
+    if (!voiceOn) stopVoice();
+  };
+
+  document.addEventListener("keydown", e => {
+    if (e.code === "Space") { e.preventDefault(); if (!e.repeat) holdStart(); }
+    if (e.key === "y" || e.key === "Y") answer("y");
+    if (e.key === "n" || e.key === "N") answer("n");
+  });
+  document.addEventListener("keyup", e => { if (e.code === "Space") holdEnd(); });
+
+  applyLang();
+})();
+</script>
+<script>/* back-to-portfolio link, shown only when this page is opened on its own (not inside the portfolio iframe) */
+(function(){if(window.top!==window.self)return;var a=document.createElement('a');a.href='/';a.textContent='\u2190 Yihan Zeng \u00b7 Portfolio';a.setAttribute('style','position:fixed;left:14px;bottom:14px;z-index:2147483000;font:500 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#f1f0e9;background:rgba(0,0,0,.62);padding:9px 12px;border-radius:999px;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:.75;transition:opacity .2s');a.onmouseenter=function(){a.style.opacity=1};a.onmouseleave=function(){a.style.opacity=.75};(document.body||document.documentElement).appendChild(a);})();</script>
+</body>
+</html>

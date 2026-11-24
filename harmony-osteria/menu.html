@@ -40,5 +40,7 @@
       <p class="ing">${m.ing}</p><p class="all">Allergens: ${m.all}</p></article>` }).join('')}</div></section>`).join('');
 })();
 </script>
+<script>/* back-to-portfolio link, shown only when this page is opened on its own (not inside the portfolio iframe) */
+(function(){if(window.top!==window.self)return;var a=document.createElement('a');a.href='/';a.textContent='\u2190 Yihan Zeng \u00b7 Portfolio';a.setAttribute('style','position:fixed;left:14px;bottom:14px;z-index:2147483000;font:500 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#f1f0e9;background:rgba(0,0,0,.62);padding:9px 12px;border-radius:999px;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:.75;transition:opacity .2s');a.onmouseenter=function(){a.style.opacity=1};a.onmouseleave=function(){a.style.opacity=.75};(document.body||document.documentElement).appendChild(a);})();</script>
 </body>
 </html>

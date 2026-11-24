@@ -9,7 +9,7 @@ const PROJECTS = [
     summary: 'A participant stands between four handmade sculptures representing animals, nature, future generations and AI. Reaching toward one triggers a response — it moves, speaks and waits for a yes or no.',
     facts: ['205 survey responses', '4 sculptures', '3 rounds of questions'],
     steps: ['A small cost to me', 'A loss I can weigh', 'A risk to someone else'],
-    prototype: true
+    live: 'center-experience/'
   },
   {
     slug: 'lookcoin', title: 'LookCoin', ratio: 1.718,
@@ -18,7 +18,7 @@ const PROJECTS = [
     summary: 'In a fictional 2035 city, smart glasses verify attention to street advertisements. One verified minute is one VAU, and the payout in LookCoin varies with the place and the viewer.',
     facts: ['Fictional city, 2035', 'Browser simulation', '360° street panoramas'],
     steps: ['Find a paid view', 'Hold your gaze', 'Let the city settle up'],
-    prototype: true
+    live: 'lookcoin-city/'
   },
   {
     slug: 'harmony', title: 'Harmony Osteria', ratio: 1.5,
@@ -27,7 +27,7 @@ const PROJECTS = [
     summary: 'A restaurant near Genoa brings wildlife observations into the dining room through the menu, the plate and a wall of glass, turning changes in animal activity into signals at the table.',
     facts: ['Genoa, Italy', 'Camera-trap data', 'Menu · plate · glass'],
     steps: ['Read the day’s menu', 'Read the plate', 'Read the glass'],
-    prototype: true
+    live: 'harmony-osteria/'
   },
   {
     slug: 'medimate', title: 'MediMate', ratio: 0.973,
@@ -36,7 +36,7 @@ const PROJECTS = [
     summary: 'A medication history app and the playable game Inside Defense explore the moment someone decides to reuse antibiotics. I analysed the questionnaire, designed the app flows and programmed the game.',
     facts: ['5-person team', '161 questionnaire responses', 'Playable game'],
     steps: ['Locate the decision', 'Bring history into view', 'Play the trade-off'],
-    prototype: true
+    live: 'medimate-game/'
   },
   {
     slug: 'mlog', title: 'MLOG', ratio: 1.339,
@@ -45,7 +45,7 @@ const PROJECTS = [
     summary: 'An employee-controlled badge turns a workplace record into a deliberate action. The wearer starts the log, reviews it, and chooses what a manager can see.',
     facts: ['142 survey responses', 'Badge + app + dashboard', 'One-handed paper mockups'],
     steps: ['Start on the badge', 'Review before sharing', 'Respond to a confirmed record'],
-    prototype: false
+    live: ''
   }
 ];
 
@@ -96,7 +96,7 @@ PROJECTS.forEach((p, i) => {
       `<div><dt>Key facts</dt><dd>${p.facts.map(esc).join('<br>')}</dd></div>` +
       `<div><dt>Sequence</dt><dd>${p.steps.map((s, k) => `<span class="step"><i>${k + 1}</i>${esc(s)}</span>`).join('')}</dd></div></dl>` +
     `<div class="actions"><a class="cta" href="${p.slug}.html">View project <i>→</i></a>` +
-      (p.prototype ? `<a class="ghost" href="assets/${p.slug}/prototype/index.html">Open prototype ↗</a>` : '') +
+      (p.live ? `<a class="ghost" href="${p.live}" target="_blank" rel="noopener">Open live page ↗</a>` : '') +
     `</div>`;
   info.appendChild(card);
 });

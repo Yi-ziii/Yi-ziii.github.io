@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LookCoin</title>
+<meta name="description" content="LookCoin — a speculative prototype of a city where your attention is paid. Pick a role, look at ads, earn LC, spend it.">
+<meta property="og:title" content="LookCoin — Attention is currency">
+<meta property="og:description" content="A speculative prototype of a city where every glance is priced. Best experienced on desktop.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2311110f'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23eaea00'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="LOOKCOIN_City_Clean.webp">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="city">
+  <div id="map" tabindex="0" role="application" aria-label="Interactive advertising density map">
+    <img class="map-image" id="base" src="LOOKCOIN_City_Clean.webp" alt="White architectural model of LOOKCOIN city" draggable="false">
+    <img class="map-image" id="dots" src="LOOKCOIN_City_Ad_Density.webp" alt="" aria-hidden="true" draggable="false">
+    <div class="map-vignette" aria-hidden="true"></div>
+  </div>
+  <h1 class="map-title">LOOKCOIN</h1>
+  <p class="map-help">Move to reveal<br>Click to measure</p>
+  <div class="map-actions">
+    <button class="map-action" id="open-archive" type="button"><span>ATTENTION RECORD</span><strong>ARCHIVE</strong><small>View total time →</small></button>
+    <button class="map-action" id="open-role" type="button" aria-haspopup="dialog" aria-controls="role-panel"><span>CURRENT ROLE</span><strong id="map-role">STUDENT</strong><small id="map-rate">2 LC / SEC</small></button>
+    <button class="map-action" id="open-reset" type="button" aria-haspopup="dialog" aria-controls="reset-panel"><span>START OVER</span><strong>RESET</strong><small>Clear all data →</small></button>
+    <button class="wallet-map" id="open-market" type="button" aria-haspopup="dialog" aria-controls="market-panel"><span>TOTAL BALANCE</span><strong><i>●</i><b id="map-total">0000</b> LC</strong><small>Click to spend →</small></button>
+  </div>
+  <aside class="legend" aria-label="Map legend">
+    <p class="legend-title">Ad density</p>
+    <div class="legend-scale"><span>LOW</span><span class="legend-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>HIGH</span></div>
+    <p class="legend-copy">Dot concentration represents estimated advertising exposure in the surrounding area.</p>
+  </aside>
+  <aside id="probe" aria-live="polite" aria-hidden="true">
+    <span class="probe-ring" aria-hidden="true"></span><span class="target" aria-hidden="true"></span>
+    <div class="probe-card">
+      <div class="probe-label"><b id="zone-name">AREA SAMPLE</b><span id="coordinates">00.0 / 00.0</span></div>
+      <div class="probe-row"><span>Ad density</span><strong id="density">— / 100</strong></div>
+      <div class="probe-row"><span>Avg. revenue</span><strong id="revenue">— / day</strong></div>
+      <button id="enter-zone" type="button" disabled><span>SCANNING</span><span>→</span></button>
+    </div>
+  </aside>
+  <canvas id="sampler" hidden></canvas>
+  <div id="market-scrim" aria-hidden="true"></div>
+  <aside id="market-panel" role="dialog" aria-modal="true" aria-labelledby="market-title" aria-hidden="true">
+    <div class="market-head"><div><p class="market-kicker">LOOKCOIN / ATTENTION MARKET</p><h2 id="market-title">WHAT CAN YOUR ATTENTION BUY?</h2></div><button class="market-close" id="close-market" type="button" aria-label="Close purchase menu">×</button></div>
+    <div class="market-balance"><span>AVAILABLE BALANCE</span><strong><i>●</i> <b id="market-total">0000</b> LC</strong></div>
+    <div class="market-list">
+      <button class="market-item" type="button" data-cost="20" data-item="COFFEE"><span class="market-icon">☕</span><span class="market-copy"><b>COFFEE</b><small>about one ad viewed</small></span><span class="market-price">20 LC</span></button>
+      <button class="market-item" type="button" data-cost="60" data-item="CINEMA TICKET"><span class="market-icon">▣</span><span class="market-copy"><b>CINEMA TICKET</b><small>a short attention session</small></span><span class="market-price">60 LC</span></button>
+      <button class="market-item" type="button" data-cost="120" data-item="DINNER"><span class="market-icon">⌁</span><span class="market-copy"><b>DINNER</b><small>several verified ads</small></span><span class="market-price">120 LC</span></button>
+      <button class="market-item" type="button" data-cost="600" data-item="SNEAKERS"><span class="market-icon">⌇</span><span class="market-copy"><b>SNEAKERS</b><small>hours of sold attention</small></span><span class="market-price">600 LC</span></button>
+      <button class="market-item" type="button" data-cost="5000" data-item="SMARTPHONE"><span class="market-icon">▯</span><span class="market-copy"><b>SMARTPHONE</b><small>attention becomes hardware</small></span><span class="market-price">5,000 LC</span></button>
+      <button class="market-item" type="button" data-cost="12000" data-item="LAPTOP"><span class="market-icon">▰</span><span class="market-copy"><b>LAPTOP</b><small>a longer gaze contract</small></span><span class="market-price">12,000 LC</span></button>
+      <button class="market-item" type="button" data-cost="30000" data-item="HOLIDAY"><span class="market-icon">✈</span><span class="market-copy"><b>HOLIDAY</b><small>a season of attention</small></span><span class="market-price">30,000 LC</span></button>
+      <button class="market-item" type="button" data-cost="200000" data-item="CAR"><span class="market-icon">▱</span><span class="market-copy"><b>CAR</b><small>your eyes, fully monetised</small></span><span class="market-price">200,000 LC</span></button>
+    </div>
+    <p class="market-note">1 LC is treated as roughly one unit of everyday purchasing value. Prices are speculative and designed to make the exchange rate between attention and material life visible.</p>
+  </aside>
+  <div class="market-toast" id="market-toast" role="status" aria-live="polite"></div>
+
+  <div id="role-scrim" aria-hidden="true">
+    <section id="role-panel" role="dialog" aria-modal="true" aria-labelledby="role-title">
+      <div class="role-head"><div><p>LOOKCOIN / SOCIAL RATE</p><h2 id="role-title">WHOSE EYES<br>ARE THESE?</h2></div><button class="role-close" id="close-role" type="button" aria-label="Close role menu">×</button></div>
+      <p class="role-note">Verified attention is not priced equally. Your role sets the base value of every second: BASE VALUE × VERIFIED TIME = LOOKCOIN.</p>
+      <div class="role-list">
+        <button class="role-option" type="button" data-role="ceo"><span><b>COMPANY CEO</b><small>executive decision-making value</small></span><span class="role-value">5 LC / SEC</span></button>
+        <button class="role-option" type="button" data-role="white-collar"><span><b>WHITE-COLLAR WORKER</b><small>professional consumer value</small></span><span class="role-value">3 LC / SEC</span></button>
+        <button class="role-option" type="button" data-role="student"><span><b>STUDENT</b><small>future consumer value</small></span><span class="role-value">2 LC / SEC</span></button>
+        <button class="role-option" type="button" data-role="low-income"><span><b>LOW-INCOME WORKER</b><small>discounted purchasing value</small></span><span class="role-value">1 LC / SEC</span></button>
+      </div>
+    </section>
+  </div>
+  <div id="confirm-scrim" aria-hidden="true">
+    <section id="confirm-panel" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+      <p>IDENTITY REPRICING</p><h3 id="confirm-title">SWITCH TO <span id="pending-role">—</span>?</h3>
+      <div class="warning">Your current LOOKCOIN balance will be reset to zero. Your attention archive will remain as evidence of time already spent.</div>
+      <div class="confirm-actions"><button id="cancel-role" type="button">CANCEL</button><button id="confirm-role" type="button">RESET + SWITCH</button></div>
+    </section>
+  </div>
+  <div id="reset-scrim" aria-hidden="true">
+    <section id="reset-panel" role="alertdialog" aria-modal="true" aria-labelledby="reset-title">
+      <p>FULL SYSTEM RESET</p><h3 id="reset-title">ERASE YOUR<br>ATTENTION RECORD?</h3>
+      <div class="warning">This will permanently reset your role to Student and erase your LOOKCOIN balance, ad progress, and complete attention archive.</div>
+      <div class="confirm-actions"><button id="cancel-reset" type="button">CANCEL</button><button id="confirm-reset" type="button">RESET EVERYTHING</button></div>
+    </section>
+  </div>
+</main>
+
+<main id="archive" class="hidden" aria-label="Attention archive">
+  <div class="archive-inner">
+    <header class="archive-head"><div><p class="archive-kicker">LOOKCOIN / PERSONAL ATTENTION LEDGER</p><h1>ARCHIVE</h1></div><button class="archive-close" id="close-archive" type="button" aria-label="Return to map">×</button></header>
+    <section class="archive-total"><span>TOTAL RECORDED GAZE</span><strong id="archive-total">00:00:00</strong><small>EVERY SECOND INSIDE A STREET VIEW IS COUNTED</small></section>
+    <section class="archive-categories" aria-label="Attention categories">
+      <div class="archive-stat"><span>ADVERTISEMENT</span><strong id="archive-ad">00:00:00</strong></div>
+      <div class="archive-stat"><span>PEOPLE</span><strong id="archive-people">00:00:00</strong></div>
+      <div class="archive-stat"><span>EMPTY / INVALID SPACE</span><strong id="archive-empty">00:00:00</strong></div>
+    </section>
+    <section class="archive-districts" aria-label="Time by district">
+      <div class="archive-stat"><span>VILLA DISTRICT</span><strong id="archive-villa">00:00:00</strong></div>
+      <div class="archive-stat"><span>RESIDENTIAL DISTRICT</span><strong id="archive-residential">00:00:00</strong></div>
+      <div class="archive-stat"><span>COMMERCIAL DISTRICT</span><strong id="archive-commercial">00:00:00</strong></div>
+    </section>
+    <p class="archive-question">When every glance has a price, <em>are your eyes free?</em></p>
+  </div>
+</main>
+
+<main id="street" class="hidden" aria-label="LOOKCOIN panoramic street view">
+  <button id="back-map" type="button">← BACK TO MAP</button>
+  <div id="panorama" aria-hidden="true">
+    <img class="panorama-image" src="LOOKCOIN_Residential_360_Panorama.webp" alt="" draggable="false"><img class="panorama-image" src="LOOKCOIN_Residential_360_Panorama.webp" alt="" draggable="false"><img class="panorama-image" src="LOOKCOIN_Residential_360_Panorama.webp" alt="" draggable="false">
+  </div>
+  <div id="darkness" aria-hidden="true"></div><div id="strain" aria-hidden="true"><div class="s-veil"></div><div class="s-red"></div><svg id="veins" preserveAspectRatio="none"></svg></div><div id="lids" aria-hidden="true"><i></i><i></i></div><div id="gaze" aria-hidden="true"></div><div id="reticle" aria-hidden="true"></div>
+  <header class="street-header">
+    <div><div class="street-brand">LOOKCOIN</div><div class="street-zone" id="street-zone">RESIDENTIAL DISTRICT&nbsp;&nbsp;—&nbsp;&nbsp;ZONE 02</div></div>
+    <div class="wallet-street" aria-live="polite"><span>TOTAL BALANCE</span><strong><i class="coin-mark">●</i><b id="street-total">0000</b></strong><small id="street-role">STUDENT · 2 LC/SEC</small></div>
+  </header>
+  <div id="street-intro"><span>HOLD + DRAG</span> TO LOOK AROUND<br><span>SCROLL</span> TO ZOOM&nbsp;&nbsp;·&nbsp;&nbsp;<span>GAZE</span> TO EARN</div>
+  <section id="scan-card" aria-live="polite">
+    <div class="scan-top"><span id="scan-status">AD SURFACE DETECTED</span><b id="ad-label">—</b></div>
+    <div id="progress-ring"><div><strong id="watch-time">15.0</strong><span id="time-unit">SEC</span></div></div>
+    <div class="scan-bottom"><span id="scan-instruction">KEEP THE AD IN VIEW</span><b id="reward">+15 LC</b></div>
+  </section>
+  <aside class="earnings" aria-live="polite"><div id="coin-rain" aria-hidden="true"></div><span>THIS VIEW</span><strong><i class="coin-mark">●</i>+<b id="session-total">0</b></strong></aside>
+  <div id="street-toast" role="status" aria-live="polite"></div><footer class="street-footer"><span id="visual-load">VISUAL LOAD&nbsp;&nbsp;41%</span><span id="zoom-label">−&nbsp;&nbsp;ZOOM 155%&nbsp;&nbsp;+</span><div class="street-actions"><button id="reset-view" type="button">RESET VIEW</button></div></footer>
+</main>
+
+<div id="mobile-note" class="hidden" role="dialog" aria-modal="true" aria-labelledby="mobile-title">
+  <div class="mobile-inner">
+    <p class="mobile-kicker">LOOKCOIN / DEVICE CHECK</p>
+    <h2 id="mobile-title">THIS CITY IS<br>BUILT FOR A<br>BIGGER SCREEN.</h2>
+    <p class="mobile-copy">LookCoin is a desktop prototype: you look around a street with your mouse, and every second your gaze rests on an ad is paid. Open this link on a laptop or desktop to play.</p>
+    <button id="mobile-copy-link" type="button">COPY LINK</button>
+    <button id="mobile-continue" type="button">CONTINUE ANYWAY →</button>
+  </div>
+</div>
+<script src="script.js"></script>
+<script>/* back-to-portfolio link, shown only when this page is opened on its own (not inside the portfolio iframe) */
+(function(){if(window.top!==window.self)return;var a=document.createElement('a');a.href='/';a.textContent='\u2190 Yihan Zeng \u00b7 Portfolio';a.setAttribute('style','position:fixed;left:14px;bottom:14px;z-index:2147483000;font:500 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#f1f0e9;background:rgba(0,0,0,.62);padding:9px 12px;border-radius:999px;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:.75;transition:opacity .2s');a.onmouseenter=function(){a.style.opacity=1};a.onmouseleave=function(){a.style.opacity=.75};(document.body||document.documentElement).appendChild(a);})();</script>
+</body>
+</html>
