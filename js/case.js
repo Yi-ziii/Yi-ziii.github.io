@@ -1,3 +1,47 @@
+/* Always open a project at the very top (no browser scroll restoration), and the Web / PDF switch */
+(function () {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  const toTop = () => { if (!location.hash) { const r = document.documentElement, b = r.style.scrollBehavior; r.style.scrollBehavior = 'auto'; scrollTo(0, 0); r.style.scrollBehavior = b; } };
+  toTop(); addEventListener('DOMContentLoaded', toTop); addEventListener('load', toTop);
+  addEventListener('pageshow', e => { if (e.persisted) toTop(); });
+
+  // pages exported from the Figma portfolio book: assets/<slug>/pdf/page-NN.webp (+ -sm), <slug>.pdf
+  const PAGES = { center: 6, lookcoin: 8, harmony: 6, medimate: 6, mlog: 8 };
+  const slug = (location.pathname.split('/').pop() || '').replace(/\.html$/, '');
+  const n = PAGES[slug]; if (!n) return;
+
+  function build() {
+    const title = (document.querySelector('.c-title') || {}).textContent || document.title.split('·')[0];
+    const sec = document.createElement('section'); sec.className = 'pdfview'; sec.setAttribute('aria-label', 'Portfolio pages');
+    let lis = '';
+    for (let i = 1; i <= n; i++) {
+      const k = String(i).padStart(2, '0'), b = `assets/${slug}/pdf/page-${k}`;
+      lis += `<li><img src="${b}-sm.webp" srcset="${b}-sm.webp 1250w, ${b}.webp 2500w" sizes="(min-width: 1800px) 1800px, 100vw" loading="${i < 3 ? 'eager' : 'lazy'}" alt="Portfolio page ${i} of ${n}" data-zoom="${b}.webp" data-group="pdf-${slug}" data-cap="${title.trim()} · page ${i}/${n}"><span class="pg">${k} / ${String(n).padStart(2, '0')}</span></li>`;
+    }
+    sec.innerHTML = `<div class="pdf-head"><h1>${title.trim()}</h1><div class="pdf-actions"><span class="mono"><b>${n}</b> pages · click a page to zoom</span><a class="pdf-dl" href="assets/${slug}/pdf/${slug}.pdf" download>Download PDF ↓</a></div></div><ol class="pdf-pages">${lis}</ol>`;
+    document.querySelector('main').after(sec);
+  }
+
+  function setMode(m, push) {
+    if (m === 'pdf' && !document.querySelector('.pdfview')) build();
+    document.body.classList.toggle('mode-pdf', m === 'pdf');
+    document.querySelectorAll('.viewsw button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+    try { sessionStorage.setItem('caseView', m); } catch (e) {}
+    if (push) { const u = new URL(location.href); if (m === 'pdf') u.searchParams.set('view', 'pdf'); else u.searchParams.delete('view'); u.hash = ''; history.replaceState(null, '', u); }
+    const r = document.documentElement, b = r.style.scrollBehavior; r.style.scrollBehavior = 'auto'; scrollTo(0, 0); r.style.scrollBehavior = b;
+  }
+
+  addEventListener('DOMContentLoaded', () => {
+    const sw = document.createElement('div'); sw.className = 'viewsw'; sw.setAttribute('role', 'group'); sw.setAttribute('aria-label', 'View as');
+    sw.innerHTML = '<button type="button" data-mode="web">Web</button><button type="button" data-mode="pdf">PDF</button>';
+    const head = document.querySelector('.top'); head.insertBefore(sw, head.querySelector('.menu'));
+    sw.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setMode(b.dataset.mode, true); });
+    let m = new URLSearchParams(location.search).get('view');
+    if (!m) { try { m = sessionStorage.getItem('caseView'); } catch (e) {} }
+    setMode(m === 'pdf' ? 'pdf' : 'web', false);
+  });
+})();
+
 /* Case-page behaviour: reading bar, chapter nav, reveal, board gallery, lightbox, lazy embeds */
 (function () {
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];

@@ -266,3 +266,29 @@ table.t { width: 100%; border-collapse: collapse; font-size: 14.5px }
 @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto } .reveal { opacity: 1; transform: none; transition: none } .bar i::after { transition: none } }
 .proto:focus, .proto:focus-visible { outline: none }
 img[src*="/boards/board-"] { aspect-ratio: 2500 / 1080; object-fit: cover }
+
+/* ---------- Web / PDF view switch ---------- */
+.viewsw { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: #0d0d0d; gap: 2px }
+.viewsw button { font: 400 11.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); background: transparent; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; transition: background .2s, color .2s }
+.viewsw button:hover { color: var(--text) }
+.viewsw button[aria-pressed="true"] { background: var(--text); color: #000 }
+.top .viewsw { position: absolute; left: 50%; transform: translateX(-50%) }
+.pdfview { display: none; padding: calc(var(--head) + 28px) var(--gutter) 8vh }
+body.mode-pdf > main, body.mode-pdf > .foot, body.mode-pdf .readbar { display: none }
+body.mode-pdf .pdfview { display: block }
+.pdf-head { max-width: 1800px; margin: 0 auto 22px; display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 16px }
+.pdf-head h1 { margin: 0; font: 600 clamp(20px, 2vw, 28px)/1.2 var(--sans) }
+.pdf-head .mono b { color: var(--text); font-weight: 400 }
+.pdf-actions { display: flex; gap: 18px; align-items: center }
+.pdf-dl { font: 400 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #000; background: var(--acc); text-decoration: none; padding: 11px 16px; border-radius: 999px }
+.pdf-dl:hover { background: var(--text) }
+.pdf-pages { list-style: none; margin: 0 auto; padding: 0; max-width: 1800px; display: grid; gap: 18px }
+.pdf-pages li { position: relative }
+.pdf-pages img { width: 100%; height: auto; aspect-ratio: var(--ar, 2500 / 1080); background: #111; cursor: zoom-in }
+.pdf-pages .pg { position: absolute; right: 10px; bottom: 10px; font: 400 11px/1 var(--mono); letter-spacing: .1em; color: #fff; background: #000a; padding: 6px 9px; border-radius: 999px; pointer-events: none }
+@media (max-width: 900px) {
+  .top .viewsw { position: static; transform: none; margin-left: auto; margin-right: 12px }
+  .viewsw button { padding: 7px 10px; letter-spacing: .08em }
+  .top .menu { display: none }
+}
+@media (max-width: 1100px) { .c-hero { padding-left: var(--gutter); padding-right: var(--gutter) } }
