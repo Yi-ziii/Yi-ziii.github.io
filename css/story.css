@@ -57,11 +57,6 @@ img[data-zoom] { cursor: zoom-in }
 }
 
 /* prominent live entry in the hero */
-.c-live.big { margin: 28px 0 8px }
-.c-live.big .c-live-btn { font-size: clamp(18px, 1.6vw, 24px); padding: 18px 30px 18px 22px; gap: 16px; background: var(--acc); color: #111; border-color: var(--acc); animation: glow 2.4s ease-in-out infinite; font-weight: 600 }
-.c-live.big .c-live-btn .dot { width: 14px; height: 14px; background: #111; box-shadow: 0 0 0 0 #1118; animation: pulse 1.8s ease-out infinite }
-.c-live.big .c-live-btn i { font-style: normal; font-size: 1.1em }
-.c-live.big small { display: block; margin-top: 10px; font: 400 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
 /* illustrations with light backgrounds: fade the edges into the black page (MLOG) */
 img[src*="04-wearable-recorder"], img[src*="04-employee-app"], img[src*="04-manager-workspace"],
 img[src*="/08-journey-"] {

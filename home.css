@@ -48,6 +48,7 @@ em { font: italic 1.08em Garamond, Georgia, serif; color: var(--text) }
 .work-center .work-name { font-size: 7.8cqw; line-height: 1 }
 .work-harmony .work-name { font-size: 10.4cqw }
 .work-mlog .work-name { font-size: 22cqw }
+.work-otherworks .work-name { font-size: 11.5cqw; line-height: 1 }
 .work.current { color: #fff }
 .work.current .work-meta { color: var(--signal) }
 .work:hover { color: #9a9a9a }

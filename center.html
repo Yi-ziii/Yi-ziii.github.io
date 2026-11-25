@@ -70,7 +70,7 @@
 .tl-img { position: relative }
 .tl-img i { position: absolute; bottom: 0; width: 1.5px; margin-left: -1px; background: #d9d3c3 }
 .tl-img i::before { content: ""; position: absolute; top: -4px; left: -3.25px; width: 8px; height: 8px; border-radius: 50% ; background: #d9d3c3 }
-.eras { list-style: none; margin: 0; padding: 0 0 0 10%; display: grid; grid-template-columns: 23% 17% 16% 18% 16% }
+.eras { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 10% 23% 17% 16% 18% 16% } .eras::before { content: "" }
 .eras li { border-left: 1.5px solid #d9d3c3; padding: 18px 16px 4px 14px; margin-left: -1px; position: relative }
 .eras h4 { margin: 8px 0 6px; font: 600 18px/1.2 var(--sans) } .eras p { margin: 0; color: #bdbdb6; font-size: 15px; max-width: 15em }
 .eras .now h4, .eras .now .mono { color: var(--acc) }
@@ -181,7 +181,7 @@
   .turnq, .play-card, .debate, .sides, .swap, .rules, .turns, .ways, .focus, .concept, .stairs, .sculpt, .sculpt:nth-child(even), .rings, .voices4 { grid-template-columns: 1fr }
   .sculpt:nth-child(even) .sk-pics { order: 0 }
   .side-cat .voices li::after, .side-painting .voices li::after { display: none }
-  .eras { grid-template-columns: 1fr 1fr; padding: 3vh var(--gutter) 0; gap: 22px 18px } .eras li { border-left: 0; border-top: 1.5px solid #d9d3c3; padding: 12px 0 0 } .tl-img i { display: none } .survey-key { grid-template-columns: 1fr 1fr } .survey-key p { grid-column: 1 / -1 }
+  .eras { grid-template-columns: 1fr 1fr; padding: 3vh var(--gutter) 0; gap: 22px 18px } .eras::before { display: none } .eras li { border-left: 0; border-top: 1.5px solid #d9d3c3; padding: 12px 0 0 } .tl-img i { display: none } .survey-key { grid-template-columns: 1fr 1fr } .survey-key p { grid-column: 1 / -1 }
   .mx-row, .qt-row { grid-template-columns: 1fr } .mx-head, .qt-head { display: none }
   .chain, .io { grid-template-columns: 1fr 1fr } .chain li::after { display: none }
   .flow7 { grid-auto-columns: 78% } .making { columns: 2 }
@@ -200,10 +200,10 @@
 <main>
 <section class="c-hero wrap">
   <a class="c-back mono" href="index.html?project=center">← All projects</a>
-  <div class="c-kicker mono"><span>01 / 05</span><span>Interactive installation</span></div>
+  <div class="c-kicker mono"><span>01 / 06</span><span>Interactive installation</span></div>
   <h1 class="c-title long">Should Humans Remain at the Center?</h1>
   <p class="c-sub">Humans have always stood at the center. Now we want to leave. <em>But leaving is never free.</em></p>
-  <div class="c-live" aria-label="Live pages"><a class="c-live-btn" href="center-experience/" target="_blank" rel="noopener"><span class="dot"></span>Play the digital edition<i>↗</i></a></div>
+  <div class="c-entry" aria-label="Live page"><a class="c-entry-btn" href="center-experience/" target="_blank" rel="noopener"><span class="dot"></span><span class="t">Play the digital edition</span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18L18 6M8.5 6H18v9.5"/></svg></span></a><span class="c-entry-note">Interactive · four sculptures, twelve questions, sound on</span></div>
   <dl class="c-meta">
     <div><dt>Format</dt><dd>Interactive installation · four sculptures · voice</dd></div>
     <div><dt>Research</dt><dd>205-person survey · 12 situations</dd></div>

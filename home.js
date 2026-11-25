@@ -36,6 +36,13 @@ const PROJECTS = [
     summary: 'A wearable badge system that replaces passive workplace surveillance with work logs that employees start themselves. A badge, an employee app and a manager dashboard make work visible, while managers only see the records an employee has reviewed and confirmed.',
     meta: [['Format', 'Individual project'], ['Date', '2025.11 – 2026.04']],
     live: ''
+  },
+  {
+    slug: 'otherworks', title: 'Other Works', ratio: 1.5,
+    category: 'Selected side projects',
+    summary: 'Three smaller projects: Interlock Chair, a rounded chair built from interlocking sheets of corrugated cardboard; Silverfish, a cat fountain designed around visible water and easier cleaning; and Latent Poem, an interactive digital darkroom that turns shared photographs and words into film poems.',
+    meta: [['Works', 'Interlock Chair · Silverfish · Latent Poem'], ['Date', '2024 – 2026']],
+    live: ''
   }
 ];
 

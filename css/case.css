@@ -320,3 +320,16 @@ body.mode-pdf .pdfview { display: block }
 .c-film.playing video { width: 100%; height: 100%; display: block; background: #000; object-fit: contain }
 @media (max-width: 760px) { .c-film-label { padding: 10px 16px 10px 10px; font-size: 14px; gap: 12px } .c-film-icon { width: 40px; height: 40px } .c-film-icon::after { left: 16px; top: 12px; border-width: 8px; border-left-width: 12px } }
 .pdf-dl { white-space: nowrap } @media (max-width: 600px) { .pdf-actions .mono { display: none } }
+
+/* ======= unified hero entry (all projects) ======= */
+.c-entry { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 24px; margin: 30px 0 8px }
+.c-entry-btn { display: flex; align-items: center; gap: 18px; width: min(100%, 460px); height: 68px; white-space: nowrap; padding: 0 12px 0 26px; border-radius: 999px; background: var(--acc); color: #111; text-decoration: none; font: 600 clamp(19px, 1.55vw, 23px)/1 var(--sans); letter-spacing: -.01em; box-shadow: 0 0 0 0 color-mix(in srgb, var(--acc) 45%, transparent); animation: entryGlow 2.4s ease-in-out infinite; transition: transform .25s }
+.c-entry-btn .dot { width: 12px; height: 12px; border-radius: 50%; background: #111; animation: entryPulse 1.8s ease-out infinite; flex: none }
+.c-entry-btn .arr { margin-left: auto; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: #111; color: var(--acc); flex: none; transition: transform .25s }
+.c-entry-btn .arr svg { width: 22px; height: 22px; display: block }
+.c-entry-btn:hover { transform: translateY(-2px) } .c-entry-btn:hover .arr { transform: translate(2px, -2px) }
+.c-entry-note { font: 400 12px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); max-width: 30em }
+@media (max-width: 640px) { .c-entry-btn { height: 60px; padding-left: 20px; font-size: 18px } .c-entry-btn .arr { width: 40px; height: 40px } }
+@keyframes entryPulse { 0% { box-shadow: 0 0 0 0 #1118 } 100% { box-shadow: 0 0 0 14px #1110 } }
+@keyframes entryGlow { 0%, 100% { box-shadow: 0 0 0 0 transparent } 50% { box-shadow: 0 0 40px 2px color-mix(in srgb, var(--acc) 38%, transparent) } }
+@media (prefers-reduced-motion: reduce) { .c-entry-btn, .c-entry-btn .dot { animation: none } }
